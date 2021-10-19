@@ -64,7 +64,7 @@
                 android:id="@+id/editPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/button2"
+                android:layout_above="@+id/loginButton"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="32dp"
@@ -82,10 +82,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/editUser" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/button3"
+                android:layout_above="@+id/registerButton"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="3dp"
@@ -101,7 +101,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/registerButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -117,10 +117,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button2" />
+                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/exitButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"

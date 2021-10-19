@@ -32,8 +32,8 @@ public class LoginScreen extends AppCompatActivity {
 
         usuario = findViewById(R.id.editUser);
         clave = findViewById(R.id.editPassword);
-        iniciarSesion = findViewById(R.id.button2);
-        registrarse = findViewById(R.id.button3);
+        iniciarSesion = findViewById(R.id.loginButton);
+        registrarse = findViewById(R.id.registerButton);
         mp = MediaPlayer.create(this,R.raw.clic);
         dao = new dbConexion(this);
 
@@ -74,19 +74,17 @@ public class LoginScreen extends AppCompatActivity {
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-
-            usuario.setText("Usuario");
-            iniciarSesion.setText("INICIAR SESION");
-            registrarse.setText("REGISTRARSE");
-
-        }
-        else{
+            usuario.setHint("Ingrese su usuario");
+            iniciarSesion.setText("Iniciar sesión");
+            registrarse.setText("Registrarse");
+        }else{
+            usuario.setHint("Put your username");
             usuario.setText("User");
-            iniciarSesion.setText("LOGIN");
-            registrarse.setText("REGISTER");
+            iniciarSesion.setText("Login");
+            registrarse.setText("Register");
         }
-
     }
+
     public void salirdeaplicacion(View view){
         finish();
     }
