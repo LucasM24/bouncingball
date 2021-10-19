@@ -1,4 +1,4 @@
-package com.example.bouncingball;
+package com.example.bouncingball.pruebas;
 
 public class PruebaMod {
 

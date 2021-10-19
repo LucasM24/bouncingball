@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#252850"
-    tools:context=".activity.Main2Activity">
+    android:scrollbarSize="@android:dimen/app_icon_size"
+    tools:context=".activity.LoginScreen">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,91 +18,106 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="193dp"
+                android:layout_above="@+id/editUser"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.499"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ball" />
 
             <EditText
-                android:id="@+id/editUsuario"
+                android:id="@+id/editUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_above="@id/editPassword"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:hint="@string/app_user"
+                android:hint="Ingrese su usuario"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:textColorHint="#454545"
+                android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <EditText
-                android:id="@+id/editClave"
+                android:id="@+id/editPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_above="@+id/button2"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginBottom="5dp"
                 android:ems="10"
-                android:hint="@string/app_password"
+                android:hint="Ingrese su clave"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:textColorHint="#454545"
+                android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editUsuario" />
-
-            <EditText
-                android:id="@+id/editEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:layout_marginBottom="5dp"
-                android:ems="10"
-                android:hint="@string/app_email"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:textColorHint="#454545"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editClave" />
+                app:layout_constraintTop_toBottomOf="@+id/editUser" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_above="@+id/button3"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/press_button"
+                android:onClick="logins"
+                android:text="@string/app_iniciarsesion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="3dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/press_button"
-                android:onClick="guardar"
-                android:text="@string/app_toacept"
-
-                app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+                android:onClick="register"
+                android:text="@string/app_registrarse"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button2" />
 
             <Button
                 android:id="@+id/button"
@@ -115,9 +131,11 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="5dp"
-                android:onClick="exit"
+                android:onClick="salirdeaplicacion"
                 android:text="Salir"
                 app:backgroundTint="@color/colorPrimary" />
+
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>

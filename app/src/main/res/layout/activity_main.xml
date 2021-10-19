@@ -1,135 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3A1614"
-    tools:context=".MainActivity" >
-
-    <TextView
-        android:id="@+id/textView5"
+    android:background="#252850"
+    tools:context=".activity.MainActivity" >
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="MENU"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#FFC107"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="89dp" />
+        >
 
-    <Button
-        android:id="@+id/btnRegistrarse"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:orientation="vertical"
+        >
+
+
+    <TextView
+        android:id="@+id/textV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView4"
+        android:layout_marginBottom="33dp"
+        android:text=""
+        android:textColor="#5562AA"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="158dp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="194dp"
+            android:layout_above="@+id/button5"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginEnd="59dp"
+            android:layout_marginRight="59dp"
+            android:layout_marginBottom="2dp"
+            app:srcCompat="@drawable/ball" />
+
+        <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button6"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#F44336"
-        android:gravity="center"
-        android:text="REGISTRARSE"
-        android:textColor="#FFC107"
-        android:textSize="24sp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/press_button"
+        android:hint="@string/app_play"
+        android:onClick="play"
+        android:textColor="#100F0F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
-        android:id="@+id/btnLogin "
-        android:layout_width="0dp"
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_above="@+id/button7"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:autoText="false"
-        android:background="#F44336"
-        android:gravity="center"
-        android:onClick="login"
-        android:text="LOGIN"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#FFC107"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegistrarse" />
-
-    <Button
-        android:id="@+id/btnRanking"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#F44336"
-        android:gravity="center"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/press_button"
+        android:hint="@string/app_ranking"
         android:onClick="mostrar"
-        android:text="RANKING"
-        android:textColor="#FFC107"
-        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin " />
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <Button
-        android:id="@+id/btnSonido"
-        android:layout_width="0dp"
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_above="@+id/button8"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#F44336"
-        android:gravity="center"
-        android:onClick="sonido"
-        android:text="SONIDO"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#FFC107"
-        android:textSize="24sp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/press_button"
+        android:hint="@string/app_opciones"
+        android:onClick="opciones"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRanking" />
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 
     <Button
-        android:id="@+id/btnSalir"
-        android:layout_width="0dp"
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="122dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#F44336"
-        android:text="SALIR"
-        android:textColor="#FFC107"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSonido" />
-
-    <Button
-        android:id="@+id/btnSilencio"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#F44336"
-        android:onClick="silencio"
-        android:text="SILENCIO"
-        android:textColor="#FFC107"
-        android:textSize="24sp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="58dp"
+        android:background="@drawable/press_button"
+        android:hint="@string/app_exitos"
+        android:onClick="regresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSonido" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
+
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -9,16 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-    <activity android:name=".Main4Activity"></activity>
-        <activity android:name=".Main3Activity" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".MainActivity" android:exported="true">
+        <activity
+            android:name=".activity.EventoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.Opciones"
+            android:exported="true" />
+        <activity android:name=".activity.Main4Activity" />
+        <activity android:name=".activity.Main3Activity" />
+        <activity android:name=".activity.Main2Activity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity
+            android:name=".activity.LoginScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".activity.ServicioMusica"
+            android:enabled="true" />
     </application>
 
 </manifest>

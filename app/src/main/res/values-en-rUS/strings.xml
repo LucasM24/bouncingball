@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bouncing Ball</string>
+    <string name="app_user">User</string>
+    <string name="app_password">Password</string>
+    <string name="app_iniciarsesion">Login</string>
+    <string name="app_registrarse">Register</string>
+    <string name="app_play">Play</string>
+    <string name="app_ranking">Ranking</string>
+    <string name="app_opciones">Option</string>
+    <string name="app_exitos">Exit</string>
+    <string name="app_email">Email</string>
+    <string name="app_toacept">Accept</string>
+    <string name="app_jugadorpuntaje">Players  Score Max</string>
+    <string name="app_idioma">Idiom</string>
+    <string name="app_sonido">Sound</string>
+    <string name="app_volver">Previous</string>
+    <string name="app_nivelesjuego">Level of Play</string>
+    <string name="app_facil">Easy</string>
+    <string name="app_intermedio">Intermediate</string>
+    <string name="app_dificil">Hard</string>
+    <string name="app_validar">Validate</string>
+</resources>
