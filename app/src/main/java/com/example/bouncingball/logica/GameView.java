@@ -149,7 +149,7 @@ public class GameView extends SurfaceView {
 		//Propiedades del canvas
 		super.onDraw(canvas);
 		canvas.drawBitmap(fondoImg, 0, 0, null);
-
+		//System.out.println("Entro al onDraw***********************************************************");
 		//Pinceles
 		pincelPelota.setColor(BLUE);
 		pincelJugador.setColor(GREEN);
@@ -193,12 +193,13 @@ public class GameView extends SurfaceView {
 			this.reiniciarJuego(canvas);
 		}
 		//Posición del boton siguiente
+		/*
 		canvas.drawRect(xMax-100, yMax-100, xMax+50, yMax+50, pincelPelota);
 		canvas.drawRect(0, yMax-100, 50, yMax-50, pincelPelota);
 		if(siguienteFotograma){
 			gameThread.pause();
 			siguienteFotograma=false;
-		}
+		}*/
 	}
 
 	//Metodos del Juego
@@ -365,8 +366,6 @@ public class GameView extends SurfaceView {
 
 	}
 
-
-
 	private void pintarGrilla(Canvas canvas){
 		for (int i = 0; i < this.grilla.getCantidadFilas(); i++){
 			for (int j = 0; j < this.grilla.getCantidadColumnas(); j++){
@@ -386,7 +385,7 @@ public class GameView extends SurfaceView {
 
 	private void nivelSuperado(Canvas canvas){
 		imgSuperoNivel=true;
-		gameThread.pause();
+		gameThread.parar();
 		this.reubicarPelota();
 
 		this.grilla.avanzarUnNivel();
@@ -399,24 +398,21 @@ public class GameView extends SurfaceView {
 		int nivelActual=this.grilla.getNivelActual();
 		editor.putInt("level",nivelActual);
 		editor.commit();
-
-		new Handler().post(new Runnable() {
-
-			@Override
-			public void run() {
-				Intent i = new Intent(getContext(), EventoActivity.class);
-				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(getContext(),i,null);
-			}
-
-		});
-		System.out.println("********************Termino el hilo");
-
 		preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 		// String user = preferences.getString("user","vacio");
 		editor = preferences.edit();
 		editor.putInt("user_puntaje",this.puntaje);
 		editor.commit();
+
+
+				Intent i = new Intent(getContext(), EventoActivity.class);
+				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(getContext(),i,null);
+
+
+		System.out.println("********************Termino el hilo");
+
+
 
 		//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ganaste),xMax,yMax,false);
 		//canvas.drawBitmap(bmp, 0, 0, null);

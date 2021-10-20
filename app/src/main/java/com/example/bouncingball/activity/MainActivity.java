@@ -91,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
         onBackPressed();
 
     }
+    public void continuarJugando(View v){
+        //mp.start();
+        //onBackPressed();
+        System.out.println("Continuar jugando *********** desde el Main Activity");
+        onBackPressed();
+    }
     private void actualizarIdioma(){
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 

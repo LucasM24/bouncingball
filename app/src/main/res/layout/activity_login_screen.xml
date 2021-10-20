@@ -98,6 +98,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
+                app:textAllCaps="false"
                 app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
             <Button
@@ -117,6 +118,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
+                app:textAllCaps="false"
                 app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
             <Button
@@ -133,6 +135,7 @@
                 android:layout_marginBottom="5dp"
                 android:onClick="salirdeaplicacion"
                 android:text="Salir"
+                app:textAllCaps="false"
                 app:backgroundTint="@color/colorPrimary" />
 
         </LinearLayout>
