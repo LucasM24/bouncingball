@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".activity.GanadorActivity2"
+            android:screenOrientation="portrait"
+            android:exported="true" />
+        <activity
             android:name=".activity.EventoActivity"
             android:exported="true" />
         <activity

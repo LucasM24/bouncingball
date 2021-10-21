@@ -21,9 +21,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
+import android.widget.Toast;
 
 import com.example.bouncingball.R;
 import com.example.bouncingball.activity.EventoActivity;
+import com.example.bouncingball.activity.GanadorActivity2;
 import com.example.bouncingball.activity.LoginScreen;
 import com.example.bouncingball.activity.MainActivity;
 import com.example.bouncingball.clases.Bloque;
@@ -384,38 +386,52 @@ public class GameView extends SurfaceView {
 	}
 
 	private void nivelSuperado(Canvas canvas){
-		imgSuperoNivel=true;
-		gameThread.parar();
-		this.reubicarPelota();
 
-		this.grilla.avanzarUnNivel();
 		/*
-		 * Handler , Runnable
+		 *
+		 * case one verify what the limit maximum for plays the can  do the playe
+		 *
 		 * */
-		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-		//int level = preferences.getInt("level",1);
-		SharedPreferences.Editor editor = preferences.edit();
-		int nivelActual=this.grilla.getNivelActual();
-		editor.putInt("level",nivelActual);
-		editor.commit();
-		preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-		// String user = preferences.getString("user","vacio");
-		editor = preferences.edit();
-		editor.putInt("user_puntaje",this.puntaje);
-		editor.commit();
+
+		if(this.grilla.getNivelActual()<3) {
+			imgSuperoNivel = true;
+			gameThread.parar();
+			this.reubicarPelota();
+
+			this.grilla.avanzarUnNivel();
+			/*
+			 * Handler , Runnable
+			 * */
+			SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+			//int level = preferences.getInt("level",1);
+			SharedPreferences.Editor editor = preferences.edit();
+			int nivelActual = this.grilla.getNivelActual();
+			editor.putInt("level", nivelActual);
+			editor.commit();
+			preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+			// String user = preferences.getString("user","vacio");
+			editor = preferences.edit();
+			editor.putInt("user_puntaje", this.puntaje);
+			editor.commit();
 
 
-				Intent i = new Intent(getContext(), EventoActivity.class);
-				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(getContext(),i,null);
+			Intent i = new Intent(getContext(), EventoActivity.class);
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(getContext(), i, null);
 
 
-		System.out.println("********************Termino el hilo");
+			System.out.println("********************Termino el hilo");
 
 
-
-		//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ganaste),xMax,yMax,false);
-		//canvas.drawBitmap(bmp, 0, 0, null);
+			//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ganaste),xMax,yMax,false);
+			//canvas.drawBitmap(bmp, 0, 0, null);
+		}else{
+			gameThread.parar();
+			Intent h = new Intent(getContext(), GanadorActivity2.class);
+			h.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(getContext(), h, null);
+			Toast.makeText(this.getContext(), "!!!Ganaste!!!", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private void controlDelJuego(Canvas canvas){
