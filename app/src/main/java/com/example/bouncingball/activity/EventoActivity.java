@@ -46,11 +46,16 @@ public class EventoActivity extends AppCompatActivity {
         //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         //setContentView(new GameView(getBaseContext()));
     }
-    public void subirNivel(View v){
 
-    }
     public void salirDelJuego(View V){
+
         System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        String user = preferences.getString("user","vacio");
+        Intent menu = new Intent(EventoActivity.this, MainActivity.class);
+        menu.putExtra("id_user",user);
+        startActivity(menu);
+
     }
 
 }

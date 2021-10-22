@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.bouncingball.R;
 import com.example.bouncingball.activity.EventoActivity;
+import com.example.bouncingball.activity.GameOverActivity;
 import com.example.bouncingball.activity.GanadorActivity2;
 import com.example.bouncingball.activity.LoginScreen;
 import com.example.bouncingball.activity.MainActivity;
@@ -511,8 +512,11 @@ public class GameView extends SurfaceView {
 		this.grilla.setCantidadBloquesPintados(0);
 		this.grilla.reiniciarGrilla();
 		gameThread.pause();
-		bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.finjuego),xMax,yMax,false);
-		canvas.drawBitmap(bmp, 0, 0, null);
+		Intent j = new Intent(getContext(), GameOverActivity.class);
+		j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(getContext(), j, null);
+		//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.finjuego),xMax,yMax,false);
+		//canvas.drawBitmap(bmp, 0, 0, null);
 
 	}
 
