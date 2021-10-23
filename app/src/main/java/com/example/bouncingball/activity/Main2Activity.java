@@ -52,9 +52,6 @@ public class Main2Activity extends AppCompatActivity {
 
         if(idioma_user.equalsIgnoreCase("es")){
 
-            usuario.setText("Usuario");
-            clave.setText("Clave");
-            email.setText("Correo");
             btn_aceptar.setText("ACEPTAR");
 
         }
