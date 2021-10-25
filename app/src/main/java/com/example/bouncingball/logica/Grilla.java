@@ -178,7 +178,7 @@ public class Grilla extends GameView{
         this.matrizBloque[0][1].setDureza(1);
     }
     private void pintarNivelDePrueba2(){
-        this.cantidadBloquesPintados=1;
+        this.cantidadBloquesPintados=3;
         //Fila0
         this.matrizBloque[0][0].setDureza(1);
         this.matrizBloque[0][1].setDureza(1);

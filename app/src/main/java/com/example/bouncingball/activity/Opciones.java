@@ -99,7 +99,8 @@ public class Opciones extends AppCompatActivity {
                  editor.commit();
              }
          }
-
+        editor.putString("changelevel","si");
+        editor.commit();
 
     }
 
@@ -142,7 +143,7 @@ public class Opciones extends AppCompatActivity {
             btn_intermedio.setText("Intermedio");
             btn_dificil.setText("Dificil");
             btn_validar.setText("Validar");
-            btn_regresar.setText("Volver");
+            btn_regresar.setText("Regresar");
 
         }
         else{

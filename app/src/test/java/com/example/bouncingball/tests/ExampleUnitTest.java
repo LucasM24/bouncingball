@@ -1,4 +1,4 @@
-package com.example.bouncingball;
+package com.example.bouncingball.tests;
 
 import org.junit.Test;
 
@@ -13,5 +13,11 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
+    }
+    public void test_esto_siempre_pasa(){
+        assertTrue(5>1);
+    }
+    public void test_esto_nunca_pasa(){
+        assertTrue(5<1);
     }
 }
