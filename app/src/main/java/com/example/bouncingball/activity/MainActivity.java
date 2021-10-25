@@ -123,6 +123,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void anterior(View v) {
         onBackPressed();
+        System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        String user = preferences.getString("user","vacio");
+        Intent menu = new Intent(MainActivity.this, LoginScreen.class);
+        menu.putExtra("id_user",user);
+        startActivity(menu);
     }
 
 
@@ -146,6 +152,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
 }

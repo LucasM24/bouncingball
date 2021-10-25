@@ -95,4 +95,8 @@ public class Main2Activity extends AppCompatActivity {
         finish();
     }
 
-}
+    public void anterior(View v) {
+        onBackPressed();
+    }
+
+    }
