@@ -119,33 +119,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(k);
 
     }
-    public void salirdelapp(View v){
-        mp.start();
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Desea Salir del Juego?");
-        alertDialogBuilder
-                .setMessage("Presione SI para Salir!")
-                .setCancelable(false)
-                .setPositiveButton("SI",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                moveTaskToBack(true);
-                                android.os.Process.killProcess(android.os.Process.myPid());
-                                System.exit(1);
-                            }
-                        })
 
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-
+    public void anterior(View v) {
+        onBackPressed();
     }
+
+
 
     private void actualizarIdioma(){
 

@@ -87,7 +87,6 @@ public class Main3Activity extends AppCompatActivity {
 
     public void anterior(View v) {
        onBackPressed();
-
     }
 
 }

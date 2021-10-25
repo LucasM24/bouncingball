@@ -87,7 +87,7 @@ public class LoginScreen extends AppCompatActivity {
         }
     }
 
-    public void salirdeaplicacion(View view){
+    public void salirDeAplicacion(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Desea Salir del Juego?");
         alertDialogBuilder

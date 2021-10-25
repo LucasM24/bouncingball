@@ -113,7 +113,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="5dp"
-                android:onClick="salirdelapp"
+                android:onClick="anterior"
                 android:text="Salir"
                 app:backgroundTint="@color/colorPrimary"
                 app:textAllCaps="false" />
