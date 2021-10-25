@@ -1,10 +1,8 @@
 package com.example.bouncingball.activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -20,11 +18,11 @@ import com.example.bouncingball.database.dbConexion;
 
 public class Main2Activity extends AppCompatActivity {
 
-    private EditText usuario ;
-    private EditText clave;
-    private EditText email ;
+    private EditText campoUsuario;
+    private EditText campoClave;
+    private EditText campoEmail ;
     private dbConexion dao ;
-    private Button btn_aceptar ;
+    private Button botonAceptar, botonVolver ;
     private MediaPlayer mp ;
 
     @Override
@@ -32,10 +30,11 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        usuario = findViewById(R.id.editUsuario);
-        clave = findViewById(R.id.editClave);
-        email = findViewById(R.id.editEmail);
-        btn_aceptar =(Button)findViewById(R.id.button4);
+        campoUsuario = findViewById(R.id.editUsuario);
+        campoClave = findViewById(R.id.editClave);
+        campoEmail = findViewById(R.id.editEmail);
+        botonAceptar = findViewById(R.id.button4);
+        botonVolver = findViewById(R.id.botonVolver);
         mp = MediaPlayer.create(this,R.raw.clic);
         dao = new dbConexion(this);
 
@@ -49,32 +48,31 @@ public class Main2Activity extends AppCompatActivity {
     }
     private void actualizarIdioma(){
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-
-            btn_aceptar.setText("ACEPTAR");
-
+            campoUsuario.setHint(R.string.TEXTO_PISTA_CAMPO_USUARIO);
+            campoClave.setHint(R.string.TEXTO_PISTA_CAMPO_CONTRASENIA);
+            campoEmail.setHint(R.string.TEXTO_PISTA_CAMPO_CORREO);
+            botonAceptar.setText(R.string.TEXTO_BOTON_ACEPTAR);
+            botonVolver.setText(R.string.TEXTO_BOTON_VOLVER);
+        }else{
+            campoUsuario.setHint(R.string.TEXTO_PISTA_CAMPO_USUARIO_EN);
+            campoClave.setHint(R.string.TEXTO_PISTA_CAMPO_CONTRASENIA_EN);
+            campoEmail.setHint(R.string.TEXTO_PISTA_CAMPO_CORREO_EN);
+            botonAceptar.setText(R.string.TEXTO_BOTON_ACEPTAR_EN);
+            botonVolver.setText(R.string.TEXTO_BOTON_VOLVER_EN);
         }
-        else{
-            usuario.setText("User");
-            clave.setText("Password");
-            email.setText("Email");
-            btn_aceptar.setText("ACCEPT");
-
-        }
-
     }
+
     public void guardar(View view){
-
        mp.start();
-       Usuario a = new Usuario (usuario.getText().toString(),clave.getText().toString(),email.getText().toString(),0);
+       Usuario a = new Usuario (campoUsuario.getText().toString(),campoClave.getText().toString(),campoEmail.getText().toString(),0);
 
-        if(!usuario.getText().toString().isEmpty() && !clave.getText().toString().isEmpty() && !email.getText().toString().isEmpty())
+        if(!campoUsuario.getText().toString().isEmpty() && !campoClave.getText().toString().isEmpty() && !campoEmail.getText().toString().isEmpty())
         {
 
-           long  id = dao.insertarUser(usuario.getText().toString(),clave.getText().toString(),email.getText().toString());
+           long  id = dao.insertarUser(campoUsuario.getText().toString(),campoClave.getText().toString(),campoEmail.getText().toString());
             if(id>0) {
                 Toast.makeText(this, "REGISTRO EXITOSO", Toast.LENGTH_SHORT).show();
 
@@ -82,46 +80,19 @@ public class Main2Activity extends AppCompatActivity {
                 Intent menu = new Intent(Main2Activity.this, MainActivity.class);
                 menu.putExtra("id_user",a.getUsuario());
                 startActivity(menu);
-                usuario.setText("");
-                clave.setText("");
-                email.setText("");
-            }
-            else{
+                campoUsuario.setText("");
+                campoClave.setText("");
+                campoEmail.setText("");
+            }else{
                 Toast.makeText(this, "Error al GUARDAR REGISTRO", Toast.LENGTH_SHORT).show();
             }
-        }
-        else{
-
+        }else{
             Toast.makeText(this, "Debe llenar todos los campos " , Toast.LENGTH_SHORT).show();
         }
-
-
     }
+
     public void exit(View view){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Desea Salir del Juego?");
-        alertDialogBuilder
-                .setMessage("Presione SI para Salir!")
-                .setCancelable(false)
-                .setPositiveButton("SI",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                moveTaskToBack(true);
-                                android.os.Process.killProcess(android.os.Process.myPid());
-                                System.exit(1);
-                            }
-                        })
-
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-
+        finish();
     }
 
 }

@@ -18,8 +18,9 @@ import com.example.bouncingball.database.dbConexion;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private MediaPlayer mp ;
-    private Button jugar,ranking ,opciones,salir;
+    private Button botonJugar,botonRanking ,botonOpciones,botonSalir;
     private TextView mostrar_user ;
     private dbConexion dao ;
 
@@ -87,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
         String name_user = extra.getString("id_user");
         mostrar_user = (TextView) findViewById(R.id.textV);
         mostrar_user.setText(name_user);
-        jugar = (Button) findViewById(R.id.button5);
-        ranking = (Button) findViewById(R.id.button6);
-        opciones = (Button) findViewById(R.id.button7);
-        salir = (Button) findViewById(R.id.exitButton);
+        botonJugar = (Button) findViewById(R.id.button5);
+        botonRanking = (Button) findViewById(R.id.button6);
+        botonOpciones = (Button) findViewById(R.id.button7);
+        botonSalir = (Button) findViewById(R.id.button8);
 
     }
     public void play(View v){
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     public void mostrar(View v){
      mp.start();
      Intent mostrarActivity = new Intent(MainActivity.this, Main3Activity.class);
-     mostrarActivity.putExtra("id_user2",mostrar_user.getText().toString());
+        mostrarActivity.putExtra("id_user2",mostrar_user.getText().toString());
      startActivity(mostrarActivity);
 
 
@@ -129,23 +130,19 @@ public class MainActivity extends AppCompatActivity {
     private void actualizarIdioma(){
 
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-
-          jugar.setText("Jugar");
-          ranking.setText("Ranking");
-          opciones.setText("Opciones");
-          salir.setText("Salir");
-
-        }
-        else{
-
-            jugar.setText("Play");
-            ranking.setText("Ranking");
-            opciones.setText("Option");
-            salir.setText("Previuos");
-
+          botonJugar.setText(R.string.TEXTO_BOTON_JUGAR);
+          botonRanking.setText(R.string.TEXTO_BOTON_RANKING);
+          botonOpciones.setText(R.string.TEXTO_BOTON_OPCIONES);
+          botonSalir.setText(R.string.TEXTO_BOTON_SALIR);
+        }else{
+            botonJugar.setText(R.string.TEXTO_BOTON_JUGAR_EN);
+            botonRanking.setText(R.string.TEXTO_BOTON_RANKING_EN);
+            botonOpciones.setText(R.string.TEXTO_BOTON_OPCIONES_EN);
+            botonSalir.setText(R.string.TEXTO_BOTON_SALIR_EN);
         }
 
     }

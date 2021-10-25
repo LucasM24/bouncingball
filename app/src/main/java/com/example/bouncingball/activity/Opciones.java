@@ -99,8 +99,7 @@ public class Opciones extends AppCompatActivity {
                  editor.commit();
              }
          }
-        editor.putString("changelevel","si");
-        editor.commit();
+
 
     }
 
@@ -137,25 +136,20 @@ public class Opciones extends AppCompatActivity {
 
         if(idioma_user.equalsIgnoreCase("es")){
             btn_idioma.setImageResource(R.drawable.argentina);
-
-            txtNivelDelJuego.setText("Nivel del Juego");
-            btn_facil.setText("Facil");
-            btn_intermedio.setText("Intermedio");
-            btn_dificil.setText("Dificil");
-            btn_validar.setText("Validar");
-            btn_regresar.setText("Regresar");
-
-        }
-        else{
-
+            txtNivelDelJuego.setText(R.string.ETIQUETA_NIVELES);
+            btn_facil.setText(R.string.ETIQUETA_NIVEL_FACIL);
+            btn_intermedio.setText(R.string.ETIQUETA_NIVEL_INTERMEDIO);
+            btn_dificil.setText(R.string.ETIQUETA_NIVEL_DIFICIL);
+            btn_validar.setText(R.string.TEXTO_BOTON_ACEPTAR);
+            btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER);
+        }else{
             btn_idioma.setImageResource(R.drawable.estadosunidos);
-            txtNivelDelJuego.setText("Level of Play");
-            btn_facil.setText("Easy");
-            btn_intermedio.setText("Intermediate");
-            btn_dificil.setText("Hard");
-            btn_validar.setText("Validate");
-            btn_regresar.setText("Previous");
-
+            txtNivelDelJuego.setText(R.string.ETIQUETA_NIVELES_EN);
+            btn_facil.setText(R.string.ETIQUETA_NIVEL_FACIL_EN);
+            btn_intermedio.setText(R.string.ETIQUETA_NIVEL_INTERMEDIO_EN);
+            btn_dificil.setText(R.string.ETIQUETA_NIVEL_DIFICIL_EN);
+            btn_validar.setText(R.string.TEXTO_BOTON_ACEPTAR_EN);
+            btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER_EN);
         }
 
     }

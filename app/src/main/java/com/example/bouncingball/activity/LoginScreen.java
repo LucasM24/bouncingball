@@ -24,7 +24,7 @@ public class LoginScreen extends AppCompatActivity {
     private EditText usuario ;
     private EditText clave;
     private dbConexion dao ;
-    private Button iniciarSesion ,registrarse ;
+    private Button iniciarSesion , registrarse, salir ;
     private MediaPlayer mp ;
 
     @Override
@@ -36,6 +36,7 @@ public class LoginScreen extends AppCompatActivity {
         clave = findViewById(R.id.editPassword);
         iniciarSesion = findViewById(R.id.loginButton);
         registrarse = findViewById(R.id.registerButton);
+        salir = findViewById(R.id.exitButton);
         mp = MediaPlayer.create(this,R.raw.clic);
         dao = new dbConexion(this);
 
@@ -76,14 +77,17 @@ public class LoginScreen extends AppCompatActivity {
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-            usuario.setHint("Ingrese su usuario");
-            iniciarSesion.setText("Iniciar sesión");
-            registrarse.setText("Registrarse");
+            usuario.setHint(R.string.TEXTO_PISTA_CAMPO_USUARIO);
+            clave.setHint(R.string.TEXTO_PISTA_CAMPO_CONTRASENIA);
+            iniciarSesion.setText(R.string.TEXTO_BOTON_INICIAR_SESION);
+            registrarse.setText(R.string.TEXTO_BOTON_REGISTRARSE);
+            salir.setText(R.string.TEXTO_BOTON_SALIR);
         }else{
-            usuario.setHint("Put your username");
-            usuario.setText("User");
-            iniciarSesion.setText("Login");
-            registrarse.setText("Register");
+            usuario.setHint(R.string.TEXTO_PISTA_CAMPO_USUARIO_EN);
+            clave.setHint(R.string.TEXTO_PISTA_CAMPO_CONTRASENIA_EN);
+            iniciarSesion.setText(R.string.TEXTO_BOTON_INICIAR_SESION_EN);
+            registrarse.setText(R.string.TEXTO_BOTON_REGISTRARSE_EN);
+            salir.setText(R.string.TEXTO_BOTON_SALIR_EN);
         }
     }
 
