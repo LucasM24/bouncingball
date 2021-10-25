@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".10"
-                android:text="@string/app_jugadorpuntaje"
+                android:text="@string/ETIQUETA_PUNTAJE_JUGADOR"
                 android:textSize="34sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -53,7 +53,7 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="5dp"
                 android:onClick="anterior"
-                android:text="Regresar"
+                android:text="@string/TEXTO_BOTON_VOLVER"
                 app:backgroundTint="@color/colorPrimary" />
 
         </LinearLayout>

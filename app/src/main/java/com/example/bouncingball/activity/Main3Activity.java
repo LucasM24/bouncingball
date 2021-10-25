@@ -27,7 +27,7 @@ public class Main3Activity extends AppCompatActivity {
     private ListView lista;
     private dbConexion db;
     private RecyclerView listaplayers;
-    private TextView mostrar_user ,puntajemax;
+    private TextView mostrar_user ,textoPuntajeMax;
     private MediaPlayer mp ;
     private Button btn_regresar ;
 
@@ -38,7 +38,7 @@ public class Main3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main3);
         listaplayers = findViewById(R.id.listaplayers);
         listaplayers.setLayoutManager(new LinearLayoutManager(this));
-        puntajemax = (TextView)findViewById(R.id.idJugadorPuntajeMax);
+        textoPuntajeMax = (TextView)findViewById(R.id.idJugadorPuntajeMax);
         btn_regresar = (Button)findViewById(R.id.button);
         mp = MediaPlayer.create(this,R.raw.clic);
         recibir_date();
@@ -69,18 +69,14 @@ public class Main3Activity extends AppCompatActivity {
     }
     private void actualizarIdioma(){
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-
-         puntajemax.setText("Jugador Puntaje Max");
-         btn_regresar.setText("Regresar");
-
-        }
-        else{
-            puntajemax.setText("Players  Score Max");
-            btn_regresar.setText("Previous");
+            textoPuntajeMax.setText(R.string.ETIQUETA_PUNTAJE_JUGADOR);
+            btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER);
+        }else{
+            textoPuntajeMax.setText(R.string.ETIQUETA_PUNTAJE_JUGADOR_EN);
+            btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER_EN);
         }
 
     }

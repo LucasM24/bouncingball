@@ -72,12 +72,12 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/press_button"
                 android:onClick="guardar"
-                android:text="@string/app_toacept"
+                android:text="@string/TEXTO_BOTON_REGISTRARSE"
 
                 app:layout_constraintTop_toBottomOf="@+id/editEmail" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/botonVolver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -89,7 +89,7 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="5dp"
                 android:onClick="exit"
-                android:text="Salir"
+                android:text="@string/TEXTO_BOTON_VOLVER"
                 app:backgroundTint="@color/colorPrimary" />
         </LinearLayout>
     </ScrollView>

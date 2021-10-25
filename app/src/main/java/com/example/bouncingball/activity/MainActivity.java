@@ -17,7 +17,7 @@ import com.example.bouncingball.database.dbConexion;
 public class MainActivity extends AppCompatActivity {
 
     MediaPlayer mp ;
-    Button jugar,ranking ,opciones,salir;
+    Button botonJugar,botonRanking ,botonOpciones,botonSalir;
     TextView mostrar_user ;
     private dbConexion dao ;
 
@@ -54,22 +54,22 @@ public class MainActivity extends AppCompatActivity {
         String name_user = extra.getString("id_user");
         mostrar_user = (TextView) findViewById(R.id.textV);
         mostrar_user.setText(name_user);
-        jugar = (Button) findViewById(R.id.button5);
-        ranking = (Button) findViewById(R.id.button6);
-        opciones = (Button) findViewById(R.id.button7);
-        salir = (Button) findViewById(R.id.button8);
+        botonJugar = (Button) findViewById(R.id.button5);
+        botonRanking = (Button) findViewById(R.id.button6);
+        botonOpciones = (Button) findViewById(R.id.button7);
+        botonSalir = (Button) findViewById(R.id.button8);
 
     }
     public void play(View v){
         mp.start();
-        Intent jugar = new Intent(MainActivity.this, Main4Activity.class);
+        Intent botonJugar = new Intent(MainActivity.this, Main4Activity.class);
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("user",mostrar_user.getText().toString());
         editor.commit();
 
-        startActivity(jugar);
+        startActivity(botonJugar);
     }
     public void mostrar(View v){
      mp.start();
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void opciones(View v){
+    public void botonOpciones(View v){
         mp.start();
         Intent k = new Intent(MainActivity.this, Opciones.class);
         k.putExtra("id_user2",mostrar_user.getText().toString());
@@ -99,24 +99,18 @@ public class MainActivity extends AppCompatActivity {
     }
     private void actualizarIdioma(){
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
-
-          jugar.setText("JUGAR");
-          ranking.setText("RANKING");
-          opciones.setText("OPCIONES");
-          salir.setText("REGRESAR");
-
-        }
-        else{
-
-            jugar.setText("PLAY");
-            ranking.setText("RANKING");
-            opciones.setText("OPTION");
-            salir.setText("PREVIOUS");
-
+          botonJugar.setText(R.string.TEXTO_BOTON_JUGAR);
+          botonRanking.setText(R.string.TEXTO_BOTON_RANKING);
+          botonOpciones.setText(R.string.TEXTO_BOTON_OPCIONES);
+          botonSalir.setText(R.string.TEXTO_BOTON_SALIR);
+        }else{
+            botonJugar.setText(R.string.TEXTO_BOTON_JUGAR_EN);
+            botonRanking.setText(R.string.TEXTO_BOTON_RANKING_EN);
+            botonOpciones.setText(R.string.TEXTO_BOTON_OPCIONES_EN);
+            botonSalir.setText(R.string.TEXTO_BOTON_SALIR_EN);
         }
 
     }
