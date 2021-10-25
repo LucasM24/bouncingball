@@ -108,6 +108,7 @@ public class GameView extends SurfaceView {
 				// Base de Datos
 				dao = new dbConexion(getContext());
 
+
 				//Ubicacion del jugador
 //				 jugador= new Jugador(150,227,150,20);
 				// pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
@@ -115,7 +116,11 @@ public class GameView extends SurfaceView {
 				/*
 				 * Aqui deberia recuperarse del sharedPreferences
 				 * */
+				SharedPreferences.Editor editor = preferences.edit();
 				int level = preferences.getInt("level",1);
+				editor.putInt("level", level);
+				editor.commit();
+
 				grilla = new Grilla(xMax, yMax, 7, 10, 40,level ,context);
 
 				//jugador = new Jugador((getWidth() / 2) - (150 / 2), getHeight() - 200, 150,20);
@@ -130,9 +135,6 @@ public class GameView extends SurfaceView {
 				gameThread = new GameThread(GameView.this);
 				gameThread.play();
 
-				//gameThread.setRunning(true);
-
-				//gameThread.start();
 			}
 
 			@Override
@@ -393,6 +395,8 @@ public class GameView extends SurfaceView {
 		 * case one verify what the limit maximum for plays the can  do the playe
 		 *
 		 * */
+		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+		String user = preferences.getString("user","vacio");
 
 		if(this.grilla.getNivelActual()<3) {
 			imgSuperoNivel = true;
@@ -403,20 +407,26 @@ public class GameView extends SurfaceView {
 			/*
 			 * Handler , Runnable
 			 * */
-			SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+			//SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 			//int level = preferences.getInt("level",1);
 			SharedPreferences.Editor editor = preferences.edit();
 			int nivelActual = this.grilla.getNivelActual();
 			editor.putInt("level", nivelActual);
 			editor.commit();
 			preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-			// String user = preferences.getString("user","vacio");
+			int puntajeAnterior = preferences.getInt("user_puntaje",0);
 			editor = preferences.edit();
-			editor.putInt("user_puntaje", this.puntaje);
+
+			if(puntajeAnterior>this.puntaje){
+				editor.putInt("user_puntaje",puntajeAnterior);
+			}else {
+				editor.putInt("user_puntaje", this.puntaje);
+			}
 			editor.commit();
 
 
 			Intent i = new Intent(getContext(), EventoActivity.class);
+			i.putExtra("id_user",user);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(getContext(), i, null);
 
@@ -428,7 +438,17 @@ public class GameView extends SurfaceView {
 			//canvas.drawBitmap(bmp, 0, 0, null);
 		}else{
 			gameThread.parar();
+			SharedPreferences.Editor editor = preferences.edit();
+			int puntajeAnterior = preferences.getInt("user_puntaje",0);
+			editor = preferences.edit();
+			if(puntajeAnterior>this.puntaje){
+				editor.putInt("user_puntaje",puntajeAnterior);
+			}else {
+				editor.putInt("user_puntaje", this.puntaje);
+			}
+			editor.commit();
 			Intent h = new Intent(getContext(), GanadorActivity2.class);
+			h.putExtra("id_user",user);
 			h.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(getContext(), h, null);
 			Toast.makeText(this.getContext(), "!!!Ganaste!!!", Toast.LENGTH_SHORT).show();
@@ -505,6 +525,8 @@ public class GameView extends SurfaceView {
 	}
 
 	private void reiniciarJuego(Canvas canvas){
+		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+		String user = preferences.getString("user","vacio");
 
 		vidas = 2;
 		puntaje=0;
@@ -513,8 +535,10 @@ public class GameView extends SurfaceView {
 		this.grilla.reiniciarGrilla();
 		gameThread.pause();
 		Intent j = new Intent(getContext(), GameOverActivity.class);
+		j.putExtra("id_user",user);
 		j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(getContext(), j, null);
+		Toast.makeText(this.getContext(), "!!!Perdiste el Juego !!!", Toast.LENGTH_SHORT).show();
 		//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.finjuego),xMax,yMax,false);
 		//canvas.drawBitmap(bmp, 0, 0, null);
 

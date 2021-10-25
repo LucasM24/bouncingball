@@ -1,8 +1,10 @@
 package com.example.bouncingball.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -16,9 +18,9 @@ import com.example.bouncingball.database.dbConexion;
 
 public class MainActivity extends AppCompatActivity {
 
-    MediaPlayer mp ;
-    Button jugar,ranking ,opciones,salir;
-    TextView mostrar_user ;
+    private MediaPlayer mp ;
+    private Button jugar,ranking ,opciones,salir;
+    private TextView mostrar_user ;
     private dbConexion dao ;
 
     @Override
@@ -29,12 +31,43 @@ public class MainActivity extends AppCompatActivity {
         // Base de Datos
         dao = new dbConexion(this);
        recibirDatos();
+        /*
+         * Actualizar el nivel
+         * si viene de Activity Opciones no realizar ningun cambio en el nivel
+         * caso contrario iniciar el juego por default en easy
+         * */
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        String cambioNivel = preferences.getString("changelevel","no");
+        if(!cambioNivel.equalsIgnoreCase("si")){
+
+            SharedPreferences.Editor editor = preferences.edit();
+            // int level = preferences.getInt("level",1);
+            editor.putInt("level", 1);
+            editor.commit();
+
+        }
+
 
 
     }
     @Override
     protected void onResume() {
         super.onResume();
+        /*
+        * Actualizar el nivel
+        * si viene de Activity Opciones no realizar ningun cambio en el nivel
+        * caso contrario iniciar el juego por default en easy
+        * */
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        String cambioNivel = preferences.getString("changelevel","no");
+        if(!cambioNivel.equalsIgnoreCase("si")){
+
+            SharedPreferences.Editor editor = preferences.edit();
+           // int level = preferences.getInt("level",1);
+            editor.putInt("level", 1);
+            editor.commit();
+
+        }
         //Carga Activity.
         actualizarIdioma();
         actualizarPuntaje();
@@ -57,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         jugar = (Button) findViewById(R.id.button5);
         ranking = (Button) findViewById(R.id.button6);
         opciones = (Button) findViewById(R.id.button7);
-        salir = (Button) findViewById(R.id.button8);
+        salir = (Button) findViewById(R.id.exitButton);
 
     }
     public void play(View v){
@@ -74,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     public void mostrar(View v){
      mp.start();
      Intent mostrarActivity = new Intent(MainActivity.this, Main3Activity.class);
-        mostrarActivity.putExtra("id_user2",mostrar_user.getText().toString());
+     mostrarActivity.putExtra("id_user2",mostrar_user.getText().toString());
      startActivity(mostrarActivity);
 
 
@@ -86,36 +119,53 @@ public class MainActivity extends AppCompatActivity {
         startActivity(k);
 
     }
-    public void regresar(View v){
+    public void salirdelapp(View v){
         mp.start();
-        onBackPressed();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Desea Salir del Juego?");
+        alertDialogBuilder
+                .setMessage("Presione SI para Salir!")
+                .setCancelable(false)
+                .setPositiveButton("SI",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                moveTaskToBack(true);
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                                System.exit(1);
+                            }
+                        })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
 
     }
-    public void continuarJugando(View v){
-        //mp.start();
-        //onBackPressed();
-        System.out.println("Continuar jugando *********** desde el Main Activity");
-        onBackPressed();
-    }
+
     private void actualizarIdioma(){
-        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
 
-          jugar.setText("JUGAR");
-          ranking.setText("RANKING");
-          opciones.setText("OPCIONES");
-          salir.setText("REGRESAR");
+          jugar.setText("Jugar");
+          ranking.setText("Ranking");
+          opciones.setText("Opciones");
+          salir.setText("Salir");
 
         }
         else{
 
-            jugar.setText("PLAY");
-            ranking.setText("RANKING");
-            opciones.setText("OPTION");
-            salir.setText("PREVIOUS");
+            jugar.setText("Play");
+            ranking.setText("Ranking");
+            opciones.setText("Option");
+            salir.setText("Previuos");
 
         }
 

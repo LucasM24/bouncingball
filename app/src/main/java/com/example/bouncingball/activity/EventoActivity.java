@@ -23,6 +23,11 @@ public class EventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evento);
 
+        Bundle extra = getIntent().getExtras();
+        String name_user = extra.getString("id_user");
+        mostrar_user = (TextView) findViewById(R.id.textView2);
+        mostrar_user.setText(name_user);
+
     }
 
     public void continuarJugando(View v){
@@ -30,17 +35,9 @@ public class EventoActivity extends AppCompatActivity {
         * Deberia volver al GameView
         * */
         System.out.println("*******Metodo del Evento Activity : Deberia volver al GameView*********");
-        //super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        //mp = MediaPlayer.create(this,R.raw.clic);
-        // Base de Datos
-        //dao = new dbConexion(this);
 
-        //Intent jugar = new Intent(MainActivity.this, Main4Activity.class);
         Intent jugar = new Intent(EventoActivity.this, Main4Activity.class);
         startActivity(jugar);
-        //onBackPressed();
-
 
         //Funciona
         //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
