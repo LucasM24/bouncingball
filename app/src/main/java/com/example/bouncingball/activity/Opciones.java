@@ -35,7 +35,7 @@ public class Opciones extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opciones2);
+        setContentView(R.layout.modelo_opciones_del_juego);
         mpclic = MediaPlayer.create(this,R.raw.clic);
 
         recibir_date();

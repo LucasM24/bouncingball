@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -21,7 +20,7 @@ import com.example.bouncingball.listas.ListaUsuarioAdapter;
 
 import java.util.ArrayList;
 
-public class Main3Activity extends AppCompatActivity {
+public class PuntajeJugador extends AppCompatActivity {
 
     private ArrayList<Usuario> listaArrayUsuarios;
     private ListView lista;
@@ -35,7 +34,7 @@ public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.modelo_puntaje_jugador);
         listaplayers = findViewById(R.id.listaplayers);
         listaplayers.setLayoutManager(new LinearLayoutManager(this));
         textoPuntajeMax = (TextView)findViewById(R.id.idJugadorPuntajeMax);

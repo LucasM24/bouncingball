@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#252850"
     android:scrollbarSize="@android:dimen/app_icon_size"
-    tools:context=".activity.EventoActivity">
+    tools:context=".activity.SiguienteNivel">
 
     <LinearLayout
         android:layout_width="match_parent"

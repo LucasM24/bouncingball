@@ -1,10 +1,8 @@
 package com.example.bouncingball.activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -16,7 +14,7 @@ import android.widget.TextView;
 import com.example.bouncingball.R;
 import com.example.bouncingball.database.dbConexion;
 
-public class MainActivity extends AppCompatActivity {
+public class MenuPrincipal extends AppCompatActivity {
 
 
     private MediaPlayer mp ;
@@ -27,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.modelo_menu_principal);
         mp = MediaPlayer.create(this,R.raw.clic);
         // Base de Datos
         dao = new dbConexion(this);
@@ -96,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void play(View v){
         mp.start();
-        Intent jugar = new Intent(MainActivity.this, Main4Activity.class);
+        Intent jugar = new Intent(MenuPrincipal.this, Principal.class);
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void mostrar(View v){
      mp.start();
-     Intent mostrarActivity = new Intent(MainActivity.this, Main3Activity.class);
+     Intent mostrarActivity = new Intent(MenuPrincipal.this, PuntajeJugador.class);
         mostrarActivity.putExtra("id_user2",mostrar_user.getText().toString());
      startActivity(mostrarActivity);
 
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void opciones(View v){
         mp.start();
-        Intent k = new Intent(MainActivity.this, Opciones.class);
+        Intent k = new Intent(MenuPrincipal.this, Opciones.class);
         k.putExtra("id_user2",mostrar_user.getText().toString());
         startActivity(k);
 
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         String user = preferences.getString("user","vacio");
-        Intent menu = new Intent(MainActivity.this, LoginScreen.class);
+        Intent menu = new Intent(MenuPrincipal.this, IniciarSesion.class);
         menu.putExtra("id_user",user);
         startActivity(menu);
     }

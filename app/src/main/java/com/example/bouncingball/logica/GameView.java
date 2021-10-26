@@ -1,19 +1,15 @@
 package com.example.bouncingball.logica;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-import static android.content.Intent.getIntent;
-
 import static androidx.core.content.ContextCompat.startActivity;
 
 import static android.graphics.Color.*;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
-import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -24,11 +20,9 @@ import android.view.SurfaceHolder;
 import android.widget.Toast;
 
 import com.example.bouncingball.R;
-import com.example.bouncingball.activity.EventoActivity;
-import com.example.bouncingball.activity.GameOverActivity;
-import com.example.bouncingball.activity.GanadorActivity2;
-import com.example.bouncingball.activity.LoginScreen;
-import com.example.bouncingball.activity.MainActivity;
+import com.example.bouncingball.activity.SiguienteNivel;
+import com.example.bouncingball.activity.Perdedor;
+import com.example.bouncingball.activity.Ganador;
 import com.example.bouncingball.clases.Bloque;
 import com.example.bouncingball.clases.Jugador;
 import com.example.bouncingball.clases.Pelota;
@@ -425,7 +419,7 @@ public class GameView extends SurfaceView {
 			editor.commit();
 
 
-			Intent i = new Intent(getContext(), EventoActivity.class);
+			Intent i = new Intent(getContext(), SiguienteNivel.class);
 			i.putExtra("id_user",user);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(getContext(), i, null);
@@ -447,7 +441,7 @@ public class GameView extends SurfaceView {
 				editor.putInt("user_puntaje", this.puntaje);
 			}
 			editor.commit();
-			Intent h = new Intent(getContext(), GanadorActivity2.class);
+			Intent h = new Intent(getContext(), Ganador.class);
 			h.putExtra("id_user",user);
 			h.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(getContext(), h, null);
@@ -534,7 +528,7 @@ public class GameView extends SurfaceView {
 		this.grilla.setCantidadBloquesPintados(0);
 		this.grilla.reiniciarGrilla();
 		gameThread.pause();
-		Intent j = new Intent(getContext(), GameOverActivity.class);
+		Intent j = new Intent(getContext(), Perdedor.class);
 		j.putExtra("id_user",user);
 		j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(getContext(), j, null);

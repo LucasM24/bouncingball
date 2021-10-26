@@ -23,7 +23,7 @@ public class ListaUsuarioAdapter extends RecyclerView.Adapter<ListaUsuarioAdapte
 
     @Override
     public UsuarioviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_item_players,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.modelo_lista_jugadores,null,false);
         return new UsuarioviewHolder(view);
     }
 

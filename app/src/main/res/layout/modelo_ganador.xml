@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.GameOverActivity">
+    tools:context=".activity.Ganador">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="43dp"
+            android:layout_height="38dp"
             android:text="TextView"
             android:textSize="20sp" />
 
@@ -22,9 +23,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:lottie_autoPlay="true"
-            app:lottie_fileName="gameover.json"
+            app:lottie_fileName="win.json"
             app:lottie_imageAssetsFolder="assets"
-            app:lottie_loop="true" />
+            app:lottie_loop="true"
+            tools:ignore="MissingClass" />
 
         <Button
             android:id="@+id/salirDelJuego"
@@ -34,8 +36,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginRight="32dp"
             android:background="@drawable/button_rounded"
-            android:onClick="volverAlMenuJuego"
+            android:onClick="volverAlMenu"
             android:text="Regresar al Menu" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

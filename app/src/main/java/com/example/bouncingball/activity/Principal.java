@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.example.bouncingball.logica.GameView;
 
-public class Main4Activity extends AppCompatActivity {
+public class Principal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,8 +16,5 @@ public class Main4Activity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         setContentView(new GameView(getBaseContext()));
     }
-
-
-
 
 }

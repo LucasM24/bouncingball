@@ -10,24 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".activity.GameOverActivity"
+            android:name=".activity.Perdedor"
             android:exported="true" />
         <activity
-            android:name=".activity.GanadorActivity2"
+            android:name=".activity.Ganador"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.EventoActivity"
+            android:name=".activity.SiguienteNivel"
             android:exported="true" />
         <activity
             android:name=".activity.Opciones"
             android:exported="true" />
-        <activity android:name=".activity.Main4Activity" />
-        <activity android:name=".activity.Main3Activity" />
-        <activity android:name=".activity.Main2Activity" />
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.Principal" />
+        <activity android:name=".activity.PuntajeJugador" />
+        <activity android:name=".activity.RegistroUsuario" />
+        <activity android:name=".activity.MenuPrincipal" />
         <activity
-            android:name=".activity.LoginScreen"
+            android:name=".activity.IniciarSesion"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

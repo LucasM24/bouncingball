@@ -16,7 +16,7 @@ import com.example.bouncingball.R;
 import com.example.bouncingball.clases.Usuario;
 import com.example.bouncingball.database.dbConexion;
 
-public class Main2Activity extends AppCompatActivity {
+public class RegistroUsuario extends AppCompatActivity {
 
     private EditText campoUsuario;
     private EditText campoClave;
@@ -28,7 +28,7 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.modelo_registro_usuario);
 
         campoUsuario = findViewById(R.id.editUsuario);
         campoClave = findViewById(R.id.editClave);
@@ -77,7 +77,7 @@ public class Main2Activity extends AppCompatActivity {
                 Toast.makeText(this, "REGISTRO EXITOSO", Toast.LENGTH_SHORT).show();
 
 
-                Intent menu = new Intent(Main2Activity.this, MainActivity.class);
+                Intent menu = new Intent(RegistroUsuario.this, MenuPrincipal.class);
                 menu.putExtra("id_user",a.getUsuario());
                 startActivity(menu);
                 campoUsuario.setText("");
@@ -99,4 +99,4 @@ public class Main2Activity extends AppCompatActivity {
         onBackPressed();
     }
 
-    }
+}

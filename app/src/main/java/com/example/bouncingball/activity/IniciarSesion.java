@@ -12,14 +12,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bouncingball.R;
 import com.example.bouncingball.clases.Usuario;
 import com.example.bouncingball.database.dbConexion;
 
-public class LoginScreen extends AppCompatActivity {
+public class IniciarSesion extends AppCompatActivity {
 
     private EditText usuario ;
     private EditText clave;
@@ -30,7 +29,7 @@ public class LoginScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_screen);
+        setContentView(R.layout.modelo_iniciar_sesion);
 
         usuario = findViewById(R.id.editUser);
         clave = findViewById(R.id.editPassword);
@@ -56,7 +55,7 @@ public class LoginScreen extends AppCompatActivity {
 
        if(dao.consultarUsuario(us)!=null) {
 
-            Intent menu = new Intent(LoginScreen.this, MainActivity.class);
+            Intent menu = new Intent(IniciarSesion.this, MenuPrincipal.class);
             menu.putExtra("id_user",us.getUsuario());
             startActivity(menu);
 
@@ -67,7 +66,7 @@ public class LoginScreen extends AppCompatActivity {
     }
     public void register(View v){
         mp.start();
-        Intent menu = new Intent(LoginScreen.this, Main2Activity.class);
+        Intent menu = new Intent(IniciarSesion.this, RegistroUsuario.class);
         startActivity(menu);
     }
 
