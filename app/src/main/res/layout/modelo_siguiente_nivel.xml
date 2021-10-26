@@ -27,26 +27,20 @@
             app:srcCompat="@drawable/ball" />
 
         <Button
+            style="@style/estilos_boton"
             android:id="@+id/idcontinuar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
-            android:layout_marginRight="32dp"
             android:background="@drawable/button_rounded"
             android:onClick="continuarJugando"
-            android:text=" Siguiente Nivel" />
+            android:text="@string/TEXTO_BOTON_SIGUIENTE_NIVEL" />
 
         <Button
+            style="@style/estilos_boton"
             android:id="@+id/idsubirnivel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
-            android:layout_marginRight="32dp"
             android:background="@drawable/button_rounded_border"
             android:onClick="salirDelJuego"
-            android:text="Regresar Menu" />
+            android:text="@string/TEXTO_BOTON_VOLVER_MENU_PRINCIPAL" />
 
     </LinearLayout>
 </RelativeLayout>

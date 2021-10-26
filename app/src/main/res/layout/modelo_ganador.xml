@@ -29,14 +29,10 @@
             tools:ignore="MissingClass" />
 
         <Button
+            style="@style/estilos_boton"
             android:id="@+id/salirDelJuego"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="32dp"
             android:background="@drawable/button_rounded"
             android:onClick="volverAlMenu"
-            android:text="Regresar al Menu" />
+            android:text="@string/TEXTO_BOTON_VOLVER_MENU_PRINCIPAL" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
