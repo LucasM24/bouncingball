@@ -42,16 +42,11 @@
 
 
             <Button
+                style="@style/estilos_boton"
                 android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
                 android:layout_marginBottom="5dp"
                 android:onClick="anterior"
                 android:text="@string/TEXTO_BOTON_VOLVER"

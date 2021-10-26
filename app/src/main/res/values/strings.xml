@@ -18,6 +18,7 @@
     <string name="ETIQUETA_NIVEL_INTERMEDIO">Intermedio</string>
     <string name="ETIQUETA_NIVEL_DIFICIL">Difícil</string>
     <string name="TEXTO_BOTON_ACEPTAR">Aceptar</string>
+    <string name="TEXTO_BOTON_SIGUIENTE_NIVEL">Siguiente nivel</string>
     <string name="TEXTO_BOTON_VOLVER_MENU_PRINCIPAL">Volver al menú principal</string>
     <string name="TEXTO_PISTA_CAMPO_USUARIO">Ingrese su nombre de usuario</string>
     <string name="TEXTO_PISTA_CAMPO_CONTRASENIA">Ingrese su contraseña</string>
