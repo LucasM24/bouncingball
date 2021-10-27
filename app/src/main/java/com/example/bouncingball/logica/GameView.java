@@ -4,12 +4,17 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 import static android.graphics.Color.*;
 
+import static com.example.bouncingball.R.font.fuente_uno;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.graphics.fonts.FontFamily;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -17,7 +22,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.bouncingball.R;
 import com.example.bouncingball.activity.SiguienteNivel;
@@ -65,6 +74,9 @@ public class GameView extends SurfaceView {
 	//imagen Game over
 	private boolean imgFinJuego=false;
 
+	private boolean ganoNivel=false;
+	private boolean jugando=true;
+
 	//imagen Gano
 	private boolean imgSuperoNivel=false;
 	private Bitmap bmp;
@@ -85,6 +97,7 @@ public class GameView extends SurfaceView {
 		super(context);
 		SurfaceHolder holder = getHolder();
 		holder.addCallback(new SurfaceHolder.Callback() {
+			@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 			@Override
 			public void surfaceCreated(SurfaceHolder surfaceHolder) {
 				setWillNotDraw(false);
@@ -126,6 +139,15 @@ public class GameView extends SurfaceView {
 				jugadorImg= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.jugador), jugador.getAncho(), jugador.getAlto(),false);
 				fondoImg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.fondo1),xMax,yMax,false);
 
+				//Pinceles
+				pincelPelota.setColor(BLUE);
+				pincelJugador.setColor(GREEN);
+				pincelIndicadores.setColor(WHITE);
+				pincelIndicadores.setTextSize(30f);
+				Typeface typeface = ResourcesCompat.getFont(context, fuente_uno);
+				pincelIndicadores.setTypeface(typeface);
+				pincelDureza.setColor(RED);
+
 				gameThread = new GameThread(GameView.this);
 				gameThread.play();
 
@@ -147,14 +169,15 @@ public class GameView extends SurfaceView {
 	protected void onDraw(Canvas canvas) {
 		//Propiedades del canvas
 		super.onDraw(canvas);
+
+		if (jugando) {
+
+
 		canvas.drawBitmap(fondoImg, 0, 0, null);
+
+
 		//System.out.println("Entro al onDraw***********************************************************");
-		//Pinceles
-		pincelPelota.setColor(BLUE);
-		pincelJugador.setColor(GREEN);
-		pincelIndicadores.setColor(WHITE);
-		pincelIndicadores.setTextSize(40f);
-		pincelDureza.setColor(RED);
+
 
 		//Controles
 		verificarContactoPantalla();
@@ -164,9 +187,10 @@ public class GameView extends SurfaceView {
 
 			//Es el ultimo bloque??
 			boolean gano = this.grilla.getCantidadBloquesPintados() == 0;
-			if(gano){
+			if (gano || ganoNivel) {
 				this.nivelSuperado(canvas);
-			}else{
+				System.out.println("Despues del nivel superado");
+			} else {
 				//actualizamos las posiciones
 				if (!cayo) {
 					//Verifico contacto si la posicion es menor que
@@ -199,6 +223,8 @@ public class GameView extends SurfaceView {
 			gameThread.pause();
 			siguienteFotograma=false;
 		}*/
+
+	}
 	}
 
 	//Metodos del Juego
@@ -391,7 +417,8 @@ public class GameView extends SurfaceView {
 		 * */
 		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 		String user = preferences.getString("user","vacio");
-
+		jugando=false;
+		ganoNivel=true;
 		if(this.grilla.getNivelActual()<3) {
 			imgSuperoNivel = true;
 			gameThread.parar();
@@ -485,34 +512,35 @@ public class GameView extends SurfaceView {
 
 		String idioma_user = preferences.getString("idioma","es");
 
+
 		if(idioma_user.equalsIgnoreCase("es")){
 			//Nivel
-			canvas.drawText("Nivel:" + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Nivel: \n" + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
 			//Puntaje
-			canvas.drawText("Puntaje:" + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Puntaje: \n" + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
 			//Vidas
 			if(vidas>0){
 
-				canvas.drawText("Vidas:" + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Vidas: \n" + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
 			}else{
 
-				canvas.drawText("Vidas:" + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Vidas: \n" + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
 			}
 
 		}
 		else{
 
 			//Nivel
-			canvas.drawText("Level:" + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Level: \n" + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
 			//Puntaje
-			canvas.drawText("Score:" + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Score: \n" + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
 			//Vidas
 			if(vidas>0){
 
-				canvas.drawText("Life:" + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Life: \n" + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
 			}else{
 
-				canvas.drawText("Life:" + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Life: \n" + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
 			}
 
 		}
