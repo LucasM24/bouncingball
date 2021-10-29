@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#252850"
+    android:background="#002134"
     android:onClick="onClickIdioma"
     tools:context=".activity.Opciones">
 
@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="87dp"
                 android:text=""
+                android:textAlignment="center"
                 android:textSize="24sp"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="0dp"
@@ -30,14 +31,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/imageButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="221dp"
                     android:layout_height="wrap_content"
-                    android:background="#252850"
+                    android:background="#002134"
                     android:onClick="onClickSound"
                     app:srcCompat="@drawable/consonido"
                     tools:ignore="SpeakableTextPresentCheck" />
@@ -47,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#252850"
+                    android:background="#002134"
                     android:onClick="onClickIdioma"
                     app:srcCompat="@drawable/argentina"
                     tools:ignore="SpeakableTextPresentCheck" />
@@ -93,8 +94,8 @@
                 android:orientation="vertical">
 
                 <Button
-                    style="@style/estilos_boton"
                     android:id="@+id/button14"
+                    style="@style/estilos_boton"
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/press_button"
@@ -102,12 +103,12 @@
                     android:text="@string/TEXTO_BOTON_ACEPTAR" />
 
                 <Button
-                    style="@style/estilos_boton"
                     android:id="@+id/button"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
+                    style="@style/estilos_boton"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:onClick="volver"
                     android:text="@string/TEXTO_BOTON_VOLVER"
                     app:backgroundTint="@color/colorPrimary" />

@@ -78,7 +78,7 @@ public class Opciones extends AppCompatActivity {
              Toast.makeText(this, "Nivel Facil", Toast.LENGTH_SHORT).show();
              editor.putInt("level",1);
              editor.commit();
-
+             System.out.println("Entro al boton nivel 1");
 
          }else{
              if(btn_intermedio.isChecked()){
@@ -89,6 +89,7 @@ public class Opciones extends AppCompatActivity {
                  Toast.makeText(this, "Nivel Intermedio", Toast.LENGTH_SHORT).show();
                  editor.putInt("level",2);
                  editor.commit();
+                 System.out.println("Entro al boton nivel 2");
              }
              else{
                  /*
@@ -97,8 +98,11 @@ public class Opciones extends AppCompatActivity {
                  Toast.makeText(this, "Nivel Dificil", Toast.LENGTH_SHORT).show();
                  editor.putInt("level",3);
                  editor.commit();
+                 System.out.println("Entro al boton nivel 3");
              }
          }
+        editor.putString("changelevel","si");
+         editor.commit();
 
 
     }

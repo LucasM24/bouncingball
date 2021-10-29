@@ -25,8 +25,13 @@ public class Grilla extends GameView{
     private Paint pincelTorre = new Paint();
     private Paint pincelPeon = new Paint();
     //Imagenes
-    private Bitmap imgBloqueAmarillo;
+    //private Bitmap imgBloqueAmarillo;
     private Bitmap imgBloqueGris;
+
+    private Bitmap imgBloqueAmarillo;
+    private Bitmap imgBloqueAzul;
+    private Bitmap imgBloqueVioleta;
+    private Bitmap imgBloqueRojo;
 
 
 
@@ -50,8 +55,13 @@ public class Grilla extends GameView{
         this.cargarNivel();
     }
     private void cargarImagenes(){
-        imgBloqueAmarillo= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloquedureza1),this.anchoBloque,this.altoDelBloque,false);
+        imgBloqueAmarillo= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloque_amarillo),this.anchoBloque,this.altoDelBloque,false);
+        imgBloqueVioleta= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloque_violeta),this.anchoBloque,this.altoDelBloque,false);
+        imgBloqueAzul= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloque_azul),this.anchoBloque,this.altoDelBloque,false);
+        imgBloqueRojo= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloque_rojo),this.anchoBloque,this.altoDelBloque,false);
         imgBloqueGris= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloquesdureza2),this.anchoBloque,this.altoDelBloque,false);
+
+
     }
 
     private void asignarPosiciones(int anchoBloque, int altoDelBloque, int espacioEntreBloques){
@@ -63,13 +73,26 @@ public class Grilla extends GameView{
         int posX=0;
         int posY=100;
 
-
+        //Numero aleatorio
+        //numero = (int) (Math.random() * n) + 1;
+        int n=4;
 
         for(int i=0;i<this.cantidadFilas;i++){
             posX=posX+borde;
             for(int j=0;j<this.cantidadColumnas;j++){
                 //int dureza=(int)(Math.random()*2);
-                this.matrizBloque[i][j]=new Bloque(posX,posY,anchoBloque,altoDelBloque,0, imgBloqueAmarillo, i, j, id);
+                int numero = (int) (Math.random() * n) + 1;
+                Bitmap imgAux;
+                if(numero==1){
+                    imgAux=imgBloqueAmarillo;
+                }else if(numero==2){
+                    imgAux=imgBloqueAzul;
+                }else if(numero==3){
+                    imgAux=imgBloqueVioleta;
+                }else{
+                    imgAux=imgBloqueRojo;
+                }
+                this.matrizBloque[i][j]=new Bloque(posX,posY,anchoBloque,altoDelBloque,0, imgAux, i, j, id);
                 posX=posX+anchoBloque+5;
                 //posX=posX+anchoBloque;
                 id=id+1;
@@ -126,16 +149,16 @@ public class Grilla extends GameView{
                 pintarNivelDePrueba0();
                 break;
             case 1:
-                //pintarNivel0();
-                pintarNivelDePrueba0();
+                pintarNivel0();
+                //pintarNivelDePrueba0();
                 break;
             case 2:
-                //pintarlNivel1();
-                pintarNivelDePrueba1();
+                pintarlNivel1();
+                //pintarNivelDePrueba1();
                 break;
             case 3:
-                //nave();
-                pintarNivelDePrueba2();
+                nave();
+                //pintarNivelDePrueba2();
                 break;
         }
     }
@@ -319,29 +342,29 @@ public class Grilla extends GameView{
         Paint pincelR = new Paint();
         pincelR.setColor(Color.RED);
 
-        this.matrizBloque[2][5].setPincel(pincelBlue);
-        this.matrizBloque[3][4].setPincel(pincelBlue);
-        this.matrizBloque[4][3].setPincel(pincelBlue);
-        this.matrizBloque[5][2].setPincel(pincelBlue);
-        this.matrizBloque[6][1].setPincel(pincelBlue);
-        this.matrizBloque[2][1].setPincel(pincelBlue);
-        this.matrizBloque[3][2].setPincel(pincelBlue);
-        this.matrizBloque[5][4].setPincel(pincelBlue);
-        this.matrizBloque[6][5].setPincel(pincelBlue);
+        this.matrizBloque[2][5].setImagen(imgBloqueAzul);
+        this.matrizBloque[3][4].setImagen(imgBloqueAzul);
+        this.matrizBloque[4][3].setImagen(imgBloqueAzul);
+        this.matrizBloque[5][2].setImagen(imgBloqueAzul);
+        this.matrizBloque[6][1].setImagen(imgBloqueAzul);
+        this.matrizBloque[2][1].setImagen(imgBloqueAzul);
+        this.matrizBloque[3][2].setImagen(imgBloqueAzul);
+        this.matrizBloque[5][4].setImagen(imgBloqueAzul);
+        this.matrizBloque[6][5].setImagen(imgBloqueAzul);
 
-        this.matrizBloque[5][3].setPincel(pincelR);
-        this.matrizBloque[6][2].setPincel(pincelR);
-        this.matrizBloque[6][3].setPincel(pincelR);
-        this.matrizBloque[6][4].setPincel(pincelR);
-        this.matrizBloque[7][1].setPincel(pincelR);
-        this.matrizBloque[7][2].setPincel(pincelR);
-        this.matrizBloque[7][3].setPincel(pincelR);
-        this.matrizBloque[7][4].setPincel(pincelR);
-        this.matrizBloque[7][5].setPincel(pincelR);
-        this.matrizBloque[8][2].setPincel(pincelR);
-        this.matrizBloque[8][3].setPincel(pincelR);
-        this.matrizBloque[8][4].setPincel(pincelR);
-        this.matrizBloque[9][3].setPincel(pincelR);
+        this.matrizBloque[5][3].setImagen(imgBloqueRojo);
+        this.matrizBloque[6][2].setImagen(imgBloqueRojo);
+        this.matrizBloque[6][3].setImagen(imgBloqueRojo);
+        this.matrizBloque[6][4].setImagen(imgBloqueRojo);
+        this.matrizBloque[7][1].setImagen(imgBloqueRojo);
+        this.matrizBloque[7][2].setImagen(imgBloqueRojo);
+        this.matrizBloque[7][3].setImagen(imgBloqueRojo);
+        this.matrizBloque[7][4].setImagen(imgBloqueRojo);
+        this.matrizBloque[7][5].setImagen(imgBloqueRojo);
+        this.matrizBloque[8][2].setImagen(imgBloqueRojo);
+        this.matrizBloque[8][3].setImagen(imgBloqueRojo);
+        this.matrizBloque[8][4].setImagen(imgBloqueRojo);
+        this.matrizBloque[9][3].setImagen(imgBloqueRojo);
 
     }
 

@@ -44,8 +44,12 @@ public class MenuPrincipal extends AppCompatActivity {
             editor.putInt("level", 1);
             editor.commit();
 
+        }else{
+            // reinicio cambio de nivel a no
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("changelevel","no");
+            editor.commit();
         }
-
 
 
     }
@@ -59,6 +63,7 @@ public class MenuPrincipal extends AppCompatActivity {
         * */
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         String cambioNivel = preferences.getString("changelevel","no");
+        System.out.println("Cambio de nivel:    ******* "+cambioNivel+" *********");
         if(!cambioNivel.equalsIgnoreCase("si")){
 
             SharedPreferences.Editor editor = preferences.edit();

@@ -28,7 +28,7 @@ public class Bloque {
         this.altoBloque=alto;
         this.pincel=pincel;
         this.id=id;
-        this.puntaje=100;
+        this.puntaje=5;
     }
 
     public Bloque (int posX, int posY, int ancho, int alto, int est, Bitmap imgBloque, int nroColumna, int nroFila, int id){
@@ -39,7 +39,7 @@ public class Bloque {
         this.imgBloque = imgBloque;
         this.dureza=est;
         this.id=id;
-        this.puntaje=100;
+        this.puntaje=5;
         this.modelo = new Rect(posX, posY, posX + ancho, posY + alto);
         this.id=id;
         this.nroColumna=nroColumna;
@@ -154,6 +154,7 @@ public class Bloque {
     public void setPincel(Paint pincel) {
         this.pincel = pincel;
     }
+
 
     public int getAnchoBloque() {
         return anchoBloque;

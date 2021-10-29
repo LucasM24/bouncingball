@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#252850"
+    android:background="#002134"
     android:scrollbarSize="@android:dimen/app_icon_size"
     tools:context=".activity.SiguienteNivel">
 
@@ -23,8 +23,8 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ball" />
+            android:layout_height="170dp"
+            app:srcCompat="@drawable/imginicio" />
 
         <Button
             style="@style/estilos_boton"

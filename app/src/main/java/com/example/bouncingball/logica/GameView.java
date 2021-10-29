@@ -101,7 +101,7 @@ public class GameView extends SurfaceView {
 			@Override
 			public void surfaceCreated(SurfaceHolder surfaceHolder) {
 				setWillNotDraw(false);
-				nivel = 0;
+				nivel = 2;
 				vidas = 1;
 				puntaje = 0;
 				cayo = false;
@@ -125,17 +125,19 @@ public class GameView extends SurfaceView {
 				 * */
 				SharedPreferences.Editor editor = preferences.edit();
 				int level = preferences.getInt("level",1);
+				//int level = preferences.getInt("level",1);
 				editor.putInt("level", level);
 				editor.commit();
+				System.out.println("Nivel actual " + level);
 
 				grilla = new Grilla(xMax, yMax, 7, 10, 40,level ,context);
 
-				//jugador = new Jugador((getWidth() / 2) - (150 / 2), getHeight() - 200, 150,20);
-				jugador = new Jugador((getWidth() / 2) - (150 / 2), 200, 150,20);
-				pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-20,20, 7);
+				jugador = new Jugador((getWidth() / 2) - (150 / 2), getHeight() - 200, 150,20);
+				//jugador = new Jugador((getWidth() / 2) - (150 / 2), 200, 150,20);
+				pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-20,23, 7);
 				//grilla = new Grilla(xMax, yMax, 7, 10, 40,context);
 
-				pelotaImg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pelotagris), pelota.getTamanio(), pelota.getTamanio(),false);
+				pelotaImg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pelota), pelota.getTamanio(), pelota.getTamanio(),false);
 				jugadorImg= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.jugador), jugador.getAncho(), jugador.getAlto(),false);
 				fondoImg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.fondo1),xMax,yMax,false);
 
@@ -511,36 +513,42 @@ public class GameView extends SurfaceView {
 		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
 		String idioma_user = preferences.getString("idioma","es");
-
+		float centroNivel=((xMax * 10) / 100)/2;
+		float centroPuntaje=((xMax * 40) / 100)/2;
+		float centroVida=((xMax * 75) / 100)/2;
 
 		if(idioma_user.equalsIgnoreCase("es")){
 			//Nivel
-			canvas.drawText("Nivel: \n" + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Nivel " , (xMax * 10) / 100, 50f, pincelIndicadores);
+			canvas.drawText(String.valueOf(this.grilla.getNivelActual()), ((xMax * 10) / 100)+centroNivel, 90f, pincelIndicadores);
 			//Puntaje
-			canvas.drawText("Puntaje: \n" + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Puntaje " , (xMax * 40) / 100, 50f, pincelIndicadores);
+			canvas.drawText( String.valueOf(this.puntaje), ((xMax * 40) / 100)+45, 90f, pincelIndicadores);
 			//Vidas
 			if(vidas>0){
 
-				canvas.drawText("Vidas: \n" + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Vidas " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText(String.valueOf(this.vidas), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}else{
 
-				canvas.drawText("Vidas: \n" + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Vidas " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText(String.valueOf(0), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}
 
 		}
 		else{
 
 			//Nivel
-			canvas.drawText("Level: \n" + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Level: " + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
 			//Puntaje
-			canvas.drawText("Score: \n" + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Score: " + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
 			//Vidas
 			if(vidas>0){
 
-				canvas.drawText("Life: \n" + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Life: " + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
 			}else{
 
-				canvas.drawText("Life: \n" + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Life: " + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
 			}
 
 		}
