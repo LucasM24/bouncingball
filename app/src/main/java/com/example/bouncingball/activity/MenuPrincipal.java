@@ -74,17 +74,17 @@ public class MenuPrincipal extends AppCompatActivity {
         }
         //Carga Activity.
         actualizarIdioma();
-        actualizarPuntaje();
+       // actualizarPuntaje();
 
     }
-    private void actualizarPuntaje(){
+ /*   private void actualizarPuntaje(){
 
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         String user = preferences.getString("user","vacio");
         int mypuntaje = preferences.getInt("user_puntaje",0);
         dao.updatePuntaje(user,mypuntaje);
 
-    }
+    }*/
     public void recibirDatos(){
 
         Bundle extra = getIntent().getExtras();

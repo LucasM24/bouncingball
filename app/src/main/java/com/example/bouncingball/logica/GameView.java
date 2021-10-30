@@ -426,50 +426,36 @@ public class GameView extends SurfaceView {
 			gameThread.parar();
 			this.reubicarPelota();
 
-			this.grilla.avanzarUnNivel();
-			/*
-			 * Handler , Runnable
-			 * */
-			//SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-			//int level = preferences.getInt("level",1);
 			SharedPreferences.Editor editor = preferences.edit();
+			editor.putInt("user_puntaje", this.puntaje);
+			System.out.println("Puntaje  : "+this.puntaje+"en el nivel : "+this.grilla.getNivelActual());
+			editor.commit();
+
+			this.grilla.avanzarUnNivel();
+
+
 			int nivelActual = this.grilla.getNivelActual();
 			editor.putInt("level", nivelActual);
 			editor.commit();
-			preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-			int puntajeAnterior = preferences.getInt("user_puntaje",0);
-			editor = preferences.edit();
-
-			if(puntajeAnterior>this.puntaje){
-				editor.putInt("user_puntaje",puntajeAnterior);
-			}else {
-				editor.putInt("user_puntaje", this.puntaje);
-			}
-			editor.commit();
-
 
 			Intent i = new Intent(getContext(), SiguienteNivel.class);
 			i.putExtra("id_user",user);
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(getContext(), i, null);
 
-
 			System.out.println("********************Termino el hilo");
 
-
-			//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ganaste),xMax,yMax,false);
-			//canvas.drawBitmap(bmp, 0, 0, null);
 		}else{
 			gameThread.parar();
+			/*
+			 * Aqui deberia guardar el puntaje del ultimo nivel jugado
+			 *
+			 * */
 			SharedPreferences.Editor editor = preferences.edit();
-			int puntajeAnterior = preferences.getInt("user_puntaje",0);
-			editor = preferences.edit();
-			if(puntajeAnterior>this.puntaje){
-				editor.putInt("user_puntaje",puntajeAnterior);
-			}else {
-				editor.putInt("user_puntaje", this.puntaje);
-			}
+			editor.putInt("user_puntaje", this.puntaje);
+			System.out.println("Puntaje  : "+this.puntaje+"en el nivel : "+this.grilla.getNivelActual());
 			editor.commit();
+
 			Intent h = new Intent(getContext(), Ganador.class);
 			h.putExtra("id_user",user);
 			h.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
