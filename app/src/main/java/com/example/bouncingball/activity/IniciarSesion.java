@@ -40,6 +40,12 @@ public class IniciarSesion extends AppCompatActivity {
         salir = findViewById(R.id.exitButton);
         mp = MediaPlayer.create(this,R.raw.clic);
         dao = new dbConexion(this);
+        // Actualizo algunos datos del puntaje
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("user_puntaje",0);
+        editor.commit();
+
 
 
     }
