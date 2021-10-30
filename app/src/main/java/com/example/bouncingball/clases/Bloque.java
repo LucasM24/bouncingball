@@ -2,13 +2,17 @@ package com.example.bouncingball.clases;
 
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import com.example.bouncingball.R;
 
 public class Bloque {
 
     private Paint pincel;
     private Bitmap imgBloque;
+    private Bitmap imgBloqueRoto;
     private int anchoBloque;
     private int altoBloque;
     private int posX;
@@ -21,22 +25,16 @@ public class Bloque {
     private Rect [] areasDeContacto;
     private Rect modelo;
 
-    public Bloque (int posX, int posY, int ancho, int alto){
-        this.posX=posX;
-        this.posY=posY;
-        this.anchoBloque=ancho;
-        this.altoBloque=alto;
-        this.pincel=pincel;
-        this.id=id;
-        this.puntaje=5;
-    }
 
-    public Bloque (int posX, int posY, int ancho, int alto, int est, Bitmap imgBloque, int nroColumna, int nroFila, int id){
+
+
+    public Bloque (int posX, int posY, int ancho, int alto, int est, Bitmap imgBloque, Bitmap imgBloqueRoto, int nroColumna, int nroFila, int id){
         this.posX=posX;
         this.posY=posY;
         this.anchoBloque=ancho;
         this.altoBloque=alto;
         this.imgBloque = imgBloque;
+        this.imgBloqueRoto = imgBloqueRoto;
         this.dureza=est;
         this.id=id;
         this.puntaje=5;
@@ -185,7 +183,7 @@ public class Bloque {
     }
 
     public Rect[] areaDeContacto(){
-        int velocidad=13;
+        int velocidad=5;
         //posX, posY, posX+13, posY+13
         //Esquina 1
         Rect area1=new Rect(posX,posY,posX+velocidad-1,posY+velocidad-1);
@@ -261,5 +259,8 @@ public class Bloque {
        }
 
        return posArea;
+    }
+    public void setImagenBloqueRoto(){
+        this.imgBloque=this.imgBloqueRoto;
     }
 }

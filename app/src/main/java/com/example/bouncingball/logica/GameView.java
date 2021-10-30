@@ -56,6 +56,7 @@ public class GameView extends SurfaceView {
 	private int puntaje;
 	private int nivel;
 	private boolean cayo;
+	private int velocidadPelota;
 	//Elementos
 	private Grilla grilla;
 	private Pelota pelota;
@@ -83,7 +84,11 @@ public class GameView extends SurfaceView {
 	private Bitmap pelotaImg;
 	private Bitmap jugadorImg;
 	private Bitmap fondoImg;
+
     private int puntajeInicial ;
+
+	private Bitmap panelSuperior;
+
 
 	private boolean juegoEnPausa = false;
 	private boolean siguienteFotograma = false;
@@ -107,6 +112,16 @@ public class GameView extends SurfaceView {
 				cayo = false;
 				xMax = getWidth();
 				yMax = getHeight();
+				velocidadPelota=5;
+
+
+
+				int numeroAleatorio = (int) (Math.random() * 2);
+				if(numeroAleatorio==1){
+					velocidadPelota=-7;
+				}
+
+
 
 				//Datos archivos
 				SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
@@ -143,12 +158,13 @@ public class GameView extends SurfaceView {
 
 				//jugador = new Jugador((getWidth() / 2) - (150 / 2), getHeight() - 200, 150,20);
 				//jugador = new Jugador((getWidth() / 2) - (150 / 2), 200, 150,20);
-				pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-20,23, 7);
+				pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-20,23, velocidadPelota);
 				//grilla = new Grilla(xMax, yMax, 7, 10, 40,context);
 
 				pelotaImg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pelota), pelota.getTamanio(), pelota.getTamanio(),false);
 				jugadorImg= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.jugador), jugador.getAncho(), jugador.getAlto(),false);
 				fondoImg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.fondo1),xMax,yMax,false);
+				panelSuperior = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.panel),xMax,120,false);
 
 				//Pinceles
 				pincelPelota.setColor(BLUE);
@@ -184,7 +200,8 @@ public class GameView extends SurfaceView {
 		if (jugando) {
 
 
-		canvas.drawBitmap(fondoImg, 0, 0, null);
+		canvas.drawBitmap(fondoImg, 0, 120, null);
+		canvas.drawBitmap(panelSuperior, 0, 0, null);
 
 
 		//System.out.println("Entro al onDraw***********************************************************");
@@ -198,6 +215,9 @@ public class GameView extends SurfaceView {
 
 			//Es el ultimo bloque??
 			boolean gano = this.grilla.getCantidadBloquesPintados() == 0;
+			if(this.grilla.getCantidadBloquesPintados()==10){
+				gameThread.aumentarVelocidad();
+			}
 			if (gano || ganoNivel) {
 				this.nivelSuperado(canvas);
 				System.out.println("Despues del nivel superado");
@@ -262,7 +282,8 @@ public class GameView extends SurfaceView {
 							this.puntaje+= bloque.getPuntaje();
 						}else{
 							//Agregar la imagen del bloque quebrado!!
-							bloque.setPincel(pincelDureza);
+							//bloque.setPincel(pincelDureza);
+							bloque.setImagenBloqueRoto();
 						}
 						contarContactos++;
 					}
@@ -537,16 +558,20 @@ public class GameView extends SurfaceView {
 		else{
 
 			//Nivel
-			canvas.drawText("Level: " + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Level " , (xMax * 10) / 100, 50f, pincelIndicadores);
+			canvas.drawText(String.valueOf(this.grilla.getNivelActual()), ((xMax * 10) / 100)+centroNivel, 90f, pincelIndicadores);
 			//Puntaje
-			canvas.drawText("Score: " + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Score " , (xMax * 40) / 100, 50f, pincelIndicadores);
+			canvas.drawText( String.valueOf(this.puntaje), ((xMax * 40) / 100)+45, 90f, pincelIndicadores);
 			//Vidas
 			if(vidas>0){
 
-				canvas.drawText("Life: " + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Life " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText(String.valueOf(this.vidas), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}else{
 
-				canvas.drawText("Life: " + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Life " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText(String.valueOf(0), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}
 
 		}
@@ -578,7 +603,13 @@ public class GameView extends SurfaceView {
 	private void reubicarPelota(){
 		pelota.setX(jugador.getPosX() + (jugador.getAncho() / 2));
 		pelota.setY(jugador.getPosY()- pelota.getTamanio()-2);
-		pelota.setDireccionEnX(-pelota.getVelocidad());
+		int numeroAleatorio = (int) (Math.random() * 2);
+		if(numeroAleatorio==1){
+			pelota.setDireccionEnX(-pelota.getVelocidad());
+		}else{
+			pelota.setDireccionEnX(pelota.getVelocidad());
+		}
+
 		pelota.setDireccionEnY(-pelota.getVelocidad());
 	}
 
@@ -717,7 +748,7 @@ public class GameView extends SurfaceView {
 		}
 
 		//Techo
-		if (pelota.getY() <= 100) {
+		if (pelota.getY() <= 120) {
 			pelota.setDireccionEnY(pelota.getVelocidad());
 		}
 

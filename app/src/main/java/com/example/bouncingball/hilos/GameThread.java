@@ -8,6 +8,7 @@ public class GameThread extends Thread {
     private static final String CLASE = "GameThread";
     private GameView view;
     private boolean jugando = false;
+    long ticksPS;
 
     //Nuevo
     private boolean paused = false;
@@ -57,7 +58,7 @@ public class GameThread extends Thread {
     */
     public void run() {
         //Date t0 = new Date();
-        long ticksPS = 500 / FPS;//33.33 milisegundo vamos a dibujar
+        ticksPS = 500 / FPS;//33.33 milisegundo vamos a dibujar
 
         long startTime;//El momento que se empezo a dibujar el cuadro
         long sleepTime;//
@@ -108,6 +109,9 @@ public class GameThread extends Thread {
         stopped = true;
         // If it was paused then resume and then stop
         notify();
+    }
+    public void aumentarVelocidad(){
+        this.ticksPS = 400 / FPS;
     }
 
 
