@@ -92,15 +92,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
             <Button
-                style="@style/estilos_boton"
                 android:id="@+id/exitButton"
+                style="@style/estilos_boton"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:onClick="salirDeAplicacion"
                 android:text="Salir"
-                app:backgroundTint="@color/colorPrimary" />
+                app:backgroundTint="#a11a03" />
 
         </LinearLayout>
     </ScrollView>

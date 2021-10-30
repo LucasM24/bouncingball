@@ -27,6 +27,7 @@ public class Grilla extends GameView{
     //Imagenes
     //private Bitmap imgBloqueAmarillo;
     private Bitmap imgBloqueGris;
+    private Bitmap imgBloqueGrisRoto;
 
     private Bitmap imgBloqueAmarillo;
     private Bitmap imgBloqueAzul;
@@ -60,6 +61,7 @@ public class Grilla extends GameView{
         imgBloqueAzul= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloque_azul),this.anchoBloque,this.altoDelBloque,false);
         imgBloqueRojo= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloque_rojo),this.anchoBloque,this.altoDelBloque,false);
         imgBloqueGris= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloquesdureza2),this.anchoBloque,this.altoDelBloque,false);
+        imgBloqueGrisRoto= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloquesdureza2roto),this.anchoBloque,this.altoDelBloque,false);
 
 
     }
@@ -71,7 +73,7 @@ public class Grilla extends GameView{
 
         //posicion
         int posX=0;
-        int posY=100;
+        int posY=120;
 
         //Numero aleatorio
         //numero = (int) (Math.random() * n) + 1;
@@ -92,7 +94,7 @@ public class Grilla extends GameView{
                 }else{
                     imgAux=imgBloqueRojo;
                 }
-                this.matrizBloque[i][j]=new Bloque(posX,posY,anchoBloque,altoDelBloque,0, imgAux, i, j, id);
+                this.matrizBloque[i][j]=new Bloque(posX,posY,anchoBloque,altoDelBloque,0, imgAux,imgBloqueGrisRoto, i, j, id);
                 posX=posX+anchoBloque+5;
                 //posX=posX+anchoBloque;
                 id=id+1;
@@ -341,30 +343,56 @@ public class Grilla extends GameView{
         pincelBlue.setColor(Color.BLUE);
         Paint pincelR = new Paint();
         pincelR.setColor(Color.RED);
+        this.matrizBloque[0][3].setImagen(imgBloqueVioleta);
+        this.matrizBloque[1][2].setImagen(imgBloqueVioleta);
+        this.matrizBloque[1][4].setImagen(imgBloqueVioleta);
+        this.matrizBloque[2][1].setImagen(imgBloqueVioleta);
+        this.matrizBloque[2][5].setImagen(imgBloqueVioleta);
+        this.matrizBloque[3][0].setImagen(imgBloqueVioleta);
+        this.matrizBloque[3][6].setImagen(imgBloqueVioleta);
+        this.matrizBloque[4][0].setImagen(imgBloqueVioleta);
+        this.matrizBloque[4][6].setImagen(imgBloqueVioleta);
+        this.matrizBloque[5][0].setImagen(imgBloqueVioleta);
+        this.matrizBloque[5][6].setImagen(imgBloqueVioleta);
+        this.matrizBloque[6][0].setImagen(imgBloqueVioleta);
+        this.matrizBloque[6][6].setImagen(imgBloqueVioleta);
+        this.matrizBloque[7][1].setImagen(imgBloqueVioleta);
+        this.matrizBloque[7][5].setImagen(imgBloqueVioleta);
+        this.matrizBloque[8][2].setImagen(imgBloqueVioleta);
+        this.matrizBloque[8][4].setImagen(imgBloqueVioleta);
+        this.matrizBloque[9][3].setImagen(imgBloqueVioleta);
 
-        this.matrizBloque[2][5].setImagen(imgBloqueAzul);
-        this.matrizBloque[3][4].setImagen(imgBloqueAzul);
-        this.matrizBloque[4][3].setImagen(imgBloqueAzul);
-        this.matrizBloque[5][2].setImagen(imgBloqueAzul);
+        this.matrizBloque[1][3].setImagen(imgBloqueAzul);
+        this.matrizBloque[2][2].setImagen(imgBloqueAzul);
+        this.matrizBloque[2][4].setImagen(imgBloqueAzul);
+        this.matrizBloque[3][1].setImagen(imgBloqueAzul);
+        this.matrizBloque[3][5].setImagen(imgBloqueAzul);
+        this.matrizBloque[4][1].setImagen(imgBloqueAzul);
+        this.matrizBloque[4][5].setImagen(imgBloqueAzul);
+        this.matrizBloque[5][1].setImagen(imgBloqueAzul);
+        this.matrizBloque[5][5].setImagen(imgBloqueAzul);
         this.matrizBloque[6][1].setImagen(imgBloqueAzul);
-        this.matrizBloque[2][1].setImagen(imgBloqueAzul);
-        this.matrizBloque[3][2].setImagen(imgBloqueAzul);
-        this.matrizBloque[5][4].setImagen(imgBloqueAzul);
         this.matrizBloque[6][5].setImagen(imgBloqueAzul);
+        this.matrizBloque[7][2].setImagen(imgBloqueAzul);
+        this.matrizBloque[7][4].setImagen(imgBloqueAzul);
+        this.matrizBloque[8][3].setImagen(imgBloqueAzul);
 
+        this.matrizBloque[2][3].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[3][2].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[3][4].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[6][2].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[6][4].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[7][3].setImagen(imgBloqueAmarillo);
+
+        this.matrizBloque[3][3].setImagen(imgBloqueRojo);
+        this.matrizBloque[4][2].setImagen(imgBloqueRojo);
+        this.matrizBloque[4][3].setImagen(imgBloqueRojo);
+        this.matrizBloque[4][4].setImagen(imgBloqueRojo);
+        this.matrizBloque[5][2].setImagen(imgBloqueRojo);
         this.matrizBloque[5][3].setImagen(imgBloqueRojo);
-        this.matrizBloque[6][2].setImagen(imgBloqueRojo);
+        this.matrizBloque[5][4].setImagen(imgBloqueRojo);
         this.matrizBloque[6][3].setImagen(imgBloqueRojo);
-        this.matrizBloque[6][4].setImagen(imgBloqueRojo);
-        this.matrizBloque[7][1].setImagen(imgBloqueRojo);
-        this.matrizBloque[7][2].setImagen(imgBloqueRojo);
-        this.matrizBloque[7][3].setImagen(imgBloqueRojo);
-        this.matrizBloque[7][4].setImagen(imgBloqueRojo);
-        this.matrizBloque[7][5].setImagen(imgBloqueRojo);
-        this.matrizBloque[8][2].setImagen(imgBloqueRojo);
-        this.matrizBloque[8][3].setImagen(imgBloqueRojo);
-        this.matrizBloque[8][4].setImagen(imgBloqueRojo);
-        this.matrizBloque[9][3].setImagen(imgBloqueRojo);
+
 
     }
 
@@ -431,57 +459,56 @@ public class Grilla extends GameView{
         /*
          * Definir los colores
          * */
-        Paint pincelBlue = new Paint();
-        pincelBlue.setColor(Color.BLUE);
-        Paint pincelGris = new Paint();
-        pincelGris.setColor(Color.GRAY);
-        Paint pincelGreen = new Paint();
-        pincelGreen.setColor(Color.GREEN);
-        Paint pincelRed = new Paint();
-        pincelRed.setColor(Color.RED);
-        Paint pincel = new Paint();
-        pincel.setColor(Color.CYAN);
+
+        // fila 0
+        this.matrizBloque[0][0].setImagen(imgBloqueAzul);
+        this.matrizBloque[0][1].setImagen(imgBloqueAzul);
+        this.matrizBloque[0][2].setImagen(imgBloqueAzul);
+        this.matrizBloque[0][3].setImagen(imgBloqueAzul);
+        this.matrizBloque[0][4].setImagen(imgBloqueAzul);
+        this.matrizBloque[0][5].setImagen(imgBloqueAzul);
+        this.matrizBloque[0][6].setImagen(imgBloqueAzul);
+
+        // fila 1
+        this.matrizBloque[1][0].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[1][1].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[1][2].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[1][3].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[1][4].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[1][5].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[1][6].setImagen(imgBloqueAmarillo);
 
         // fila 2
-        this.matrizBloque[2][0].setPincel(pincelBlue);
-        this.matrizBloque[2][1].setPincel(pincelBlue);
-        this.matrizBloque[2][2].setPincel(pincelBlue);
-        this.matrizBloque[2][3].setPincel(pincelBlue);
-        this.matrizBloque[2][4].setPincel(pincelBlue);
-        this.matrizBloque[2][5].setPincel(pincelBlue);
-        this.matrizBloque[2][6].setPincel(pincelBlue);
+        this.matrizBloque[2][0].setImagen(imgBloqueAzul);
+        this.matrizBloque[2][1].setImagen(imgBloqueAzul);
+        this.matrizBloque[2][2].setImagen(imgBloqueAzul);
+        this.matrizBloque[2][3].setImagen(imgBloqueAzul);
+        this.matrizBloque[2][4].setImagen(imgBloqueAzul);
+        this.matrizBloque[2][5].setImagen(imgBloqueAzul);
+        this.matrizBloque[2][6].setImagen(imgBloqueAzul);
         // fila 3
-        this.matrizBloque[3][1].setPincel(pincel);
-        this.matrizBloque[3][2].setPincel(pincel);
-        this.matrizBloque[3][3].setPincel(pincel);
-        this.matrizBloque[3][4].setPincel(pincel);
-        this.matrizBloque[3][5].setPincel(pincel);
+        this.matrizBloque[3][1].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[3][2].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[3][3].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[3][4].setImagen(imgBloqueAmarillo);
+        this.matrizBloque[3][5].setImagen(imgBloqueAmarillo);
         // fila 4
-        this.matrizBloque[4][2].setPincel(pincelGreen);
-        this.matrizBloque[4][3].setPincel(pincelGreen);
-        this.matrizBloque[4][4].setPincel(pincelGreen);
+        this.matrizBloque[4][2].setImagen(imgBloqueVioleta);
+        this.matrizBloque[4][3].setImagen(imgBloqueVioleta);
+        this.matrizBloque[4][4].setImagen(imgBloqueVioleta);
         // fila 5
-        this.matrizBloque[5][3].setPincel(pincelRed);
+        this.matrizBloque[5][3].setImagen(imgBloqueRojo);
         // fila 6
-        this.matrizBloque[6][1].setPincel(pincelRed);
-        this.matrizBloque[6][2].setPincel(pincelRed);
-        this.matrizBloque[6][3].setPincel(pincelRed);
-        this.matrizBloque[6][4].setPincel(pincelRed);
-        this.matrizBloque[6][5].setPincel(pincelRed);
+        this.matrizBloque[6][1].setImagen(imgBloqueRojo);
+        this.matrizBloque[6][2].setImagen(imgBloqueRojo);
+        this.matrizBloque[6][3].setImagen(imgBloqueRojo);
+        this.matrizBloque[6][4].setImagen(imgBloqueRojo);
+        this.matrizBloque[6][5].setImagen(imgBloqueRojo);
         // fila 7
-        this.matrizBloque[7][2].setPincel(pincelRed);
-        this.matrizBloque[7][3].setPincel(pincelRed);
-        this.matrizBloque[7][4].setPincel(pincelRed);
+        this.matrizBloque[7][2].setImagen(imgBloqueRojo);
+        this.matrizBloque[7][3].setImagen(imgBloqueRojo);
+        this.matrizBloque[7][4].setImagen(imgBloqueRojo);
         // fila 9
-
-
-        this.matrizBloque[9][0].setPincel(pincelGris);
-        this.matrizBloque[9][1].setPincel(pincelGris);
-        this.matrizBloque[9][2].setPincel(pincelGris);
-        this.matrizBloque[9][3].setPincel(pincelGris);
-        this.matrizBloque[9][4].setPincel(pincelGris);
-        this.matrizBloque[9][5].setPincel(pincelGris);
-        this.matrizBloque[9][6].setPincel(pincelGris);
 
         this.matrizBloque[9][0].setImagen(imgBloqueGris);
         this.matrizBloque[9][1].setImagen(imgBloqueGris);

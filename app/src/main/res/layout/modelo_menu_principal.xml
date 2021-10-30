@@ -25,6 +25,7 @@
                 android:layout_above="@+id/imageView4"
                 android:layout_marginBottom="33dp"
                 android:text=""
+                android:textAlignment="center"
                 android:textColor="#5562AA"
                 android:textSize="20sp"
                 tools:ignore="MissingConstraints"
@@ -33,7 +34,7 @@
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
-                android:layout_height="194dp"
+                android:layout_height="109dp"
                 android:layout_above="@+id/button5"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
@@ -44,21 +45,21 @@
                 android:layout_marginEnd="59dp"
                 android:layout_marginRight="59dp"
                 android:layout_marginBottom="2dp"
-                app:srcCompat="@drawable/ball" />
+                app:srcCompat="@drawable/imginicio" />
 
-        <Button
-            style="@style/estilos_boton"
-            android:id="@+id/button5"
-            android:layout_above="@+id/button6"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/press_button"
-            android:hint="@string/TEXTO_BOTON_JUGAR"
-            android:onClick="play"
-            android:textColor="#100F0F"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+            <Button
+                android:id="@+id/button5"
+                style="@style/estilos_boton"
+                android:layout_above="@+id/button6"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/press_button"
+                android:hint="@string/TEXTO_BOTON_JUGAR"
+                android:onClick="play"
+                android:textColor="#ffffff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
         style="@style/estilos_boton"

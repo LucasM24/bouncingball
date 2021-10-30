@@ -29,9 +29,9 @@ public class Pelota {
         this.x = posX;
         this.y = posY;
         this.tamanio = tamanio;
-        this.velocidad = velocidad;
-        this.direccionEnX= - velocidad;
-        this.direccionEnY=-velocidad;
+        this.velocidad = Math.abs(velocidad);
+        this.direccionEnX= velocidad;
+        this.direccionEnY= -1* Math.abs(velocidad) ;
         //Para trabajar con los rebotes
         this.posAnteriorX=posX;
         this.posAnteriorY=posY;
