@@ -58,7 +58,7 @@ public class GameThread extends Thread {
     */
     public void run() {
         //Date t0 = new Date();
-        ticksPS = 900 / FPS;//33.33 milisegundo vamos a dibujar
+        ticksPS = 500 / FPS;//33.33 milisegundo vamos a dibujar
 
         long startTime;//El momento que se empezo a dibujar el cuadro
         long sleepTime;//

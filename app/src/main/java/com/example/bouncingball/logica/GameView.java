@@ -203,7 +203,7 @@ public class GameView extends SurfaceView {
 
 			//Es el ultimo bloque??
 			boolean gano = this.grilla.getCantidadBloquesPintados() == 0;
-			if(this.grilla.getCantidadBloquesPintados()==18){
+			if(this.grilla.getCantidadBloquesPintados()==10){
 				gameThread.aumentarVelocidad();
 			}
 			if (gano || ganoNivel) {
@@ -557,16 +557,20 @@ public class GameView extends SurfaceView {
 		else{
 
 			//Nivel
-			canvas.drawText("Level: " + String.valueOf(this.grilla.getNivelActual()), (xMax * 10) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Level " , (xMax * 10) / 100, 50f, pincelIndicadores);
+			canvas.drawText(String.valueOf(this.grilla.getNivelActual()), ((xMax * 10) / 100)+centroNivel, 90f, pincelIndicadores);
 			//Puntaje
-			canvas.drawText("Score: " + String.valueOf(this.puntaje), (xMax * 40) / 100, 70f, pincelIndicadores);
+			canvas.drawText("Score " , (xMax * 40) / 100, 50f, pincelIndicadores);
+			canvas.drawText( String.valueOf(this.puntaje), ((xMax * 40) / 100)+45, 90f, pincelIndicadores);
 			//Vidas
 			if(vidas>0){
 
-				canvas.drawText("Life: " + String.valueOf(this.vidas), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Life " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText(String.valueOf(this.vidas), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}else{
 
-				canvas.drawText("Life: " + String.valueOf(0), (xMax * 75) / 100, 70f, pincelIndicadores);
+				canvas.drawText("Life " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText(String.valueOf(0), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}
 
 		}
