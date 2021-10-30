@@ -35,22 +35,22 @@ public class Ganador extends AppCompatActivity {
 
         // Recuperar clave-valor
         int mypuntaje = preferences.getInt("user_puntaje",0);
-        int puntaje_Acumulativo = preferences.getInt("puntaje_total",0);
+        //int puntaje_Acumulativo = preferences.getInt("puntaje_total",0);
         String user = preferences.getString("user","vacio");
 
         // Editar el Archivo para realizar Modificaciones
         SharedPreferences.Editor editor = preferences.edit();
 
         // sumar el puntaje obtenido en el nivel jugado
-        puntaje_Acumulativo += mypuntaje;
+        //puntaje_Acumulativo += mypuntaje;
         // Mostrar por consola
-        System.out.println("Mypuntaje : "+mypuntaje);
-        System.out.println("Puntaje Acumulativo : "+puntaje_Acumulativo);
+        //System.out.println("Mypuntaje (Ganador) : "+mypuntaje);
+       // System.out.println("Puntaje Acumulativo  (Ganador): "+puntaje_Acumulativo);
 
          // actualizar los cambios por defecto
         editor.putInt("level", 1);
         editor.putString("changelevel","no");
-        editor.putInt("puntaje_total",0);
+       // editor.putInt("puntaje_total",0);
         editor.putInt("user_puntaje",0);
         editor.apply();
 
@@ -60,15 +60,15 @@ public class Ganador extends AppCompatActivity {
          * */
 
         Usuario us = dao.consultarPuntaje(user);
-        if (puntaje_Acumulativo <= us.getPuntaje()) {
-            Toast.makeText(this, "Segui Participando ", Toast.LENGTH_SHORT).show();
+        if (mypuntaje <= us.getPuntaje()) {
+           // Toast.makeText(this, "Segui Participando ", Toast.LENGTH_SHORT).show();
         } else {
-            int i = dao.updatePuntaje(user, puntaje_Acumulativo);
+            int i = dao.updatePuntaje(user, mypuntaje);
 
-            Toast.makeText(this, "Felicitaciones Superaste el Puntaje_Max Registrado", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, "Felicitaciones Superaste el Puntaje_Max Registrado", Toast.LENGTH_SHORT).show();
         }
 
-        System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");
+        //System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");
         Intent menu = new Intent(Ganador.this, MenuPrincipal.class);
         menu.putExtra("id_user",user);
         startActivity(menu);

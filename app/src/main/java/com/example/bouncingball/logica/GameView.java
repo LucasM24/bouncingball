@@ -83,7 +83,7 @@ public class GameView extends SurfaceView {
 	private Bitmap pelotaImg;
 	private Bitmap jugadorImg;
 	private Bitmap fondoImg;
-
+    private int puntajeInicial ;
 
 	private boolean juegoEnPausa = false;
 	private boolean siguienteFotograma = false;
@@ -115,7 +115,16 @@ public class GameView extends SurfaceView {
 				// Base de Datos
 				dao = new dbConexion(getContext());
 
+				//Recuperar el clave-valor de Archivo
+				puntaje = preferences.getInt("user_puntaje",0);
+				puntajeInicial = puntaje;
+				// Si seteo al puntaje total
+				SharedPreferences.Editor editor = preferences.edit();
+				//editor.putInt("puntaje_total",0);
+				//editor.commit();*/
 
+
+				jugador= new Jugador(150,227,150,20);
 				//Ubicacion del jugador
 //				 jugador= new Jugador(150,227,150,20);
 				// pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
@@ -123,7 +132,7 @@ public class GameView extends SurfaceView {
 				/*
 				 * Aqui deberia recuperarse del sharedPreferences
 				 * */
-				SharedPreferences.Editor editor = preferences.edit();
+				editor = preferences.edit();
 				int level = preferences.getInt("level",1);
 				//int level = preferences.getInt("level",1);
 				editor.putInt("level", level);
@@ -132,7 +141,7 @@ public class GameView extends SurfaceView {
 
 				grilla = new Grilla(xMax, yMax, 7, 10, 40,level ,context);
 
-				jugador = new Jugador((getWidth() / 2) - (150 / 2), getHeight() - 200, 150,20);
+				//jugador = new Jugador((getWidth() / 2) - (150 / 2), getHeight() - 200, 150,20);
 				//jugador = new Jugador((getWidth() / 2) - (150 / 2), 200, 150,20);
 				pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-20,23, 7);
 				//grilla = new Grilla(xMax, yMax, 7, 10, 40,context);
@@ -215,6 +224,7 @@ public class GameView extends SurfaceView {
 			}
 		} else {
 			//Si pierdo todas las vidas
+
 			this.reiniciarJuego(canvas);
 		}
 		//Posición del boton siguiente
@@ -421,6 +431,8 @@ public class GameView extends SurfaceView {
 		String user = preferences.getString("user","vacio");
 		jugando=false;
 		ganoNivel=true;
+
+
 		if(this.grilla.getNivelActual()<3) {
 			imgSuperoNivel = true;
 			gameThread.parar();
@@ -432,7 +444,6 @@ public class GameView extends SurfaceView {
 			editor.commit();
 
 			this.grilla.avanzarUnNivel();
-
 
 			int nivelActual = this.grilla.getNivelActual();
 			editor.putInt("level", nivelActual);
@@ -463,6 +474,7 @@ public class GameView extends SurfaceView {
 			Toast.makeText(this.getContext(), "!!!Ganaste!!!", Toast.LENGTH_SHORT).show();
 		}
 	}
+
 
 	private void controlDelJuego(Canvas canvas){
 		if (inicioJuego && (pelota.getY() < jugador.getPosY()) && (pelota.getY() > (jugador.getPosY() - 50))) {
@@ -543,6 +555,9 @@ public class GameView extends SurfaceView {
 	private void reiniciarJuego(Canvas canvas){
 		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 		String user = preferences.getString("user","vacio");
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putInt("user_puntaje",puntajeInicial);
+		editor.commit();
 
 		vidas = 2;
 		puntaje=0;

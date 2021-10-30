@@ -41,7 +41,7 @@ public class IniciarSesion extends AppCompatActivity {
         // Actualizo algunos datos del puntaje
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("puntaje_total",0);
+        editor.putInt("user_puntaje",0);
         editor.commit();
 
 
