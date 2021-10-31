@@ -10,7 +10,7 @@ public class DbUser extends SQLiteOpenHelper{
     public static final String Campo_ID = "usuario";
     public static final String Campo_CLAVE ="clave";
     public static final String Campo_EMAIL ="email";
-    public static final int Campo_PUNTAJE =0;
+    public static final String Campo_PUNTAJE ="puntaje";
 
 
     public DbUser(Context context){

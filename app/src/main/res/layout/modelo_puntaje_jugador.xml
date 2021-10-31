@@ -6,16 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#002134">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/TextPlayers"
@@ -25,25 +24,22 @@
                 android:text=""
                 android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/idJugadorPuntajeMax"
+
+            <TableLayout
+                android:id="@+id/listaplayers"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".10"
-                android:text="@string/ETIQUETA_PUNTAJE_JUGADOR"
-                android:textSize="34sp" />
+                android:layout_height="match_parent"
+                android:layout_weight=".05">
 
-            <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaplayers"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".73"
-        android:background="#252850" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
+            </TableLayout>
 
             <Button
-                style="@style/estilos_boton"
                 android:id="@+id/button"
+                style="@style/estilos_boton"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="32dp"

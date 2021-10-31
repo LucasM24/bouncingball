@@ -80,27 +80,28 @@ public class dbConexion extends DbUser {
 
        ArrayList<Usuario> listaUsers = new ArrayList<>();
        Usuario us = null ;
-       Cursor cursorUser = null;
-       cursorUser = db.rawQuery("SELECT * FROM "+TABLE_USER,null);
+       try (Cursor cursorUser = db.rawQuery("SELECT * FROM " + TABLE_USER + " ORDER BY " + Campo_PUNTAJE + " DESC ", null)) {
 
-       if(cursorUser.moveToFirst()){
+           //cursorUser = db.rawQuery("SELECT * FROM "+TABLE_USER,null);
+           if (cursorUser.moveToFirst()) {
 
-           do{
-               // nameUser , clave ,email,puntaje
-               us = new Usuario();
-               us.setUsuario(cursorUser.getString(0));
-               us.setPuntaje(cursorUser.getInt(3));
-               //us.setPuntaje(cursorUser.getString(3));
-               // us.setEmail("loss@gmail.com");
-               System.out.println("Cursor Columna : "+cursorUser.getColumnCount());
-               System.out.println("Cursor Fila :  "+cursorUser.getCount());
-               //us.setPuntaje("102");
-               listaUsers.add(us);
-           } while(cursorUser.moveToNext());
+               do {
+                   // nameUser , clave ,email,puntaje
+                   us = new Usuario();
+                   us.setUsuario(cursorUser.getString(0));
+                   us.setPuntaje(cursorUser.getInt(3));
+                   //us.setPuntaje(cursorUser.getString(3));
+                   // us.setEmail("loss@gmail.com");
+                   //System.out.println("Cursor Columna : "+cursorUser.getColumnCount());
+                   //System.out.println("Cursor Fila :  "+cursorUser.getCount());
+                   //us.setPuntaje("102");
+                   listaUsers.add(us);
+               } while (cursorUser.moveToNext());
+           }
+
+
+           cursorUser.close();
        }
-
-
-       cursorUser.close();
        return listaUsers;
    }
     @SuppressLint("Range")
