@@ -38,7 +38,7 @@
             style="@style/estilos_boton"
             android:id="@+id/idsubirnivel"
             android:layout_marginTop="32dp"
-            android:background="@drawable/button_rounded_border"
+            android:background="@drawable/boton_salir"
             android:onClick="salirDelJuego"
             android:text="@string/TEXTO_BOTON_VOLVER_MENU_PRINCIPAL" />
 

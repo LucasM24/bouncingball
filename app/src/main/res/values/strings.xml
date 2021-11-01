@@ -23,6 +23,7 @@
     <string name="TEXTO_PISTA_CAMPO_USUARIO">Ingrese su nombre de usuario</string>
     <string name="TEXTO_PISTA_CAMPO_CONTRASENIA">Ingrese su contraseña</string>
     <string name="TEXTO_PISTA_CAMPO_CORREO">Ingrese su correo electrónico</string>
+    <string name="TEXTO_BOTON_CERRAR_SESION">Cerrar sesión</string>
     <string name="CAMPO_USUARIO_EN">Username</string>
     <string name="CAMPO_PASSWORD_EN">Password</string>
     <string name="TEXTO_BOTON_INICIAR_SESION_EN">Login</string>
@@ -45,4 +46,5 @@
     <string name="TEXTO_PISTA_CAMPO_USUARIO_EN">Enter your username</string>
     <string name="TEXTO_PISTA_CAMPO_CONTRASENIA_EN">Enter your password</string>
     <string name="TEXTO_PISTA_CAMPO_CORREO_EN">Enter your email</string>
+    <string name="TEXTO_BOTON_CERRAR_SESION_EN">Logout</string>
 </resources>

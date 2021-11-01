@@ -146,12 +146,12 @@ public class MenuPrincipal extends AppCompatActivity {
           botonJugar.setText(R.string.TEXTO_BOTON_JUGAR);
           botonRanking.setText(R.string.TEXTO_BOTON_RANKING);
           botonOpciones.setText(R.string.TEXTO_BOTON_OPCIONES);
-          botonSalir.setText(R.string.TEXTO_BOTON_SALIR);
+          botonSalir.setText(R.string.TEXTO_BOTON_CERRAR_SESION);
         }else{
             botonJugar.setText(R.string.TEXTO_BOTON_JUGAR_EN);
             botonRanking.setText(R.string.TEXTO_BOTON_RANKING_EN);
             botonOpciones.setText(R.string.TEXTO_BOTON_OPCIONES_EN);
-            botonSalir.setText(R.string.TEXTO_BOTON_SALIR_EN);
+            botonSalir.setText(R.string.TEXTO_BOTON_CERRAR_SESION_EN);
         }
 
     }

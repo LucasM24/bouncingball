@@ -32,7 +32,7 @@
         <Button
             style="@style/estilos_boton"
             android:id="@+id/salirDelJuego"
-            android:background="@drawable/button_rounded"
+            android:background="@drawable/boton_salir"
             android:onClick="volverAlMenu"
             android:text="@string/TEXTO_BOTON_VOLVER_MENU_PRINCIPAL" />
     </LinearLayout>
