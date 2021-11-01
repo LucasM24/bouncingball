@@ -36,6 +36,7 @@ public class PuntajeJugador extends AppCompatActivity {
     private Button btn_regresar ;
     private TextView user_text ,puntaje_text,indice_text;
     private String name_user ;
+    private  String []encabezado = new String [3];
 
 
     @Override
@@ -60,8 +61,11 @@ public class PuntajeJugador extends AppCompatActivity {
         /*
         * Encabezado de TableLayout
         * */
-        String []encabezado = {"Ranking ","Usuario","Puntaje"};
-
+        // valores por defecto del Encabezado
+       // encabezado[0]= "Ranking";
+       // encabezado[1]= "Usuario";
+       // encabezado[2]="Puntaje";
+        actualizarIdioma();
         TableRow row = new TableRow(this.getBaseContext());
 
         TextView textViewEncabezado ;
@@ -128,21 +132,28 @@ public class PuntajeJugador extends AppCompatActivity {
 
     }
 
+
     public void recibir_date() {
         Bundle extra = getIntent().getExtras();
         name_user = extra.getString("id_user2");
-        mostrar_user = (TextView) findViewById(R.id.TextPlayers);
-        mostrar_user.setText(name_user);
+       // mostrar_user = (TextView) findViewById(R.id.TextPlayers);
+       // mostrar_user.setText(name_user);
     }
     private void actualizarIdioma(){
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
+            encabezado[0]= "Ranking";
+            encabezado[1]= "Usuario";
+            encabezado[2]="Puntaje";
             // textoPuntajeMax.setText(R.string.ETIQUETA_PUNTAJE_JUGADOR);
             btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER);
         }else{
          //   textoPuntajeMax.setText(R.string.ETIQUETA_PUNTAJE_JUGADOR_EN);
+            encabezado[0]= "Ranking";
+            encabezado[1]= "User";
+            encabezado[2]="Score";
             btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER_EN);
         }
 
