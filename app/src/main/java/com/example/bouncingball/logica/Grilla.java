@@ -79,9 +79,10 @@ public class Grilla extends GameView{
         //numero = (int) (Math.random() * n) + 1;
         int n=4;
 
-        for(int i=0;i<this.cantidadFilas;i++){
+
+        for(int fil=0;fil<this.cantidadFilas;fil++){
             posX=posX+borde;
-            for(int j=0;j<this.cantidadColumnas;j++){
+            for(int col=0;col<this.cantidadColumnas;col++){
                 //int dureza=(int)(Math.random()*2);
                 int numero = (int) (Math.random() * n) + 1;
                 Bitmap imgAux;
@@ -94,7 +95,7 @@ public class Grilla extends GameView{
                 }else{
                     imgAux=imgBloqueRojo;
                 }
-                this.matrizBloque[i][j]=new Bloque(posX,posY,anchoBloque,altoDelBloque,0, imgAux,imgBloqueGrisRoto, i, j, id);
+                this.matrizBloque[fil][col]=new Bloque(posX,posY,anchoBloque,altoDelBloque,0, imgAux,imgBloqueGrisRoto, col, fil, id);
                 posX=posX+anchoBloque+5;
                 //posX=posX+anchoBloque;
                 id=id+1;

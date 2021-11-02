@@ -183,7 +183,7 @@ public class Bloque {
     }
 
     public Rect[] areaDeContacto(){
-        int velocidad=5;
+        int velocidad=13;
         //posX, posY, posX+13, posY+13
         //Esquina 1
         Rect area1=new Rect(posX,posY,posX+velocidad-1,posY+velocidad-1);

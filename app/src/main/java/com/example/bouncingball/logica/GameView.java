@@ -109,7 +109,7 @@ public class GameView extends SurfaceView {
 				cayo = false;
 				xMax = getWidth();
 				yMax = getHeight();
-				velocidadPelota=5;
+				velocidadPelota=-7;
 
 
 
@@ -129,7 +129,7 @@ public class GameView extends SurfaceView {
 
 
 				//Ubicacion del jugador
-//				 jugador= new Jugador(150,227,150,20);
+
 				// pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
 
 				/*
@@ -144,6 +144,7 @@ public class GameView extends SurfaceView {
 
 				grilla = new Grilla(xMax, yMax, 7, 10, 40,level ,context);
 
+				//jugador= new Jugador(150,650,150,20);
 				jugador = new Jugador((getWidth() / 2) - (150 / 2), getHeight() - 200, 150,20);
 				//jugador = new Jugador((getWidth() / 2) - (150 / 2), 200, 150,20);
 				pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-20,23, velocidadPelota);
@@ -320,6 +321,9 @@ public class GameView extends SurfaceView {
 	}
 
 	private void contactoDosBloques(Bloque b1, Bloque b2){
+		System.out.println("Contacto dos Bloques ");
+		System.out.println("Bloque 1 Columna: " + b1.getNroColumna() + " Fila: " + b1.getNroFila());
+		System.out.println("Bloque 2 Columna: " + b2.getNroColumna() + " Fila: " + b2.getNroFila());
 		//Estan horizontal
 		if(b1.getNroFila()==b2.getNroFila()){
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
@@ -328,36 +332,40 @@ public class GameView extends SurfaceView {
 				b2.setDureza(0);
 				this.grilla.restarBloquesPintados();
 				this.grilla.restarBloquesPintados();
+                System.out.println("Dos bloques dureza igual a 1");
 			}else{
 				if(b1.getDureza()==2 && b2.getDureza()==2) {
 					b1.setDureza(1);
 					b2.setDureza(1);
+                    System.out.println("Dos bloques dureza igual a 2");
 				}else{
 					if(b1.getDureza() == 1){
 						b1.setDureza(0);
 						b2.setDureza(1);
+                        System.out.println("Dos bloques dureza distinta, El bloque 1 tiene dureza 1");
 					}else{
 						b2.setDureza(0);
 						b1.setDureza(1);
+                        System.out.println("Dos bloques dureza distinta, El bloque 2 tiene dureza 1");
 					}
 					this.grilla.restarBloquesPintados();
 				}
 			}
-			pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
+			pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
 		}
 		//Estan vertical
 		if(b1.getNroColumna() == b2.getNroColumna()){
-			System.out.println("Bloques estan Vertical");
+			System.out.println("Bloques estan Vertical |||||||||||");
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
 			b1.setDureza(0);
 			b2.setDureza(0);
 			this.grilla.restarBloquesPintados();
 			this.grilla.restarBloquesPintados();
-			pelota.setDireccionEnY(-1 * pelota.getDireccionEnY());
+			pelota.setDireccionEnX(-1 * pelota.getDireccionEnX());
 		}
 		//Estan en diagonal
 		if(b1.getNroColumna() != b2.getNroColumna() && b1.getNroFila() != b2.getNroFila()){
-			System.out.println("Bloques estan diagonal");
+			System.out.println("Bloques estan diagonal /////////");
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
 			b1.setDureza(0);
 			b2.setDureza(0);
