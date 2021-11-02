@@ -18,18 +18,39 @@
             android:orientation="vertical">
 
 
-            <TextView
-                android:id="@+id/textV"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/imageView4"
-                android:layout_marginBottom="33dp"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="#5562AA"
-                android:textSize="20sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="158dp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="33dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/fuente_uno"
+                    android:gravity="right"
+                    android:text="Hola: "
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="158dp" />
+
+                <TextView
+                    android:id="@+id/textV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/imageView4"
+                    android:layout_marginBottom="33dp"
+                    android:fontFamily="@font/fuente_uno"
+                    android:text="Hola"
+                    android:textColor="#FFFFFF"
+
+                    android:textSize="10sp"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="158dp" />
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/imageView4"

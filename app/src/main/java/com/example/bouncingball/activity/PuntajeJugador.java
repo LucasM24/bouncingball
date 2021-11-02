@@ -90,7 +90,7 @@ public class PuntajeJugador extends AppCompatActivity {
             String []cadena = {" "+(i+1) ,us.getUsuario(),""+us.getPuntaje()};
             row = new TableRow(this.getBaseContext());
             TextView textView;
-            if(cadena[1].equalsIgnoreCase(name_user)){
+            if(cadena[1].equals(name_user)){
                 for (int j = 0; j < 3; j++) {
 
                     textView = new TextView(this.getBaseContext());

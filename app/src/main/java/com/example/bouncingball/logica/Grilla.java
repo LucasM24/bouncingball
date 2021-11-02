@@ -152,7 +152,7 @@ public class Grilla extends GameView{
                 pintarNivelDePrueba0();
                 break;
             case 1:
-               // pintarNivel0();
+               //pintarNivel0();
                 pintarNivelDePrueba0();
                 break;
             case 2:

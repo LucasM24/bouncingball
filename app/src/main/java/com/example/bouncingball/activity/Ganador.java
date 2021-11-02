@@ -24,8 +24,8 @@ public class Ganador extends AppCompatActivity {
 
         Bundle extra = getIntent().getExtras();
         String name_user = extra.getString("id_user");
-        mostrar_user = (TextView) findViewById(R.id.textView3);
-        mostrar_user.setText(name_user);
+        //mostrar_user = (TextView) findViewById(R.id.textView3);
+        //mostrar_user.setText(name_user);
         dao = new dbConexion(this);
     }
     public void volverAlMenu(View v){

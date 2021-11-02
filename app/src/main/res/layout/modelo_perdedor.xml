@@ -10,17 +10,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:text="TextView"
-            android:textSize="20sp" />
-
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             app:lottie_autoPlay="true"
             app:lottie_fileName="gameover.json"
             app:lottie_imageAssetsFolder="assets"
