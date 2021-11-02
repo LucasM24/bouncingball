@@ -84,6 +84,9 @@ public class GameView extends SurfaceView {
 	private Bitmap pelotaImg;
 	private Bitmap jugadorImg;
 	private Bitmap fondoImg;
+
+    private int puntajeInicial ;
+
 	private Bitmap panelSuperior;
 
 
@@ -109,7 +112,7 @@ public class GameView extends SurfaceView {
 				cayo = false;
 				xMax = getWidth();
 				yMax = getHeight();
-				velocidadPelota=-7;
+				velocidadPelota=7;
 
 
 
@@ -127,15 +130,22 @@ public class GameView extends SurfaceView {
 				// Base de Datos
 				dao = new dbConexion(getContext());
 
+				//Recuperar el clave-valor de Archivo
+				puntaje = preferences.getInt("user_puntaje",0);
+				puntajeInicial = puntaje;
+				// Si seteo al puntaje total
+				SharedPreferences.Editor editor = preferences.edit();
+				//editor.putInt("puntaje_total",0);
+				//editor.commit();*/
 
 				//Ubicacion del jugador
-
+//				 jugador= new Jugador(150,227,150,20);
 				// pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
 
 				/*
 				 * Aqui deberia recuperarse del sharedPreferences
 				 * */
-				SharedPreferences.Editor editor = preferences.edit();
+				editor = preferences.edit();
 				int level = preferences.getInt("level",1);
 				//int level = preferences.getInt("level",1);
 				editor.putInt("level", level);
@@ -144,7 +154,6 @@ public class GameView extends SurfaceView {
 
 				grilla = new Grilla(xMax, yMax, 7, 10, 40,level ,context);
 
-				//jugador= new Jugador(150,650,150,20);
 				jugador = new Jugador((getWidth() / 2) - (150 / 2), getHeight() - 200, 150,20);
 				//jugador = new Jugador((getWidth() / 2) - (150 / 2), 200, 150,20);
 				pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-20,23, velocidadPelota);
@@ -321,9 +330,6 @@ public class GameView extends SurfaceView {
 	}
 
 	private void contactoDosBloques(Bloque b1, Bloque b2){
-		System.out.println("Contacto dos Bloques ");
-		System.out.println("Bloque 1 Columna: " + b1.getNroColumna() + " Fila: " + b1.getNroFila());
-		System.out.println("Bloque 2 Columna: " + b2.getNroColumna() + " Fila: " + b2.getNroFila());
 		//Estan horizontal
 		if(b1.getNroFila()==b2.getNroFila()){
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
@@ -332,21 +338,17 @@ public class GameView extends SurfaceView {
 				b2.setDureza(0);
 				this.grilla.restarBloquesPintados();
 				this.grilla.restarBloquesPintados();
-                System.out.println("Dos bloques dureza igual a 1");
 			}else{
 				if(b1.getDureza()==2 && b2.getDureza()==2) {
 					b1.setDureza(1);
 					b2.setDureza(1);
-                    System.out.println("Dos bloques dureza igual a 2");
 				}else{
 					if(b1.getDureza() == 1){
 						b1.setDureza(0);
 						b2.setDureza(1);
-                        System.out.println("Dos bloques dureza distinta, El bloque 1 tiene dureza 1");
 					}else{
 						b2.setDureza(0);
 						b1.setDureza(1);
-                        System.out.println("Dos bloques dureza distinta, El bloque 2 tiene dureza 1");
 					}
 					this.grilla.restarBloquesPintados();
 				}
@@ -355,7 +357,7 @@ public class GameView extends SurfaceView {
 		}
 		//Estan vertical
 		if(b1.getNroColumna() == b2.getNroColumna()){
-			System.out.println("Bloques estan Vertical |||||||||||");
+			System.out.println("Bloques estan Vertical");
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
 			b1.setDureza(0);
 			b2.setDureza(0);
@@ -365,7 +367,7 @@ public class GameView extends SurfaceView {
 		}
 		//Estan en diagonal
 		if(b1.getNroColumna() != b2.getNroColumna() && b1.getNroFila() != b2.getNroFila()){
-			System.out.println("Bloques estan diagonal /////////");
+			System.out.println("Bloques estan diagonal");
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
 			b1.setDureza(0);
 			b2.setDureza(0);
@@ -452,27 +454,16 @@ public class GameView extends SurfaceView {
 			gameThread.parar();
 			this.reubicarPelota();
 
-			this.grilla.avanzarUnNivel();
-			/*
-			 * Handler , Runnable
-			 * */
-			//SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-			//int level = preferences.getInt("level",1);
 			SharedPreferences.Editor editor = preferences.edit();
+			editor.putInt("user_puntaje", this.puntaje);
+			System.out.println("Puntaje  : "+this.puntaje+"en el nivel : "+this.grilla.getNivelActual());
+			editor.commit();
+
+			this.grilla.avanzarUnNivel();
+
 			int nivelActual = this.grilla.getNivelActual();
 			editor.putInt("level", nivelActual);
 			editor.commit();
-			preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-			int puntajeAnterior = preferences.getInt("user_puntaje",0);
-			editor = preferences.edit();
-
-			if(puntajeAnterior>this.puntaje){
-				editor.putInt("user_puntaje",puntajeAnterior);
-			}else {
-				editor.putInt("user_puntaje", this.puntaje);
-			}
-			editor.commit();
-
 
 			Intent i = new Intent(getContext(), SiguienteNivel.class);
 			i.putExtra("id_user",user);
@@ -482,20 +473,13 @@ public class GameView extends SurfaceView {
 
 			System.out.println("********************Termino el hilo");
 
-
-			//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ganaste),xMax,yMax,false);
-			//canvas.drawBitmap(bmp, 0, 0, null);
 		}else{
 			gameThread.parar();
 			SharedPreferences.Editor editor = preferences.edit();
-			int puntajeAnterior = preferences.getInt("user_puntaje",0);
-			editor = preferences.edit();
-			if(puntajeAnterior>this.puntaje){
-				editor.putInt("user_puntaje",puntajeAnterior);
-			}else {
-				editor.putInt("user_puntaje", this.puntaje);
-			}
+			editor.putInt("user_puntaje", this.puntaje);
+			System.out.println("Puntaje  : "+this.puntaje+"en el nivel : "+this.grilla.getNivelActual());
 			editor.commit();
+
 			Intent h = new Intent(getContext(), Ganador.class);
 			h.putExtra("id_user",user);
 			h.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -503,6 +487,7 @@ public class GameView extends SurfaceView {
 			Toast.makeText(this.getContext(), "!!!Ganaste!!!", Toast.LENGTH_SHORT).show();
 		}
 	}
+
 
 	private void controlDelJuego(Canvas canvas){
 		if (inicioJuego && (pelota.getY() < jugador.getPosY()) && (pelota.getY() > (jugador.getPosY() - 50))) {
@@ -587,6 +572,9 @@ public class GameView extends SurfaceView {
 	private void reiniciarJuego(Canvas canvas){
 		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 		String user = preferences.getString("user","vacio");
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putInt("user_puntaje",puntajeInicial);
+		editor.commit();
 
 		vidas = 2;
 		puntaje=0;

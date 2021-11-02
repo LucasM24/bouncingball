@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,12 +33,19 @@ public class IniciarSesion extends AppCompatActivity {
         setContentView(R.layout.modelo_iniciar_sesion);
 
         usuario = findViewById(R.id.editUser);
-        clave = findViewById(R.id.editPassword);
+        clave = (EditText)findViewById(R.id.editPassword);
+        clave.setTransformationMethod(new PasswordTransformationMethod());
         iniciarSesion = findViewById(R.id.loginButton);
         registrarse = findViewById(R.id.registerButton);
         salir = findViewById(R.id.exitButton);
         mp = MediaPlayer.create(this,R.raw.clic);
         dao = new dbConexion(this);
+        // Actualizo algunos datos del puntaje
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("user_puntaje",0);
+        editor.commit();
+
 
 
     }

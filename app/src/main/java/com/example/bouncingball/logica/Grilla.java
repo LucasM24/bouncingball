@@ -152,16 +152,16 @@ public class Grilla extends GameView{
                 pintarNivelDePrueba0();
                 break;
             case 1:
-                pintarNivel0();
-                //pintarNivelDePrueba0();
+               // pintarNivel0();
+                pintarNivelDePrueba0();
                 break;
             case 2:
-                pintarlNivel1();
-                //pintarNivelDePrueba1();
+                //pintarlNivel1();
+                pintarNivelDePrueba1();
                 break;
             case 3:
-                nave();
-                //pintarNivelDePrueba2();
+                //nave();
+                pintarNivelDePrueba2();
                 break;
         }
     }

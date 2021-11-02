@@ -100,7 +100,7 @@
                 android:layout_marginBottom="5dp"
                 android:onClick="salirDeAplicacion"
                 android:text="Salir"
-                app:backgroundTint="#a11a03" />
+                android:background="@drawable/boton_salir"/>
 
         </LinearLayout>
     </ScrollView>

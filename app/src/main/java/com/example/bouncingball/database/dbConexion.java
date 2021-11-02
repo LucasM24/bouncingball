@@ -1,5 +1,6 @@
 package com.example.bouncingball.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -79,30 +80,63 @@ public class dbConexion extends DbUser {
 
        ArrayList<Usuario> listaUsers = new ArrayList<>();
        Usuario us = null ;
-       Cursor cursorUser = null;
-       cursorUser = db.rawQuery("SELECT * FROM "+TABLE_USER,null);
+       try (Cursor cursorUser = db.rawQuery("SELECT * FROM " + TABLE_USER + " ORDER BY " + Campo_PUNTAJE + " DESC ", null)) {
 
-       if(cursorUser.moveToFirst()){
+           //cursorUser = db.rawQuery("SELECT * FROM "+TABLE_USER,null);
+           if (cursorUser.moveToFirst()) {
 
-           do{
-               // nameUser , clave ,email,puntaje
-               us = new Usuario();
-               us.setUsuario(cursorUser.getString(0));
-               us.setPuntaje(cursorUser.getInt(3));
-               //us.setPuntaje(cursorUser.getString(3));
-               // us.setEmail("loss@gmail.com");
-               System.out.println("Cursor Columna : "+cursorUser.getColumnCount());
-               System.out.println("Cursor Fila :  "+cursorUser.getCount());
-               //us.setPuntaje("102");
-               listaUsers.add(us);
-           } while(cursorUser.moveToNext());
+               do {
+                   // nameUser , clave ,email,puntaje
+                   us = new Usuario();
+                   us.setUsuario(cursorUser.getString(0));
+                   us.setPuntaje(cursorUser.getInt(3));
+                   //us.setPuntaje(cursorUser.getString(3));
+                   // us.setEmail("loss@gmail.com");
+                   //System.out.println("Cursor Columna : "+cursorUser.getColumnCount());
+                   //System.out.println("Cursor Fila :  "+cursorUser.getCount());
+                   //us.setPuntaje("102");
+                   listaUsers.add(us);
+               } while (cursorUser.moveToNext());
+           }
+
+
+           cursorUser.close();
        }
-
-
-       cursorUser.close();
        return listaUsers;
    }
-   public Usuario consultarUsuario(Usuario us){
+    @SuppressLint("Range")
+    public Usuario consultarPuntaje(String nickuser){
+
+        DbUser dbUser = new DbUser(context);
+        SQLiteDatabase db = dbUser.getReadableDatabase();
+        Cursor cursorUser = null;
+        Usuario date = null ;
+        String []parametros = {nickuser};
+        cursorUser = db.rawQuery("SELECT  * FROM "+TABLE_USER+" WHERE "+Campo_ID+"=?",parametros);
+
+
+        if(cursorUser.moveToFirst()){
+
+            do{
+                // nameUser , clave ,email,puntaje
+                date = new Usuario();
+                System.out.println("Pasas por aqui man !!!!....dbConexion ");
+                System.out.println(" valor del cursor "+cursorUser.getString(cursorUser.getColumnIndex("usuario")));
+                System.out.println(" valor del cursor "+cursorUser.getString(cursorUser.getColumnIndex("clave")));
+                System.out.println(" valor del cursor "+cursorUser.getString(cursorUser.getColumnIndex("email")));
+                System.out.println(" valor del cursor "+cursorUser.getString(cursorUser.getColumnIndex("puntaje")));
+                date.setPuntaje(Integer.parseInt(cursorUser.getString(cursorUser.getColumnIndex("puntaje"))));
+
+            } while(cursorUser.moveToNext());
+        }else{
+            date=null;
+        }
+        cursorUser.close();
+        return date ;
+
+    }
+
+    public Usuario consultarUsuario(Usuario us){
 
        DbUser dbUser = new DbUser(context);
        SQLiteDatabase db = dbUser.getReadableDatabase();
