@@ -77,7 +77,7 @@ public class PuntajeJugador extends AppCompatActivity {
             textViewEncabezado.setBackgroundResource(R.color.colorPrimary);
             textViewEncabezado.setText(encabezado[k]);
             textViewEncabezado.setTextColor(Color.WHITE);
-            textViewEncabezado.setWidth(anchoRow);
+//            textViewEncabezado.setWidth(anchoRow);
             row.addView(textViewEncabezado);
         }
         listaplayers.addView(row);
@@ -99,7 +99,7 @@ public class PuntajeJugador extends AppCompatActivity {
                     textView.setBackgroundResource(R.color.colorAccent);
                     textView.setText(cadena[j]);
                     textView.setTextColor(Color.BLACK);
-                    textView.setWidth(anchoRow);
+//                    textView.setWidth(anchoRow);
                     row.addView(textView);
 
                 }
@@ -113,7 +113,7 @@ public class PuntajeJugador extends AppCompatActivity {
                     textView.setBackgroundResource(R.color.colorPrimary);
                     textView.setText(cadena[j]);
                     textView.setTextColor(Color.WHITE);
-                    textView.setWidth(anchoRow);
+//                    textView.setWidth(anchoRow);
                     row.addView(textView);
 
                 }

@@ -17,15 +17,32 @@
             android:orientation="vertical">
 
 
+            <TextView
+                android:id="@+id/titulo_ranking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".05"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/fuente_uno"
+                android:textColor="#ffffff"
+                android:text="Mejores Puntajes"
+                android:textSize="24sp" />
+
             <TableLayout
                 android:id="@+id/listaplayers"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight=".05">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight=".05"
+                android:foregroundGravity="center"
+                android:gravity="center">
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center"
+                    android:gravity="center" />
 
             </TableLayout>
 
@@ -36,9 +53,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/boton_salir"
                 android:onClick="anterior"
-                android:text="@string/TEXTO_BOTON_VOLVER"
-                android:background="@drawable/boton_salir"/>
+                android:text="@string/TEXTO_BOTON_VOLVER" />
 
         </LinearLayout>
     </ScrollView>

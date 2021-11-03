@@ -44,7 +44,8 @@
                     android:layout_above="@+id/imageView4"
                     android:layout_marginBottom="33dp"
                     android:fontFamily="@font/fuente_uno"
-                    android:text="Hola"
+                    android:text=""
+                    android:layout_marginRight="10dp"
                     android:textColor="#FFFFFF"
 
                     android:textSize="10sp"
