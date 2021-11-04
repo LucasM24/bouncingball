@@ -143,6 +143,7 @@ public class Opciones extends AppCompatActivity {
             btn_dificil.setText(R.string.ETIQUETA_NIVEL_DIFICIL);
             btn_validar.setText(R.string.TEXTO_BOTON_ACEPTAR);
             btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER);
+
         }else{
             btn_idioma.setImageResource(R.drawable.estadosunidos);
             txtNivelDelJuego.setText(R.string.ETIQUETA_NIVELES_EN);

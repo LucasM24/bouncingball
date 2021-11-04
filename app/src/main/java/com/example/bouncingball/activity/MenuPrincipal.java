@@ -147,6 +147,7 @@ public class MenuPrincipal extends AppCompatActivity {
           botonRanking.setText(R.string.TEXTO_BOTON_RANKING);
           botonOpciones.setText(R.string.TEXTO_BOTON_OPCIONES);
           botonSalir.setText(R.string.TEXTO_BOTON_CERRAR_SESION);
+
         }else{
             botonJugar.setText(R.string.TEXTO_BOTON_JUGAR_EN);
             botonRanking.setText(R.string.TEXTO_BOTON_RANKING_EN);

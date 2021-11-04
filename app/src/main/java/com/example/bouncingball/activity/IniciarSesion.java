@@ -100,11 +100,10 @@ public class IniciarSesion extends AppCompatActivity {
 
     public void salirDeAplicacion(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Desea salir del juego?");
+        alertDialogBuilder.setTitle("¿Desea salir del juego?");
         alertDialogBuilder
-                .setMessage("Presione SI para Salir!")
                 .setCancelable(false)
-                .setPositiveButton("Si",
+                .setPositiveButton("SI",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 moveTaskToBack(true);
@@ -113,7 +112,7 @@ public class IniciarSesion extends AppCompatActivity {
                             }
                         })
 
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                         dialog.cancel();
