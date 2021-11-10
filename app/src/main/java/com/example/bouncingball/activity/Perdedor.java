@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class Perdedor extends AppCompatActivity {
 
     TextView mostrar_user ;
     private dbConexion dao ;
+    private Button btnVolverMenuPrincipalPerdio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,11 @@ public class Perdedor extends AppCompatActivity {
         //mostrar_user = (TextView) findViewById(R.id.textView4);
         //mostrar_user.setText(name_user);
         dao = new dbConexion(this);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        actualizarIdioma();
     }
     public void volverAlMenuJuego(View v){
 
@@ -77,6 +84,20 @@ public class Perdedor extends AppCompatActivity {
         Intent menu = new Intent(Perdedor.this, MenuPrincipal.class);
         menu.putExtra("id_user",user);
         startActivity(menu);
+
+    }
+    private void actualizarIdioma(){
+
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+
+        String idioma_user = preferences.getString("idioma","es");
+
+        if(idioma_user.equalsIgnoreCase("es")){
+            btnVolverMenuPrincipalPerdio.setText(R.string.TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_ES);
+        }else{
+            btnVolverMenuPrincipalPerdio.setText(R.string.TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_EN);
+
+        }
 
     }
 }

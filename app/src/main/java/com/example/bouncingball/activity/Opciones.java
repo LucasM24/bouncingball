@@ -51,6 +51,7 @@ public class Opciones extends AppCompatActivity {
         encendida = false;
         usuario = findViewById(R.id.editUser);
         clave = findViewById(R.id.editPassword);
+        btn_facil.setChecked(true);
         actualizarIdioma();
 
     }
@@ -58,6 +59,7 @@ public class Opciones extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
     }
 
     public void recibir_date(){

@@ -1,12 +1,16 @@
 package com.example.bouncingball.activity;
 
+import static com.example.bouncingball.R.font.fuente_uno;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -67,19 +71,26 @@ public class PuntajeJugador extends AppCompatActivity {
        // encabezado[2]="Puntaje";
         actualizarIdioma();
         TableRow row = new TableRow(this.getBaseContext());
-
+        //row.setWeightSum(20);
         TextView textViewEncabezado ;
-        for (int k=0;k<3;k++){
 
+
+        for (int k=0;k<3;k++){
             textViewEncabezado = new TextView(this.getBaseContext());
+
             textViewEncabezado.setGravity(Gravity.CENTER);
             textViewEncabezado.setPadding(40,15,40,15);
-            textViewEncabezado.setBackgroundResource(R.color.colorPrimary);
+            textViewEncabezado.setBackgroundResource(R.color.colorPrimaryDark);
             textViewEncabezado.setText(encabezado[k]);
             textViewEncabezado.setTextColor(Color.WHITE);
+
 //            textViewEncabezado.setWidth(anchoRow);
             row.addView(textViewEncabezado);
         }
+
+        //Typeface font = ResourcesCompat.getFont(createConfigurationContext(), fuente_uno);
+
+
         listaplayers.addView(row);
 
         // recibiendo los datos de la base de datos
@@ -96,7 +107,7 @@ public class PuntajeJugador extends AppCompatActivity {
                     textView = new TextView(this.getBaseContext());
                     textView.setGravity(Gravity.CENTER);
                     textView.setPadding(40, 15, 40, 15);
-                    textView.setBackgroundResource(R.color.colorAccent);
+                    textView.setBackgroundResource(R.color.colorPuntajeJugador);
                     textView.setText(cadena[j]);
                     textView.setTextColor(Color.BLACK);
 //                    textView.setWidth(anchoRow);

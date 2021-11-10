@@ -43,10 +43,13 @@
     <string name="ETIQUETA_NIVEL_INTERMEDIO_EN">Intermediate</string>
     <string name="ETIQUETA_NIVEL_DIFICIL_EN">Hard</string>
     <string name="TEXTO_BOTON_ACEPTAR_EN">Accept</string>
-    <string name="TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_EN">Back to the main menu</string>
     <string name="TEXTO_PISTA_CAMPO_USUARIO_EN">Enter your username</string>
     <string name="TEXTO_PISTA_CAMPO_CONTRASENIA_EN">Enter your password</string>
     <string name="TEXTO_PISTA_CAMPO_CORREO_EN">Enter your email</string>
     <string name="TEXTO_BOTON_CERRAR_SESION_EN">Logout</string>
     <string name="ETIQUETA_OPCIONES_EN">Settings</string>
+    <string name="TEXTO_BOTON_SIGUIENTE_NIVEL_ES">Siguiente Nivel</string>
+    <string name="TEXTO_BOTON_SIGUIENTE_NIVEL_EN">Next Level</string>
+    <string name="TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_ES">Volver al menu principal</string>
+    <string name="TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_EN">Back to Main Menu</string>
 </resources>

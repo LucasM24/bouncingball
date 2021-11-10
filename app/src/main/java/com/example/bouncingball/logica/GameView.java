@@ -107,21 +107,17 @@ public class GameView extends SurfaceView {
 			public void surfaceCreated(SurfaceHolder surfaceHolder) {
 				setWillNotDraw(false);
 				nivel = 2;
-				vidas = 1;
+				vidas = 3;
 				puntaje = 0;
 				cayo = false;
 				xMax = getWidth();
 				yMax = getHeight();
 				velocidadPelota=7;
 
-
-
 				int numeroAleatorio = (int) (Math.random() * 2);
 				if(numeroAleatorio==1){
 					velocidadPelota=-7;
 				}
-
-
 
 				//Datos archivos
 				SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
@@ -137,6 +133,9 @@ public class GameView extends SurfaceView {
 				SharedPreferences.Editor editor = preferences.edit();
 				//editor.putInt("puntaje_total",0);
 				//editor.commit();*/
+
+				//Recuperar cantidad de vidas
+				vidas = preferences.getInt("vidas",3);
 
 				//Ubicacion del jugador
 //				 jugador= new Jugador(150,227,150,20);
@@ -172,6 +171,9 @@ public class GameView extends SurfaceView {
 				Typeface typeface = ResourcesCompat.getFont(context, fuente_uno);
 				pincelIndicadores.setTypeface(typeface);
 				pincelDureza.setColor(RED);
+
+				//Sonido
+				mp = MediaPlayer.create(context,R.raw.rebote);
 
 				gameThread = new GameThread(GameView.this);
 				gameThread.play();
@@ -209,7 +211,7 @@ public class GameView extends SurfaceView {
 		verificarContactoPantalla();
 
 		//pelota.actualizarPosicion();
-		if (vidas >= 0) {
+		if (vidas > 0) {
 
 			//Es el ultimo bloque??
 			boolean gano = this.grilla.getCantidadBloquesPintados() == 0;
@@ -283,6 +285,7 @@ public class GameView extends SurfaceView {
 							bloque.setImagenBloqueRoto();
 						}
 						contarContactos++;
+						mp.start();
 					}
 				}
 			}
@@ -513,6 +516,10 @@ public class GameView extends SurfaceView {
 
 	private void restarVida(){
 		vidas += -1;
+		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putInt("vidas",vidas);
+		editor.commit();
 		//Reubicar la pelota cuando se cae
 		this.reubicarPelota();
 
@@ -522,7 +529,6 @@ public class GameView extends SurfaceView {
 
 	private void dibujarIndicadores(Canvas canvas){
 		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-
 		String idioma_user = preferences.getString("idioma","es");
 		float centroNivel=((xMax * 10) / 100)/2;
 		float centroPuntaje=((xMax * 40) / 100)/2;
@@ -538,11 +544,11 @@ public class GameView extends SurfaceView {
 			//Vidas
 			if(vidas>0){
 
-				canvas.drawText("Vidas " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText("Vidas " , (xMax * 78) / 100, 50f, pincelIndicadores);
 				canvas.drawText(String.valueOf(this.vidas), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}else{
 
-				canvas.drawText("Vidas " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText("Vidas " , (xMax * 78) / 100, 50f, pincelIndicadores);
 				canvas.drawText(String.valueOf(0), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}
 
@@ -558,11 +564,11 @@ public class GameView extends SurfaceView {
 			//Vidas
 			if(vidas>0){
 
-				canvas.drawText("Life " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText("Life " , (xMax * 80) / 100, 50f, pincelIndicadores);
 				canvas.drawText(String.valueOf(this.vidas), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}else{
 
-				canvas.drawText("Life " , (xMax * 75) / 100, 50f, pincelIndicadores);
+				canvas.drawText("Life " , (xMax * 80) / 100, 50f, pincelIndicadores);
 				canvas.drawText(String.valueOf(0), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
 			}
 
@@ -574,9 +580,10 @@ public class GameView extends SurfaceView {
 		String user = preferences.getString("user","vacio");
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.putInt("user_puntaje",puntajeInicial);
-		editor.commit();
 
-		vidas = 2;
+		editor.putInt("vidas",3);
+		editor.commit();
+		vidas=3;
 		puntaje=0;
 		imgFinJuego=true;
 		this.grilla.setCantidadBloquesPintados(0);
@@ -726,11 +733,13 @@ public class GameView extends SurfaceView {
 		//Derecha
 		if (pelota.getX() + pelota.getTamanio() >= xMax) {
 			pelota.setDireccionEnX(-pelota.getVelocidad());
+			//mp.start();
 		}
 
 		//Izquierda
 		if (pelota.getX() <= 0) {
 			pelota.setDireccionEnX(pelota.getVelocidad());
+			//mp.start();
 		}
 
 		//Fondo
@@ -742,6 +751,7 @@ public class GameView extends SurfaceView {
 		//Techo
 		if (pelota.getY() <= 120) {
 			pelota.setDireccionEnY(pelota.getVelocidad());
+			//mp.start();
 		}
 
 	}
