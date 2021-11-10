@@ -24,20 +24,21 @@
     <string name="TEXTO_PISTA_CAMPO_CONTRASENIA">Ingrese su contraseña</string>
     <string name="TEXTO_PISTA_CAMPO_CORREO">Ingrese su correo electrónico</string>
     <string name="TEXTO_BOTON_CERRAR_SESION">Cerrar sesión</string>
+    <string name="ETIQUETA_OPCIONES">Opciones</string>
     <string name="CAMPO_USUARIO_EN">Username</string>
     <string name="CAMPO_PASSWORD_EN">Password</string>
     <string name="TEXTO_BOTON_INICIAR_SESION_EN">Login</string>
     <string name="TEXTO_BOTON_REGISTRARSE_EN">Register</string>
     <string name="TEXTO_BOTON_JUGAR_EN">Play</string>
     <string name="TEXTO_BOTON_RANKING_EN">Ranking</string>
-    <string name="TEXTO_BOTON_OPCIONES_EN">Options</string>
+    <string name="TEXTO_BOTON_OPCIONES_EN">Settings</string>
     <string name="TEXTO_BOTON_SALIR_EN">Exit</string>
     <string name="TEXTO_BOTON_VOLVER_EN">Back</string>
     <string name="ETIQUETA_CORREO_EN">Email</string>
     <string name="ETIQUETA_PUNTAJE_JUGADOR_EN">Max score</string>
     <string name="ETIQUETA_IDIOMA_EN">Language</string>
     <string name="ETIQUETA_SONIDO_EN">Sound</string>
-    <string name="ETIQUETA_NIVELES_EN">Choose your difficult level</string>
+    <string name="ETIQUETA_NIVELES_EN">Difficulty level</string>
     <string name="ETIQUETA_NIVEL_FACIL_EN">Easy</string>
     <string name="ETIQUETA_NIVEL_INTERMEDIO_EN">Intermediate</string>
     <string name="ETIQUETA_NIVEL_DIFICIL_EN">Hard</string>
@@ -47,4 +48,5 @@
     <string name="TEXTO_PISTA_CAMPO_CONTRASENIA_EN">Enter your password</string>
     <string name="TEXTO_PISTA_CAMPO_CORREO_EN">Enter your email</string>
     <string name="TEXTO_BOTON_CERRAR_SESION_EN">Logout</string>
+    <string name="ETIQUETA_OPCIONES_EN">Settings</string>
 </resources>

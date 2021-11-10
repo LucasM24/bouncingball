@@ -21,11 +21,11 @@ import android.content.Context;
 
 public class Opciones extends AppCompatActivity {
 
-    private TextView mostrar_user ,txtNivelDelJuego;
+    private TextView textoNombreUsuario ,txtNivelDelJuego, tituloOpciones;
     private CheckBox c1,c2,c3 ;
     private Switch aSwitchE ,aSwitchS;
     private MediaPlayer mp ;
-    private Button btn_regresar,btn_validar ;
+    private Button btn_regresar;
     private ImageButton btn_sonido ,btn_idioma ;
     private EditText usuario ;
     private EditText clave;
@@ -44,14 +44,13 @@ public class Opciones extends AppCompatActivity {
         btn_dificil = (RadioButton) findViewById(R.id.radioButton);
 
         txtNivelDelJuego =(TextView) findViewById(R.id.textView);
+        tituloOpciones = findViewById(R.id.tituloOpciones);
         btn_regresar = (Button) findViewById(R.id.button);
         btn_sonido = (ImageButton) findViewById(R.id.imageButton);
         btn_idioma = (ImageButton) findViewById(R.id.imageButton2);
-        btn_validar =  (Button) findViewById(R.id.button14);
-        encendida = false ;
+        encendida = false;
         usuario = findViewById(R.id.editUser);
         clave = findViewById(R.id.editPassword);
-        btn_facil.setChecked(true);
         actualizarIdioma();
 
     }
@@ -59,49 +58,45 @@ public class Opciones extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
+
     public void recibir_date(){
         Bundle extra = getIntent().getExtras();
-        String name_user = extra.getString("id_user2");
-        mostrar_user = (TextView) findViewById(R.id.TexViewPlayers);
-        mostrar_user.setText(name_user);
+        String nombreUsuario = extra.getString("id_user2");
+        textoNombreUsuario = findViewById(R.id.textViewNombreJugador);
+        textoNombreUsuario.setText("Hola: " + nombreUsuario);
     }
-    public void onClick(View v){
-         mpclic.start();
+
+    public void volver(View v){
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-         if(btn_facil.isChecked()){
-          /*
-          * Seleccion de modo facil los bloques son mas fragiles
-          * */
-//             Toast.makeText(this, "Nivel Facil", Toast.LENGTH_SHORT).show();
-             editor.putInt("level",1);
-             editor.commit();
-         }else{
-             if(btn_intermedio.isChecked()){
-                 /*
+        if(btn_facil.isChecked()){
+            /*
+             * Seleccion de modo facil los bloques son mas fragiles
+             * */
+            editor.putInt("level",1);
+            editor.commit();
+        }else{
+            if(btn_intermedio.isChecked()){
+                /*
                  * Seleccion de modo Intermedio cambio de la dureza del bloque
                  * Cambia la distribucion de los bloques
                  * */
-//                 Toast.makeText(this, "Nivel Intermedio", Toast.LENGTH_SHORT).show();
-                 editor.putInt("level",2);
-                 editor.commit();
-             }
-             else{
-                 /*
+                editor.putInt("level",2);
+                editor.commit();
+            }else{
+                /*
                  * Seleccion de modo Dificil
                  * */
-//                 Toast.makeText(this, "Nivel Dificil", Toast.LENGTH_SHORT).show();
-                 editor.putInt("level",3);
-                 editor.commit();
-             }
-         }
+                editor.putInt("level",3);
+                editor.commit();
+            }
+        }
+
         editor.putString("changelevel","si");
-         editor.commit();
-
-
+        editor.commit();
+        onBackPressed();
     }
 
 
@@ -115,19 +110,19 @@ public class Opciones extends AppCompatActivity {
         if(idioma_user.equalsIgnoreCase("es")){
             btn_idioma.setImageResource(R.drawable.estadosunidos);
 
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("idioma","en");
-                editor.commit();
-                actualizarIdioma();
-            }
-            else{
-            btn_idioma.setImageResource(R.drawable.argentina);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("idioma","es");
-                editor.commit();
-                actualizarIdioma();
-            }
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("idioma","en");
+            editor.commit();
+            actualizarIdioma();
         }
+        else{
+            btn_idioma.setImageResource(R.drawable.argentina);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("idioma","es");
+            editor.commit();
+            actualizarIdioma();
+        }
+    }
 
     private void actualizarIdioma(){
 
@@ -141,16 +136,16 @@ public class Opciones extends AppCompatActivity {
             btn_facil.setText(R.string.ETIQUETA_NIVEL_FACIL);
             btn_intermedio.setText(R.string.ETIQUETA_NIVEL_INTERMEDIO);
             btn_dificil.setText(R.string.ETIQUETA_NIVEL_DIFICIL);
-            btn_validar.setText(R.string.TEXTO_BOTON_ACEPTAR);
             btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER);
+            tituloOpciones.setText(R.string.ETIQUETA_OPCIONES);
         }else{
             btn_idioma.setImageResource(R.drawable.estadosunidos);
             txtNivelDelJuego.setText(R.string.ETIQUETA_NIVELES_EN);
             btn_facil.setText(R.string.ETIQUETA_NIVEL_FACIL_EN);
             btn_intermedio.setText(R.string.ETIQUETA_NIVEL_INTERMEDIO_EN);
             btn_dificil.setText(R.string.ETIQUETA_NIVEL_DIFICIL_EN);
-            btn_validar.setText(R.string.TEXTO_BOTON_ACEPTAR_EN);
             btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER_EN);
+            tituloOpciones.setText(R.string.ETIQUETA_OPCIONES_EN);
         }
 
     }
@@ -177,8 +172,8 @@ public class Opciones extends AppCompatActivity {
         encendida = !encendida;
 
     }
-    public void volver(View v){
-        mpclic.start();
-        onBackPressed();
-    }
+//    public void volver(View v){
+//        //mpclic.start();
+//        onBackPressed();
+//    }
 }
