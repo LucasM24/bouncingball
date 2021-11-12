@@ -27,11 +27,11 @@ public class IniciarSesion extends AppCompatActivity {
     private Button iniciarSesion , registrarse, salir ;
     private MediaPlayer mp ;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modelo_iniciar_sesion);
-
         usuario = findViewById(R.id.editUser);
         clave = (EditText)findViewById(R.id.editPassword);
         clave.setTransformationMethod(new PasswordTransformationMethod());
