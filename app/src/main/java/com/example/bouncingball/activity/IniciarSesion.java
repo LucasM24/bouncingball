@@ -26,12 +26,19 @@ public class IniciarSesion extends AppCompatActivity {
     private dbConexion dao ;
     private Button iniciarSesion , registrarse, salir ;
     private MediaPlayer mp ;
+    private String tituloAlertaSalir;
+    private String textoAlertaSalir;
+    private String textoSiAlertaSalir;
+    private String textoNoAlertaSalir;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modelo_iniciar_sesion);
+        tituloAlertaSalir ="¿Desea salir del juego?";
+        this.textoSiAlertaSalir = "Sí";
+        textoNoAlertaSalir = "No";
         usuario = findViewById(R.id.editUser);
         clave = (EditText)findViewById(R.id.editPassword);
         clave.setTransformationMethod(new PasswordTransformationMethod());
@@ -88,22 +95,28 @@ public class IniciarSesion extends AppCompatActivity {
             clave.setHint(R.string.TEXTO_PISTA_CAMPO_CONTRASENIA);
             iniciarSesion.setText(R.string.TEXTO_BOTON_INICIAR_SESION);
             registrarse.setText(R.string.TEXTO_BOTON_REGISTRARSE);
+            tituloAlertaSalir ="¿Desea salir del juego?";
+            textoSiAlertaSalir = "Sí";
+            textoNoAlertaSalir = "No";
             salir.setText(R.string.TEXTO_BOTON_SALIR);
         }else{
             usuario.setHint(R.string.TEXTO_PISTA_CAMPO_USUARIO_EN);
             clave.setHint(R.string.TEXTO_PISTA_CAMPO_CONTRASENIA_EN);
             iniciarSesion.setText(R.string.TEXTO_BOTON_INICIAR_SESION_EN);
             registrarse.setText(R.string.TEXTO_BOTON_REGISTRARSE_EN);
+            tituloAlertaSalir ="¿Do you want to quit the game?";
+            this.textoSiAlertaSalir = "Yes";
+            textoNoAlertaSalir = "No";
             salir.setText(R.string.TEXTO_BOTON_SALIR_EN);
         }
     }
 
     public void salirDeAplicacion(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("¿Desea salir del juego?");
+        alertDialogBuilder.setTitle(this.tituloAlertaSalir);
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("SI",
+                .setPositiveButton(this.textoSiAlertaSalir,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 moveTaskToBack(true);
@@ -112,7 +125,7 @@ public class IniciarSesion extends AppCompatActivity {
                             }
                         })
 
-                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                .setNegativeButton(this.textoNoAlertaSalir, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                         dialog.cancel();
