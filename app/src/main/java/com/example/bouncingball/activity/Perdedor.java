@@ -29,13 +29,16 @@ public class Perdedor extends AppCompatActivity {
         String name_user = extra.getString("id_user");
         //mostrar_user = (TextView) findViewById(R.id.textView4);
         //mostrar_user.setText(name_user);
+        btnVolverMenuPrincipalPerdio =findViewById(R.id.salirDelJuego);
         dao = new dbConexion(this);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         actualizarIdioma();
     }
+
     public void volverAlMenuJuego(View v){
 
         System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");

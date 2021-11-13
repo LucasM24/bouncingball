@@ -487,8 +487,30 @@ public class GameView extends SurfaceView {
 			h.putExtra("id_user",user);
 			h.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(getContext(), h, null);
-			Toast.makeText(this.getContext(), "!!!Ganaste!!!", Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	private void reiniciarJuego(Canvas canvas){
+		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+		String user = preferences.getString("user","vacio");
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putInt("user_puntaje",puntajeInicial);
+
+		editor.putInt("vidas",3);
+		editor.commit();
+		vidas=3;
+		puntaje=0;
+		imgFinJuego=true;
+		this.grilla.setCantidadBloquesPintados(0);
+		this.grilla.reiniciarGrilla();
+		gameThread.pause();
+		Intent j = new Intent(getContext(), Perdedor.class);
+		j.putExtra("id_user",user);
+		j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(getContext(), j, null);
+		//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.finjuego),xMax,yMax,false);
+		//canvas.drawBitmap(bmp, 0, 0, null);
+
 	}
 
 
@@ -531,73 +553,56 @@ public class GameView extends SurfaceView {
 		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 		String idioma_user = preferences.getString("idioma","es");
 		float centroNivel=((xMax * 10) / 100)/2;
-		float centroPuntaje=((xMax * 40) / 100)/2;
-		float centroVida=((xMax * 75) / 100)/2;
+		String textoNivel = "Nivel";
+		String textoPuntaje = "Puntaje";
+		String textoVidas = "Vidas";
+		float posicionTextoNivel = ((xMax * 10) / 100)+centroNivel - 25;
+		float posicionTextoPuntaje = 0;
+		float posicionTextoVidas = 0;
+		float posicionNivel = 0;
+		float posicionPuntaje = 0;
+		float posicionVidas = 0;
 
 		if(idioma_user.equalsIgnoreCase("es")){
-			//Nivel
-			canvas.drawText("Nivel " , (xMax * 10) / 100, 50f, pincelIndicadores);
-			canvas.drawText(String.valueOf(this.grilla.getNivelActual()), ((xMax * 10) / 100)+centroNivel, 90f, pincelIndicadores);
-			//Puntaje
-			canvas.drawText("Puntaje " , (xMax * 40) / 100, 50f, pincelIndicadores);
-			canvas.drawText( String.valueOf(this.puntaje), ((xMax * 40) / 100)+45, 90f, pincelIndicadores);
-			//Vidas
-			if(vidas>0){
-
-				canvas.drawText("Vidas " , (xMax * 78) / 100, 50f, pincelIndicadores);
-				canvas.drawText(String.valueOf(this.vidas), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
-			}else{
-
-				canvas.drawText("Vidas " , (xMax * 78) / 100, 50f, pincelIndicadores);
-				canvas.drawText(String.valueOf(0), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
-			}
-
+			textoNivel = "Nivel";
+			textoPuntaje = "Puntaje";
+			textoVidas = "Vidas";
+			posicionTextoPuntaje =(xMax * 40) / 100 + 16;
+			posicionTextoVidas =(xMax * 80)/100 - 10;
+			posicionVidas = ((xMax * 75) / 100) + 60;
+		}else{
+			textoNivel = "Level";
+			textoPuntaje = "Score";
+			textoVidas = "Lives";
+			posicionTextoPuntaje =(xMax * 40) / 100 + 35;
+			posicionTextoVidas =(xMax * 80)/100 - 7;
+			posicionVidas = ((xMax * 75) / 100) + 55;
 		}
-		else{
 
-			//Nivel
-			canvas.drawText("Level " , (xMax * 10) / 100, 50f, pincelIndicadores);
-			canvas.drawText(String.valueOf(this.grilla.getNivelActual()), ((xMax * 10) / 100)+centroNivel, 90f, pincelIndicadores);
-			//Puntaje
-			canvas.drawText("Score " , (xMax * 40) / 100, 50f, pincelIndicadores);
-			canvas.drawText( String.valueOf(this.puntaje), ((xMax * 40) / 100)+45, 90f, pincelIndicadores);
-			//Vidas
-			if(vidas>0){
-
-				canvas.drawText("Life " , (xMax * 80) / 100, 50f, pincelIndicadores);
-				canvas.drawText(String.valueOf(this.vidas), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
-			}else{
-
-				canvas.drawText("Life " , (xMax * 80) / 100, 50f, pincelIndicadores);
-				canvas.drawText(String.valueOf(0), ((xMax * 75) / 100)+45, 90f, pincelIndicadores);
-			}
-
+		if(this.puntaje < 10){
+			posicionPuntaje =((xMax * 39) / 100) + 71;
+		}else if(this.puntaje < 100){
+			posicionPuntaje =((xMax * 39) / 100) + 66;
+		}else if(this.puntaje < 1000){
+			posicionPuntaje =((xMax * 39) / 100) + 60;
+		}else{
+			posicionPuntaje =((xMax * 39) / 100) + 53;
 		}
+
+		posicionNivel = ((xMax * 10) / 100)+centroNivel + 1;
+
+		//Dibujar titulo y numero del nivel
+		canvas.drawText(textoNivel, posicionTextoNivel , 50f, pincelIndicadores);
+		canvas.drawText(String.valueOf(this.grilla.getNivelActual()), posicionNivel, 90f, pincelIndicadores);
+		//Dibujar titulo y cantidad de puntos
+		canvas.drawText(textoPuntaje, posicionTextoPuntaje, 50f, pincelIndicadores);
+		canvas.drawText( String.valueOf(this.puntaje), posicionPuntaje, 90f, pincelIndicadores);
+		//Dibujar titulo y cantidad de vidas
+		canvas.drawText(textoVidas, posicionTextoVidas, 50f, pincelIndicadores);
+		canvas.drawText(String.valueOf(this.vidas), posicionVidas, 90f, pincelIndicadores);
 	}
 
-	private void reiniciarJuego(Canvas canvas){
-		SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-		String user = preferences.getString("user","vacio");
-		SharedPreferences.Editor editor = preferences.edit();
-		editor.putInt("user_puntaje",puntajeInicial);
 
-		editor.putInt("vidas",3);
-		editor.commit();
-		vidas=3;
-		puntaje=0;
-		imgFinJuego=true;
-		this.grilla.setCantidadBloquesPintados(0);
-		this.grilla.reiniciarGrilla();
-		gameThread.pause();
-		Intent j = new Intent(getContext(), Perdedor.class);
-		j.putExtra("id_user",user);
-		j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(getContext(), j, null);
-		Toast.makeText(this.getContext(), "!!!Perdiste el Juego !!!", Toast.LENGTH_SHORT).show();
-		//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.finjuego),xMax,yMax,false);
-		//canvas.drawBitmap(bmp, 0, 0, null);
-
-	}
 
 	private void reubicarPelota(){
 		pelota.setX(jugador.getPosX() + (jugador.getAncho() / 2));
