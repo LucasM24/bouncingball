@@ -21,6 +21,7 @@ public class MenuPrincipal extends AppCompatActivity {
     private Button botonJugar,botonRanking ,botonOpciones,botonSalir;
     private TextView mostrar_user ;
     private dbConexion dao ;
+    private String nombreUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class MenuPrincipal extends AppCompatActivity {
         mp = MediaPlayer.create(this,R.raw.clic);
         // Base de Datos
         dao = new dbConexion(this);
+        nombreUsuario =  getIntent().getExtras().getString("id_user");
        recibirDatos();
         /*
          * Actualizar el nivel
@@ -103,7 +105,7 @@ public class MenuPrincipal extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("user",mostrar_user.getText().toString());
+        editor.putString("user", nombreUsuario);
         editor.commit();
 
         startActivity(jugar);
@@ -111,7 +113,7 @@ public class MenuPrincipal extends AppCompatActivity {
     public void mostrar(View v){
      mp.start();
      Intent mostrarActivity = new Intent(MenuPrincipal.this, PuntajeJugador.class);
-        mostrarActivity.putExtra("id_user2",mostrar_user.getText().toString());
+        mostrarActivity.putExtra("id_user2", nombreUsuario);
      startActivity(mostrarActivity);
 
 
@@ -119,7 +121,7 @@ public class MenuPrincipal extends AppCompatActivity {
     public void opciones(View v){
         mp.start();
         Intent k = new Intent(MenuPrincipal.this, Opciones.class);
-        k.putExtra("id_user2",mostrar_user.getText().toString());
+        k.putExtra("id_user2", nombreUsuario);
         startActivity(k);
 
     }
@@ -147,12 +149,14 @@ public class MenuPrincipal extends AppCompatActivity {
           botonRanking.setText(R.string.TEXTO_BOTON_RANKING);
           botonOpciones.setText(R.string.TEXTO_BOTON_OPCIONES);
           botonSalir.setText(R.string.TEXTO_BOTON_CERRAR_SESION);
+          mostrar_user.setText("Hola: " + this.nombreUsuario );
 
         }else{
             botonJugar.setText(R.string.TEXTO_BOTON_JUGAR_EN);
             botonRanking.setText(R.string.TEXTO_BOTON_RANKING_EN);
             botonOpciones.setText(R.string.TEXTO_BOTON_OPCIONES_EN);
             botonSalir.setText(R.string.TEXTO_BOTON_CERRAR_SESION_EN);
+            mostrar_user.setText("Hello: " + this.nombreUsuario );
         }
 
     }

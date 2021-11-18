@@ -19,6 +19,8 @@ public class Ganador extends AppCompatActivity {
     TextView mostrar_user ;
     private dbConexion dao;
     private Button btnVolverMenuPrincipalGano;
+    private TextView textoGanador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class Ganador extends AppCompatActivity {
 
         Bundle extra = getIntent().getExtras();
         String name_user = extra.getString("id_user");
+        textoGanador = findViewById(R.id.tituloGanador);
         //mostrar_user = (TextView) findViewById(R.id.textView3);
         //mostrar_user.setText(name_user);
         btnVolverMenuPrincipalGano=(Button) findViewById(R.id.salirDelJuego);
@@ -67,16 +70,10 @@ public class Ganador extends AppCompatActivity {
          * Comparacion el puntaje obtenido en el juego con el ultimo registrado en la
          * Base de Datos
          * */
-
         Usuario us = dao.consultarPuntaje(user);
-        if (mypuntaje <= us.getPuntaje()) {
-           // Toast.makeText(this, "Segui Participando ", Toast.LENGTH_SHORT).show();
-        } else {
+        if (mypuntaje > us.getPuntaje()) {
             int i = dao.updatePuntaje(user, mypuntaje);
-
-          //  Toast.makeText(this, "Felicitaciones Superaste el Puntaje_Max Registrado", Toast.LENGTH_SHORT).show();
         }
-
         //System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");
         Intent menu = new Intent(Ganador.this, MenuPrincipal.class);
         menu.putExtra("id_user",user);
@@ -86,12 +83,13 @@ public class Ganador extends AppCompatActivity {
     private void actualizarIdioma(){
 
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
+            textoGanador.setText(R.string.TEXTO_GANASTE_JUEGO);
             btnVolverMenuPrincipalGano.setText(R.string.TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_ES);
         }else{
+            textoGanador.setText(R.string.TEXTO_GANASTE_JUEGO_EN);
             btnVolverMenuPrincipalGano.setText(R.string.TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_EN);
 
         }

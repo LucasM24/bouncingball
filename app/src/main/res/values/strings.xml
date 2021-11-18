@@ -25,6 +25,8 @@
     <string name="TEXTO_PISTA_CAMPO_CORREO">Ingrese su correo electrónico</string>
     <string name="TEXTO_BOTON_CERRAR_SESION">Cerrar sesión</string>
     <string name="ETIQUETA_OPCIONES">Opciones</string>
+    <string name="TEXTO_GANASTE_JUEGO">¡¡Ganaste!!</string>
+    <string name="TEXTO_GANASTE_JUEGO_EN">¡¡You win!!</string>
     <string name="CAMPO_USUARIO_EN">Username</string>
     <string name="CAMPO_PASSWORD_EN">Password</string>
     <string name="TEXTO_BOTON_INICIAR_SESION_EN">Login</string>

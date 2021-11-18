@@ -5,6 +5,8 @@
     <color name="colorPuntajeJugador">#FF9800</color>
     <color name="botonSalir">#a11a03</color>
     <color name="botonSalirPresionado">#841603</color>
+    <color name="colorTextos">#FFFFFF</color>
+
 
 
 </resources>

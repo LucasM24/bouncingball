@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="5dp"
-
         android:fontFamily="@font/fuente_uno"
         android:text=""
         android:textColor="#FFFFFF"
@@ -39,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.191"
-        app:srcCompat="@drawable/consonido"
+        app:srcCompat="@drawable/sinsonido"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -59,11 +58,12 @@
 
     <TextView
         android:id="@+id/textView"
-        android:fontFamily="@font/fuente_uno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:fontFamily="@font/fuente_uno"
         android:text="@string/ETIQUETA_NIVELES"
+        android:textColor="@color/colorTextos"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="24dp"
+        android:onClick="asignarDificultadFacil"
         android:text="@string/ETIQUETA_NIVEL_FACIL"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -86,6 +87,7 @@
         android:id="@+id/radioButton2"
         android:fontFamily="@font/fuente_uno"
         android:layout_width="wrap_content"
+        android:onClick="asignarDificultadIntermedia"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
@@ -95,6 +97,7 @@
 
     <RadioButton
         android:id="@+id/radioButton"
+        android:onClick="asignarDificultadDificil"
         android:fontFamily="@font/fuente_uno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -124,6 +127,7 @@
         android:layout_height="wrap_content"
         android:text="@string/ETIQUETA_OPCIONES"
         android:textAlignment="center"
+        android:textColor="@color/colorTextos"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -31,7 +31,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/fuente_uno"
                     android:gravity="right"
-                    android:text="Hola: "
+                    android:text=""
                     android:textColor="#FFFFFF"
                     android:textSize="10sp"
                     tools:ignore="MissingConstraints"

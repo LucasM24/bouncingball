@@ -23,7 +23,6 @@ public class Opciones extends AppCompatActivity {
 
     private TextView textoNombreUsuario ,txtNivelDelJuego, tituloOpciones;
     private CheckBox c1,c2,c3 ;
-    private Switch aSwitchE ,aSwitchS;
     private MediaPlayer mp ;
     private Button btn_regresar;
     private ImageButton btn_sonido ,btn_idioma ;
@@ -32,17 +31,17 @@ public class Opciones extends AppCompatActivity {
     private MediaPlayer mpclic ;
     private boolean encendida  ;
     private RadioButton btn_facil ,btn_intermedio,btn_dificil ;
+    private String nombreUsuario;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modelo_opciones_del_juego);
         mpclic = MediaPlayer.create(this,R.raw.clic);
-
         recibir_date();
+        textoNombreUsuario = findViewById(R.id.textViewNombreJugador);
         btn_facil = (RadioButton) findViewById(R.id.radioButton3);
         btn_intermedio = (RadioButton) findViewById(R.id.radioButton2);
         btn_dificil = (RadioButton) findViewById(R.id.radioButton);
-
         txtNivelDelJuego =(TextView) findViewById(R.id.textView);
         tituloOpciones = findViewById(R.id.tituloOpciones);
         btn_regresar = (Button) findViewById(R.id.button);
@@ -59,14 +58,30 @@ public class Opciones extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     public void recibir_date(){
         Bundle extra = getIntent().getExtras();
-        String nombreUsuario = extra.getString("id_user2");
-        textoNombreUsuario = findViewById(R.id.textViewNombreJugador);
-        textoNombreUsuario.setText("Hola: " + nombreUsuario);
+        nombreUsuario = extra.getString("id_user2");
+    }
+
+
+   public void asignarDificultadFacil(View v){
+       btn_facil.setChecked(true);
+       btn_intermedio.setChecked(false);
+       btn_dificil.setChecked(false);
+   }
+
+    public void asignarDificultadIntermedia(View v){
+        btn_intermedio.setChecked(true);
+        btn_facil.setChecked(false);
+        btn_dificil.setChecked(false);
+    }
+
+    public void asignarDificultadDificil(View v){
+        btn_dificil.setChecked(true);
+        btn_facil.setChecked(false);
+        btn_intermedio.setChecked(false);
     }
 
     public void volver(View v){
@@ -74,26 +89,14 @@ public class Opciones extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
 
         if(btn_facil.isChecked()){
-            /*
-             * Seleccion de modo facil los bloques son mas fragiles
-             * */
             editor.putInt("level",1);
             editor.commit();
+        }else if(btn_intermedio.isChecked()){
+            editor.putInt("level",2);
+            editor.commit();
         }else{
-            if(btn_intermedio.isChecked()){
-                /*
-                 * Seleccion de modo Intermedio cambio de la dureza del bloque
-                 * Cambia la distribucion de los bloques
-                 * */
-                editor.putInt("level",2);
-                editor.commit();
-            }else{
-                /*
-                 * Seleccion de modo Dificil
-                 * */
-                editor.putInt("level",3);
-                editor.commit();
-            }
+            editor.putInt("level",3);
+            editor.commit();
         }
 
         editor.putString("changelevel","si");
@@ -104,7 +107,7 @@ public class Opciones extends AppCompatActivity {
 
     public void onClickIdioma(View v){
 
-        mpclic.start();
+
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
         String idioma_user = preferences.getString("idioma","es");
@@ -116,8 +119,7 @@ public class Opciones extends AppCompatActivity {
             editor.putString("idioma","en");
             editor.commit();
             actualizarIdioma();
-        }
-        else{
+        }else{
             btn_idioma.setImageResource(R.drawable.argentina);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("idioma","es");
@@ -140,6 +142,7 @@ public class Opciones extends AppCompatActivity {
             btn_dificil.setText(R.string.ETIQUETA_NIVEL_DIFICIL);
             btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER);
             tituloOpciones.setText(R.string.ETIQUETA_OPCIONES);
+            textoNombreUsuario.setText("Hola: " + nombreUsuario);
         }else{
             btn_idioma.setImageResource(R.drawable.estadosunidos);
             txtNivelDelJuego.setText(R.string.ETIQUETA_NIVELES_EN);
@@ -148,34 +151,21 @@ public class Opciones extends AppCompatActivity {
             btn_dificil.setText(R.string.ETIQUETA_NIVEL_DIFICIL_EN);
             btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER_EN);
             tituloOpciones.setText(R.string.ETIQUETA_OPCIONES_EN);
+            textoNombreUsuario.setText("Hello: " + nombreUsuario);
         }
 
     }
+
     public void onClickSound(View v){
-
+        Intent miReproductor = new Intent(this,ServicioMusica.class);
         if(encendida){
-            apagarMusica();
+            btn_sonido.setImageResource(R.drawable.sinsonido);
+            this.stopService(miReproductor);
         }else{
-            enciendeMusica();
+            btn_sonido.setImageResource(R.drawable.consonido);
+            this.startService(miReproductor);
         }
-
-    }
-    private void enciendeMusica(){
-        btn_sonido.setImageResource(R.drawable.consonido);
-        Intent miReproductor = new Intent(this,ServicioMusica.class);
-        this.startService(miReproductor);
-        encendida =!encendida;
-
-    }
-    private void apagarMusica(){
-        btn_sonido.setImageResource(R.drawable.sinsonido);
-        Intent miReproductor = new Intent(this,ServicioMusica.class);
-        this.stopService(miReproductor);
         encendida = !encendida;
-
     }
-//    public void volver(View v){
-//        //mpclic.start();
-//        onBackPressed();
-//    }
+
 }
