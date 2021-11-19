@@ -50,7 +50,9 @@ public class IniciarSesion extends AppCompatActivity {
         // Actualizo algunos datos del puntaje
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("Nivel", "Facil");
         editor.putInt("user_puntaje",0);
+
         editor.commit();
 
 

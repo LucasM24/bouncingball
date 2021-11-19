@@ -50,8 +50,23 @@ public class Opciones extends AppCompatActivity {
         encendida = false;
         usuario = findViewById(R.id.editUser);
         clave = findViewById(R.id.editPassword);
-        btn_facil.setChecked(true);
         actualizarIdioma();
+        SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
+        String nivel = preferences.getString("Nivel","Facil");
+        SharedPreferences.Editor editor = preferences.edit();
+        if(nivel.equalsIgnoreCase("Facil")){
+            btn_facil.setChecked(true);
+            btn_intermedio.setChecked(false);
+            btn_dificil.setChecked(false);
+        }else if (nivel.equalsIgnoreCase("Intermedio")){
+            btn_intermedio.setChecked(true);
+            btn_facil.setChecked(false);
+            btn_dificil.setChecked(false);
+        }else{
+            btn_dificil.setChecked(true);
+            btn_facil.setChecked(false);
+            btn_intermedio.setChecked(false);
+        }
 
     }
 
@@ -91,12 +106,15 @@ public class Opciones extends AppCompatActivity {
         if(btn_facil.isChecked()){
             editor.putInt("level",1);
             editor.commit();
+            editor.putString("Nivel", "Facil");
         }else if(btn_intermedio.isChecked()){
             editor.putInt("level",2);
             editor.commit();
+            editor.putString("Nivel", "Intermedio");
         }else{
             editor.putInt("level",3);
             editor.commit();
+            editor.putString("Nivel", "Dificil");
         }
 
         editor.putString("changelevel","si");
