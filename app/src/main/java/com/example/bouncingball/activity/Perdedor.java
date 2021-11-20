@@ -20,6 +20,8 @@ public class Perdedor extends AppCompatActivity {
     TextView mostrar_user ;
     private dbConexion dao ;
     private Button btnVolverMenuPrincipalPerdio;
+    private TextView titulo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public class Perdedor extends AppCompatActivity {
         //mostrar_user = (TextView) findViewById(R.id.textView4);
         //mostrar_user.setText(name_user);
         btnVolverMenuPrincipalPerdio =findViewById(R.id.salirDelJuego);
+        titulo = findViewById(R.id.tituloPerdiste);
         dao = new dbConexion(this);
     }
 
@@ -41,8 +44,6 @@ public class Perdedor extends AppCompatActivity {
 
     public void volverAlMenuJuego(View v){
 
-        System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");
-        // Abrir el Archivo
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 
         // Recuperar clave-valor
@@ -52,36 +53,15 @@ public class Perdedor extends AppCompatActivity {
         // Editar el Archivo clave-valor
         SharedPreferences.Editor editor = preferences.edit();
 
-        // Perdio en el nivel que estaba jugando por defecto puntaje 0
-       // int  mypuntaje = 0 ;
-
-        // sumar el puntaje obtenido en el nivel jugado
-       // mypuntaje=mypuntaje+puntaje_Acumulativo;
-       // puntaje_Acumulativo = mypuntaje;
-
-        //Mostrar valores por consola
-        System.out.println("Mypuntaje : "+mypuntaje);
-        //System.out.println("Puntaje Acumulativo : "+puntaje_Acumulativo);
-
         // actualizar los cambios por defecto
-       // editor.putInt("puntaje_total",0);
         editor.putInt("user_puntaje",0);
         editor.putInt("level", 1);
         editor.putString("changelevel","no");
         editor.apply();
-        /*
-         * Comparacion el puntaje obtenido en el juego con el ultimo registrado en la
-         * Base de Datos
-         * */
-        Usuario us = dao.consultarPuntaje(user);
-        System.out.println("Pasas x aqui if(puntaje_Acumulativo>us.getPuntaje)");
-        if (mypuntaje <= us.getPuntaje()) {
-           // Toast.makeText(this, "Segui Participando ", Toast.LENGTH_SHORT).show();
-        } else {
 
-            System.out.println("dao.updatePuntaje(user,puntaje_Acumulativo);");
+        Usuario us = dao.consultarPuntaje(user);
+        if (mypuntaje > us.getPuntaje()) {
             final int i = dao.updatePuntaje(user, mypuntaje);
-           // Toast.makeText(this, "Felicitaciones Superaste el Puntaje_Max Registrado", Toast.LENGTH_SHORT).show();
         }
 
         Intent menu = new Intent(Perdedor.this, MenuPrincipal.class);
@@ -89,18 +69,19 @@ public class Perdedor extends AppCompatActivity {
         startActivity(menu);
 
     }
+
     private void actualizarIdioma(){
 
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
+            titulo.setText(R.string.TEXTO_PERDISTE);
             btnVolverMenuPrincipalPerdio.setText(R.string.TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_ES);
         }else{
+            titulo.setText(R.string.TEXTO_PERDISTE_EN);
             btnVolverMenuPrincipalPerdio.setText(R.string.TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_EN);
-
         }
-
     }
+
 }

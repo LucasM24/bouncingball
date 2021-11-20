@@ -7,17 +7,37 @@
     android:background="#002134"
     tools:context=".activity.Perdedor">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tituloPerdiste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="104dp"
+            android:fontFamily="@font/fuente_uno"
+            android:textColor="@color/colorTextos"
+            android:text="@string/TEXTO_PERDISTE"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/animation_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.428"
             app:lottie_autoPlay="true"
             app:lottie_fileName="gameover.json"
             app:lottie_imageAssetsFolder="assets"
@@ -26,10 +46,17 @@
         <Button
             android:id="@+id/salirDelJuego"
             style="@style/estilos_boton"
-            android:layout_marginTop="32dp"
+            android:layout_width="338dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="116dp"
             android:background="@drawable/boton_salir"
             android:onClick="volverAlMenuJuego"
-            android:text="@string/TEXTO_BOTON_VOLVER_MENU_PRINCIPAL" />
-    </LinearLayout>
+            android:text="@string/TEXTO_BOTON_VOLVER_MENU_PRINCIPAL"
+            android:textColor="@color/colorTextos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

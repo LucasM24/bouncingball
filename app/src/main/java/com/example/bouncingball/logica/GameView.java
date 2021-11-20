@@ -274,18 +274,15 @@ public class GameView extends SurfaceView {
 //					unContacto = verificarContacto(bloque);
                     huboContacto = pelota.interseccion(bloque.getModelo());
 					if(huboContacto){
-						// Para hacer pruebas
 						//Guardo el bloque que hizo contacto
 						listaBloque.add(bloque);
 						if(bloque.getDureza() == 1){
 							this.puntaje+= bloque.getPuntaje();
 						}else{
-							//Agregar la imagen del bloque quebrado!!
-							//bloque.setPincel(pincelDureza);
 							bloque.setImagenBloqueRoto();
 						}
 						contarContactos++;
-						mp.start();
+						//mp.start();
 					}
 				}
 			}

@@ -58,12 +58,11 @@ public class IniciarSesion extends AppCompatActivity {
 
 
     }
+
     protected void onResume() {
         super.onResume();
-
         //Carga Activity.
         actualizarIdioma();
-
     }
 
     public void logins(View v){
@@ -76,8 +75,7 @@ public class IniciarSesion extends AppCompatActivity {
             menu.putExtra("id_user",us.getUsuario());
             startActivity(menu);
 
-      }
-      else{
+      }else{
             Toast.makeText(this, "User/Password Incorrectos" , Toast.LENGTH_SHORT).show();
         }
     }

@@ -55,6 +55,7 @@ public class Grilla extends GameView{
        // pintarNivelDePrueba(matrizBloque);
         this.cargarNivel();
     }
+
     private void cargarImagenes(){
         imgBloqueAmarillo= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloque_amarillo),this.anchoBloque,this.altoDelBloque,false);
         imgBloqueVioleta= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloque_violeta),this.anchoBloque,this.altoDelBloque,false);
@@ -62,8 +63,6 @@ public class Grilla extends GameView{
         imgBloqueRojo= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloque_rojo),this.anchoBloque,this.altoDelBloque,false);
         imgBloqueGris= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloquesdureza2),this.anchoBloque,this.altoDelBloque,false);
         imgBloqueGrisRoto= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bloquesdureza2roto),this.anchoBloque,this.altoDelBloque,false);
-
-
     }
 
     private void asignarPosiciones(int anchoBloque, int altoDelBloque, int espacioEntreBloques){
@@ -152,16 +151,16 @@ public class Grilla extends GameView{
                 pintarNivelDePrueba0();
                 break;
             case 1:
-               //pintarNivel0();
-                pintarNivelDePrueba0();
+                pintarNivel0();
+                //pintarNivelDePrueba0();
                 break;
             case 2:
-                //pintarlNivel1();
-                pintarNivelDePrueba1();
+                pintarlNivel1();
+                //pintarNivelDePrueba1();
                 break;
             case 3:
-                //nave();
-                pintarNivelDePrueba2();
+                nave();
+                //pintarNivelDePrueba2();
                 break;
         }
     }
@@ -220,6 +219,7 @@ public class Grilla extends GameView{
         }
         pintarLosBloquesNivelO();
     }
+
     private void pintarLosBloquesNivelO(){
         /*
          * Definir los colores

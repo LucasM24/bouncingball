@@ -124,15 +124,11 @@ public class Opciones extends AppCompatActivity {
 
 
     public void onClickIdioma(View v){
-
-
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
             btn_idioma.setImageResource(R.drawable.estadosunidos);
-
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("idioma","en");
             editor.commit();
@@ -147,9 +143,7 @@ public class Opciones extends AppCompatActivity {
     }
 
     private void actualizarIdioma(){
-
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
-
         String idioma_user = preferences.getString("idioma","es");
 
         if(idioma_user.equalsIgnoreCase("es")){
@@ -171,7 +165,6 @@ public class Opciones extends AppCompatActivity {
             tituloOpciones.setText(R.string.ETIQUETA_OPCIONES_EN);
             textoNombreUsuario.setText("Hello: " + nombreUsuario);
         }
-
     }
 
     public void onClickSound(View v){

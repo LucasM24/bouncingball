@@ -54,4 +54,6 @@
     <string name="TEXTO_BOTON_SIGUIENTE_NIVEL_EN">Next Level</string>
     <string name="TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_ES">Volver al menu principal</string>
     <string name="TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_EN">Back to Main Menu</string>
+    <string name="TEXTO_PERDISTE">¡¡Perdiste!!</string>
+    <string name="TEXTO_PERDISTE_EN">¡¡You lose!!</string>
 </resources>
