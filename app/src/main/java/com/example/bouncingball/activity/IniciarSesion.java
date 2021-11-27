@@ -52,7 +52,7 @@ public class IniciarSesion extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("Nivel", "Facil");
         editor.putInt("user_puntaje",0);
-
+        editor.putInt("vidas",3);
         editor.commit();
 
 
@@ -61,8 +61,10 @@ public class IniciarSesion extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
+
         //Carga Activity.
         actualizarIdioma();
+
     }
 
     public void logins(View v){

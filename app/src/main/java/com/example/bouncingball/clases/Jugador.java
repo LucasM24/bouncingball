@@ -26,7 +26,7 @@ public class Jugador {
 		Rect area2 = new Rect(x + velocidad, y,(ancho / 4) - 1,y + alto);
 
 		Rect area3 = new Rect(x + ancho / 4, y,(ancho / 2) - 1,y + alto);
-//
+
 		Rect area4 = new Rect(x + (ancho / 2) , y, (ancho / 4) - 1, y + alto);
 
 		Rect area5 = new Rect (x + (ancho / 4), y, velocidad, y + alto);

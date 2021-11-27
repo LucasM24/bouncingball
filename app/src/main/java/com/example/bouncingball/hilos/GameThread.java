@@ -57,14 +57,12 @@ public class GameThread extends Thread {
     }
     */
     public void run() {
-        //Date t0 = new Date();
-        ticksPS = 500 / FPS;//33.33 milisegundo vamos a dibujar
+        //Date t0 =
 
+        ticksPS = 800 / FPS;//33.33 milisegundo vamos a dibujar
         long startTime;//El momento que se empezo a dibujar el cuadro
         long sleepTime;//
-
         while (!stopped) {
-
             try {
                 synchronized (this) {
                     if (paused) {
@@ -88,8 +86,6 @@ public class GameThread extends Thread {
     }
 
     //Metodos
-
-
     public void play() {
         paused = false;
         stopped = false;
@@ -110,8 +106,11 @@ public class GameThread extends Thread {
         // If it was paused then resume and then stop
         notify();
     }
-    public void aumentarVelocidad(){
-        this.ticksPS = 400 / FPS;
+    public void aumentarVelocidad(int velocidad){
+        //System.out.println("Aumenta la velocidad");
+
+
+        this.ticksPS = velocidad / FPS;
     }
 
 

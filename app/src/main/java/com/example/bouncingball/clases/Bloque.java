@@ -65,20 +65,15 @@ public class Bloque {
     private Rect[] inicializarAreasDeContacto(){
         int velocidad=13;
         Rect [] areas=new Rect[8];
-
         //Esquina 1
         Rect area1=new Rect(posX,posY,posX+velocidad-1,posY+velocidad-1);
-
         Rect area2=new Rect(posX+velocidad,posY,posX+anchoBloque-velocidad,posY+velocidad);
         //Esquina 2
         Rect area3=new Rect(posX+anchoBloque-velocidad+1,posY,posX+anchoBloque,posY+velocidad-1);
-
         Rect area4=new Rect(posX,posY+velocidad,posX+velocidad,posY+altoBloque-velocidad);
-
         Rect area5=new Rect(posX+getAnchoBloque()-velocidad,posY+velocidad,posX+getAnchoBloque(),posY+getAltoBloque()-velocidad);
         //Esquina 3
         Rect area6=new Rect(posX,posY+getAltoBloque()-velocidad-1,posX+velocidad-1,posY+getAltoBloque());
-
         Rect area7=new Rect(posX+velocidad,posY+getAltoBloque()-velocidad,posX+getAnchoBloque()-velocidad,posY+getAltoBloque());
         //Esquina 4
         Rect area8=new Rect(posX+getAnchoBloque()-velocidad+1,posY+getAltoBloque()-velocidad+1,posX+getAnchoBloque(),posY+getAltoBloque());
@@ -217,10 +212,8 @@ public class Bloque {
 
     public int getAreaDeContacto(Pelota pelota){
        Rect [] areas = this.areasDeContacto;
-
        int posArea = 0;
        boolean salir = false;
-
        while(posArea < areas.length && !salir){
            Rect auxRect = areas[posArea];
 
@@ -230,7 +223,6 @@ public class Bloque {
                posArea++;
            }
        }
-
        if(posArea == 0){
            Rect auxRect = areas[1];
            Rect auxRect2 = areas[3];

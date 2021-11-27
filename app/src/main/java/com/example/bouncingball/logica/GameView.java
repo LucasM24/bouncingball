@@ -39,6 +39,8 @@ import com.example.bouncingball.database.dbConexion;
 import com.example.bouncingball.hilos.GameThread;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class GameView extends SurfaceView {
@@ -96,9 +98,10 @@ public class GameView extends SurfaceView {
 	//Sonido
 	private MediaPlayer mp ;
 
+    private Timer temporizador;
 
 
-	public GameView(Context context) {
+    public GameView(Context context) {
 		super(context);
 		SurfaceHolder holder = getHolder();
 		holder.addCallback(new SurfaceHolder.Callback() {
@@ -114,8 +117,13 @@ public class GameView extends SurfaceView {
 				yMax = getHeight();
 				velocidadPelota=7;
 
-				int numeroAleatorio = (int) (Math.random() * 2);
+
+
+
+                //Direccion aleatoria de la pelota
+                int numeroAleatorio = (int) (Math.random() * 2);
 				if(numeroAleatorio==1){
+				    //La pelota sale para la izquierda
 					velocidadPelota=-7;
 				}
 
@@ -178,6 +186,8 @@ public class GameView extends SurfaceView {
 				gameThread = new GameThread(GameView.this);
 				gameThread.play();
 
+                aumentarLaVelocidad();
+
 			}
 
 			@Override
@@ -215,9 +225,6 @@ public class GameView extends SurfaceView {
 
 			//Es el ultimo bloque??
 			boolean gano = this.grilla.getCantidadBloquesPintados() == 0;
-			if(this.grilla.getCantidadBloquesPintados()==10){
-				gameThread.aumentarVelocidad();
-			}
 			if (gano || ganoNivel) {
 				this.nivelSuperado(canvas);
 				System.out.println("Despues del nivel superado");
@@ -735,13 +742,13 @@ public class GameView extends SurfaceView {
 		//Derecha
 		if (pelota.getX() + pelota.getTamanio() >= xMax) {
 			pelota.setDireccionEnX(-pelota.getVelocidad());
-			//mp.start();
+
 		}
 
 		//Izquierda
 		if (pelota.getX() <= 0) {
 			pelota.setDireccionEnX(pelota.getVelocidad());
-			//mp.start();
+
 		}
 
 		//Fondo
@@ -753,7 +760,7 @@ public class GameView extends SurfaceView {
 		//Techo
 		if (pelota.getY() <= 120) {
 			pelota.setDireccionEnY(pelota.getVelocidad());
-			//mp.start();
+
 		}
 
 	}
@@ -813,5 +820,29 @@ public class GameView extends SurfaceView {
 		gameThread.pause();//Para verificar contactos
 		juegoEnPausa=true;
 	}
+	public void aumentarLaVelocidad(){
+        //-------------------------------------------------------------
+        // aca este el codigo que agregue
+        temporizador = new Timer(); //agregue esto
+
+        TimerTask tarea = new TimerTask() {
+            int tic=0;
+            int velocidad=800;
+            @Override
+            public void run() {
+                //System.out.println("holaa");
+                velocidad=velocidad-50;
+                if(velocidad>350){
+                    gameThread.aumentarVelocidad(velocidad);
+                }
+
+            }
+
+        };
+        // Empezamos dentro de 10ms y luego lanzamos la tarea cada 1000ms
+        temporizador.schedule(tarea, 10000,10000);//1000=1segundo
+
+        //-------------------------------------------------------------------------------------
+    }
 
 	}

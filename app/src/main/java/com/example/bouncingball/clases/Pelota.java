@@ -173,24 +173,22 @@ public class Pelota {
         int centroDeX = this.x + (this.tamanio / 2);
         int centroDeY = this.y + (this.tamanio / 2);
         int radio = this.tamanio / 2;
+        // clamp(value, min, max) - limita el valor al rango mín. máx.
 
-        // clamp(value, min, max) - limits value to the range min..max
-
-        // Find the closest point to the circle within the rectangle
+        // Encuentra el punto más cercano al círculo dentro del rectángulo
         float closestX = MathUtils.clamp(centroDeX, rect.left, rect.right);
         float closestY = MathUtils.clamp(centroDeY, rect.top, rect.bottom);
 
-        // Calculate the distance between the circle's center and this closest point
+        // Calcula la distancia entre el centro del círculo y este punto más cercano
         float distanceX = centroDeX - closestX;//5 - 4=1
         float distanceY = centroDeY - closestY;//4 - 3=1
 
-        // If the distance is less than the circle's radius, an intersection occurs
+        // Si la distancia es menor que el radio del círculo, se produce una intersección.
         float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);//2
         //2<100
         if(distanceSquared < (radio * radio)){
             band  = true ;
         }
-
         return band ;
     }
 
