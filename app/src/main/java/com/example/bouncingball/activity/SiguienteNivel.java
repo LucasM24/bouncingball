@@ -43,51 +43,36 @@ public class SiguienteNivel extends AppCompatActivity {
     }
 
     public void continuarJugando(View v){
-        /*
-        * Deberia volver al GameView
-        * */
-        System.out.println("*******Metodo del Evento Activity : Deberia volver al GameView*********");
         Intent jugar = new Intent(SiguienteNivel.this, Principal.class);
         startActivity(jugar);
     }
 
     public void salirDelJuego(View V){
 
-       // System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         String user = preferences.getString("user","vacio");
         // Buscar clave-valor
         int mypuntaje = preferences.getInt("user_puntaje",0);
-        //int puntaje_Acumulativo = preferences.getInt("puntaje_total",0);
+
         // Editar para guardar el Puntaje Acumulado
         SharedPreferences.Editor editor = preferences.edit();
-        // sumar el puntaje obtenido en el nivel jugado
-       // mypuntaje = mypuntaje+puntaje_Acumulativo;
-      //  puntaje_Acumulativo = mypuntaje;
-        // Mostrar por Consola
-       // System.out.println("Mypuntaje : "+mypuntaje);
-       // System.out.println("Puntaje Acumulativo : "+puntaje_Acumulativo);
+
 
         // Actualizar clave-valor
-        //editor.putInt("puntaje_total",puntaje_Acumulativo);
         editor.putInt("user_puntaje",0);
         editor.commit();
         Usuario us = dao.consultarPuntaje(user);
-        //System.out.println("Pasas x aqui if(puntaje_Acumulativo>us.getPuntaje)");
-        if (mypuntaje <= us.getPuntaje()) {
-            //Toast.makeText(this, "Segui Participando ", Toast.LENGTH_SHORT).show();
-        } else {
-            //System.out.println("dao.updatePuntaje(user,puntaje_Acumulativo);");
-            final int i = dao.updatePuntaje(user, mypuntaje);
-           // Toast.makeText(this, "Felicitaciones Superaste el Puntaje_Max Registrado", Toast.LENGTH_SHORT).show();
-        }
 
+        if (mypuntaje > us.getPuntaje()) {
+            final int i = dao.updatePuntaje(user, mypuntaje);
+        }
 
         Intent menu = new Intent(SiguienteNivel.this, MenuPrincipal.class);
         menu.putExtra("id_user",user);
         startActivity(menu);
 
     }
+
     private void actualizarIdioma(){
 
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);

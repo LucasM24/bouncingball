@@ -13,7 +13,7 @@ public class Principal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-    setContentView(new GameView(getBaseContext()));
+        setContentView(new GameView(getBaseContext()));
     }
 
 }
