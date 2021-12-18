@@ -711,7 +711,7 @@ public class GameView extends SurfaceView {
 
         TimerTask tarea = new TimerTask() {
             int tic=0;
-            int velocidad=800;
+            int velocidad=1000;
             @Override
             public void run() {
                 velocidad=velocidad-50;

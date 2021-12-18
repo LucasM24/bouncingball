@@ -19,6 +19,8 @@ public class Ganador extends AppCompatActivity {
     private dbConexion dao;
     private Button btnVolverMenuPrincipalGano;
     private TextView textoGanador;
+    private String mensajeGanador;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class Ganador extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         textoGanador = findViewById(R.id.tituloGanador);
         btnVolverMenuPrincipalGano=(Button) findViewById(R.id.salirDelJuego);
+        mensajeGanador = "¡¡Felicitaciones superaste el máximo puntaje!!";
 
         dao = new dbConexion(this);
     }
@@ -53,7 +56,7 @@ public class Ganador extends AppCompatActivity {
          // actualizar los cambios por defecto
         editor.putInt("level", 1);
         editor.putString("changelevel","no");
-       // editor.putInt("puntaje_total",0);
+
         editor.putInt("user_puntaje",0);
         editor.apply();
 
@@ -64,7 +67,9 @@ public class Ganador extends AppCompatActivity {
         Usuario us = dao.consultarPuntaje(user);
         if (mypuntaje > us.getPuntaje()) {
             int i = dao.updatePuntaje(user, mypuntaje);
+            Toast.makeText(this, mensajeGanador, Toast.LENGTH_SHORT).show();
         }
+
 
         Intent menu = new Intent(Ganador.this, MenuPrincipal.class);
         menu.putExtra("id_user",user);
@@ -79,10 +84,11 @@ public class Ganador extends AppCompatActivity {
         if(idioma_user.equalsIgnoreCase("es")){
             textoGanador.setText(R.string.TEXTO_GANASTE_JUEGO);
             btnVolverMenuPrincipalGano.setText(R.string.TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_ES);
+            mensajeGanador = "¡¡Felicitaciones superaste el máximo puntaje!!";
         }else{
             textoGanador.setText(R.string.TEXTO_GANASTE_JUEGO_EN);
             btnVolverMenuPrincipalGano.setText(R.string.TEXTO_BOTON_VOLVER_MENU_PRINCIPAL_EN);
-
+            mensajeGanador = "¡¡Congratulations you beat the maximum score!!";
         }
 
     }
