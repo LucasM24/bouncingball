@@ -29,46 +29,17 @@ public class GameThread extends Thread {
 
 
     @Override
-    /*
-    public void run() {
-        //1000milisegundo es 1 segundo
-        long ticksPS = 1000 / FPS;//33.33 milisegundo vamos a dibujar
-
-        long startTime;//El momento que se empezo a dibujar el cuadro
-        long sleepTime;//
-        int i=0;
-        while (!stopped) {
-                startTime = System.currentTimeMillis();//Guardo el tiempo actual
-                view.postInvalidate();//Actualizar el dibujo
-
-                //tiempo cada cuanto tengo que dibujar un cuadro
-                sleepTime = ticksPS-(System.currentTimeMillis() - startTime);
-                try {
-                    if (sleepTime > 0)
-                        sleep(sleepTime);
-                } catch (Exception e) {
-                    System.out.println("Exception capturada ");
-                    Log.e(CLASE, "Error " + e.getMessage()+" Exception");
-                }
-
-
-        }
-        System.out.println("Fin del juego");
-    }
-    */
     public void run() {
         //Date t0 =
 
-        ticksPS = 800 / FPS;//33.33 milisegundo vamos a dibujar
+        ticksPS = 1000 / FPS;//33.33 milisegundo vamos a dibujar
         long startTime;//El momento que se empezo a dibujar el cuadro
         long sleepTime;//
         while (!stopped) {
             try {
                 synchronized (this) {
                     if (paused) {
-                        System.out.println("Paused");
                         wait();
-                        System.out.println("Resumed");
                     }
                     startTime = System.currentTimeMillis();//Guardo el tiempo actual
                     view.postInvalidate();//Actualizar el dibujo
@@ -108,8 +79,6 @@ public class GameThread extends Thread {
     }
     public void aumentarVelocidad(int velocidad){
         //System.out.println("Aumenta la velocidad");
-
-
         this.ticksPS = velocidad / FPS;
     }
 

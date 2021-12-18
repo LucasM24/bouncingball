@@ -117,9 +117,6 @@ public class GameView extends SurfaceView {
 				yMax = getHeight();
 				velocidadPelota=7;
 
-
-
-
                 //Direccion aleatoria de la pelota
                 int numeroAleatorio = (int) (Math.random() * 2);
 				if(numeroAleatorio==1){
@@ -130,7 +127,6 @@ public class GameView extends SurfaceView {
 				//Datos archivos
 				SharedPreferences preferences = getContext().getSharedPreferences("myidiom", Context.MODE_PRIVATE);
 				String user = preferences.getString("user","vacio");
-				System.out.println("Usuario Recibido :"+user);
 				// Base de Datos
 				dao = new dbConexion(getContext());
 
@@ -139,32 +135,20 @@ public class GameView extends SurfaceView {
 				puntajeInicial = puntaje;
 				// Si seteo al puntaje total
 				SharedPreferences.Editor editor = preferences.edit();
-				//editor.putInt("puntaje_total",0);
-				//editor.commit();*/
 
 				//Recuperar cantidad de vidas
 				vidas = preferences.getInt("vidas",3);
 
-				//Ubicacion del jugador
-//				 jugador= new Jugador(150,227,150,20);
-				// pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-15,15, 15);
-
-				/*
-				 * Aqui deberia recuperarse del sharedPreferences
-				 * */
 				editor = preferences.edit();
 				int level = preferences.getInt("level",1);
 				//int level = preferences.getInt("level",1);
 				editor.putInt("level", level);
 				editor.commit();
-				System.out.println("Nivel actual " + level);
 
 				grilla = new Grilla(xMax, yMax, 7, 10, 40,level ,context);
 
 				jugador = new Jugador((getWidth() / 2) - (150 / 2), getHeight() - 200, 150,20);
-				//jugador = new Jugador((getWidth() / 2) - (150 / 2), 200, 150,20);
 				pelota = new Pelota(jugador.getPosX(),jugador.getPosY()-20,23, velocidadPelota);
-				//grilla = new Grilla(xMax, yMax, 7, 10, 40,context);
 
 				pelotaImg = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pelota), pelota.getTamanio(), pelota.getTamanio(),false);
 				jugadorImg= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.jugador), jugador.getAncho(), jugador.getAlto(),false);
@@ -209,25 +193,18 @@ public class GameView extends SurfaceView {
 
 		if (jugando) {
 
-
 		canvas.drawBitmap(fondoImg, 0, 120, null);
 		canvas.drawBitmap(panelSuperior, 0, 0, null);
-
-
-		//System.out.println("Entro al onDraw***********************************************************");
-
 
 		//Controles
 		verificarContactoPantalla();
 
-		//pelota.actualizarPosicion();
 		if (vidas > 0) {
 
 			//Es el ultimo bloque??
 			boolean gano = this.grilla.getCantidadBloquesPintados() == 0;
 			if (gano || ganoNivel) {
 				this.nivelSuperado(canvas);
-				System.out.println("Despues del nivel superado");
 			} else {
 				//actualizamos las posiciones
 				if (!cayo) {
@@ -239,7 +216,6 @@ public class GameView extends SurfaceView {
 
 					//Aca va el metodo pintar grilla
 					this.controlDelJuego(canvas);
-//					testPausarJuego();
 
 				} else {
 					//La pelota pasa al jugador
@@ -253,15 +229,6 @@ public class GameView extends SurfaceView {
 			//Si pierdo todas las vidas
 			this.reiniciarJuego(canvas);
 		}
-		//Posición del boton siguiente
-		/*
-		canvas.drawRect(xMax-100, yMax-100, xMax+50, yMax+50, pincelPelota);
-		canvas.drawRect(0, yMax-100, 50, yMax-50, pincelPelota);
-		if(siguienteFotograma){
-			gameThread.pause();
-			siguienteFotograma=false;
-		}*/
-
 	}
 	}
 
@@ -303,16 +270,13 @@ public class GameView extends SurfaceView {
 		listaBloque=this.obtenerBloquesChocados();
 
 		if(listaBloque.size() == 1){
-			System.out.println("Contacto 1");
 			Bloque b=listaBloque.get(0);
 			contactoUnBloque(b);
 		}else if(listaBloque.size() == 2){
-			System.out.println("Contacto 2");
 			Bloque b1=listaBloque.get(0);
 			Bloque b2=listaBloque.get(1);
 			contactoDosBloques(b1,b2);
 		} else if(listaBloque.size() == 3){
-			System.out.println("Contacto 3");
 			Bloque b1=listaBloque.get(0);
 			Bloque b2=listaBloque.get(1);
 			Bloque b3=listaBloque.get(2);
@@ -323,7 +287,6 @@ public class GameView extends SurfaceView {
 
 	private void contactoUnBloque(Bloque bloque){
 		int areaDeContacto = bloque.getAreaDeContacto(this.pelota);
-//		actualizarDireccion2(b);
         this.pelota.setDireccion(areaDeContacto, "Bloque");
 
 		if(bloque.getDureza() == 1) {
@@ -364,7 +327,6 @@ public class GameView extends SurfaceView {
 		}
 		//Estan vertical
 		if(b1.getNroColumna() == b2.getNroColumna()){
-			System.out.println("Bloques estan Vertical");
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
 			b1.setDureza(0);
 			b2.setDureza(0);
@@ -374,7 +336,6 @@ public class GameView extends SurfaceView {
 		}
 		//Estan en diagonal
 		if(b1.getNroColumna() != b2.getNroColumna() && b1.getNroFila() != b2.getNroFila()){
-			System.out.println("Bloques estan diagonal");
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
 			b1.setDureza(0);
 			b2.setDureza(0);
@@ -387,15 +348,10 @@ public class GameView extends SurfaceView {
 	}
 
 	private void contactoTresBloques(Bloque b1, Bloque b2, Bloque b3){
-		System.out.println("Contacto Tres Bloques ");
-		System.out.println("Bloque 1 Columna: " + b1.getNroColumna() + " Fila: " + b1.getNroFila());
-		System.out.println("Bloque 2 Columna: " + b2.getNroColumna() + " Fila: " + b2.getNroFila());
-		System.out.println("Bloque 3 Columna: " + b3.getNroColumna() + " Fila: " + b3.getNroFila());
 
 		//Caso 1
 		if(b2.getNroColumna() != b3.getNroColumna() && b2.getNroFila() != b3.getNroFila()){
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
-			System.out.println("Caso 1 ");
 			b2.setDureza(0);
 			b3.setDureza(0);
 			this.grilla.restarBloquesPintados();
@@ -406,7 +362,6 @@ public class GameView extends SurfaceView {
 		//Caso 2 y caso 4
 		if(b1.getNroColumna()!=b3.getNroColumna()&&b1.getNroFila()!=b3.getNroFila()){
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
-			System.out.println("Caso 2 y 4 ");
 			b1.setDureza(0);
 			b3.setDureza(0);
 			this.grilla.restarBloquesPintados();
@@ -417,7 +372,6 @@ public class GameView extends SurfaceView {
 		//Caso 3
 		if(b1.getNroColumna() != b2.getNroColumna() && b1.getNroFila() != b2.getNroFila()){
 			//Tiene que desaparecer los dos y la dirección solo cambia eje Y
-			System.out.println("Caso 3 ");
 			b1.setDureza(0);
 			b2.setDureza(0);
 			this.grilla.restarBloquesPintados();
@@ -463,7 +417,6 @@ public class GameView extends SurfaceView {
 
 			SharedPreferences.Editor editor = preferences.edit();
 			editor.putInt("user_puntaje", this.puntaje);
-			System.out.println("Puntaje  : "+this.puntaje+"en el nivel : "+this.grilla.getNivelActual());
 			editor.commit();
 
 			this.grilla.avanzarUnNivel();
@@ -477,14 +430,10 @@ public class GameView extends SurfaceView {
 			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(getContext(), i, null);
 
-
-			System.out.println("********************Termino el hilo");
-
 		}else{
 			gameThread.parar();
 			SharedPreferences.Editor editor = preferences.edit();
 			editor.putInt("user_puntaje", this.puntaje);
-			System.out.println("Puntaje  : "+this.puntaje+"en el nivel : "+this.grilla.getNivelActual());
 			editor.commit();
 
 			Intent h = new Intent(getContext(), Ganador.class);
@@ -512,8 +461,6 @@ public class GameView extends SurfaceView {
 		j.putExtra("id_user",user);
 		j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(getContext(), j, null);
-		//bmp= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.finjuego),xMax,yMax,false);
-		//canvas.drawBitmap(bmp, 0, 0, null);
 
 	}
 
@@ -622,7 +569,7 @@ public class GameView extends SurfaceView {
 	}
 
 	public boolean onTouchEvent(MotionEvent evento) {
-		//if (evento.getAction() == MotionEvent.ACTION_DOWN) {}
+
 		//Pulso la pantalla
 		pantallaPulsada = true;
 		posDedoX = (int) evento.getX();
@@ -630,7 +577,6 @@ public class GameView extends SurfaceView {
 
 		//invalidate();
 
-		//    if(evento.getAction() == MotionEvent.ACTION_UP){}
 		// MotionEvent.ACTION_DOWN
 		if(imgFinJuego || imgSuperoNivel){
 			if (evento.getAction() == MotionEvent.ACTION_UP) {
@@ -645,7 +591,6 @@ public class GameView extends SurfaceView {
 			}
 		}else{
 			if(evento.getAction() == MotionEvent.ACTION_UP){
-				//System.out.println("Pulso la pantalla *********************");
 				inicioJuego = true;
 				pantallaPulsada = false;
 			}
@@ -657,7 +602,6 @@ public class GameView extends SurfaceView {
 			if(posDedoX>50&&posDedoX<(xMax-50)){
 				if(posDedoY>10&&posDedoY<300){
 					gameThread.continuar();
-					System.out.println("Continuar jugando Boton Segui jugando #0# ");
 
 				}
 			}
@@ -667,7 +611,6 @@ public class GameView extends SurfaceView {
 				if(posDedoX>xMax-100){
 					if(posDedoY>yMax-100){
 						gameThread.continuar();
-						System.out.println("Continuar jugando Boton Segui jugando [1] ");
 						siguienteFotograma=true;
 					}
 				}
@@ -680,8 +623,6 @@ public class GameView extends SurfaceView {
 				if(posDedoX<100){
 					if(posDedoY>yMax-100){
 						gameThread.continuar();
-						System.out.println("Continuar jugando Boton Segui jugando *2* ");
-
 					}
 				}
 			}
@@ -693,23 +634,18 @@ public class GameView extends SurfaceView {
 	//Controlar rebote
 	public void transicionEnX() {
 		int posNueva = posDedoX - (jugador.getAncho() / 2);
-		//int posNueva=posDedoX;
 		int velocidadTransicion = 50;
 		int rangoMovimiento = 50;
 		int posJugadorCentro = jugador.getPosX() + (jugador.getAncho() / 2);
 		//Verifica que el jugador no salga del limite izquierdo ni del derecho
 		if(posNueva<0 || (posNueva+jugador.getAncho())>xMax){
 			if(posNueva<0){
-				//posNueva=-20;
 				posNueva=0;
 				jugador.setPosX(posNueva);
-
 			}else{
-				//posNueva=-20;
 				posNueva=xMax-jugador.getAncho();
 				jugador.setPosX(posNueva);
 			}
-
 		}else{
 			if (((posJugadorCentro < (posNueva + rangoMovimiento)) && ((posNueva - rangoMovimiento) < posJugadorCentro))) {
 				jugador.setPosX(posNueva);
@@ -765,72 +701,19 @@ public class GameView extends SurfaceView {
 
 	}
 
-
 	private void verificarContactoJugador2(){
 		int areaDeContacto = this.jugador.getAreaDeContacto(this.pelota);
 		this.pelota.setDireccion(areaDeContacto, "Jugador");
 	}
 
-	//Metodos de test!!!!!
-
-	private void testPausarJuego(){
-		boolean unContacto = false;
-		int i=0;
-		while (i<this.grilla.getCantidadFilas()&&! unContacto){
-			int j=0;
-			while (j<this.grilla.getCantidadColumnas()&&! unContacto){
-				if(this.grilla.getBloque(i,j).getDureza()==1){
-					Bloque bloque = this.grilla.getBloque(i,j);
-					unContacto=verificarContacto2(bloque);
-				}
-				j++;
-			}
-			i++;
-		}
-	}
-
-	public boolean verificarContacto2(Bloque b){
-		boolean salida=false;
-		int x=pelota.getPosSiguienteX();
-		int y=pelota.getPosSiguienteY();
-		int anchoPelota=pelota.getTamanio();
-		int alto=pelota.getTamanio();
-
-		Rect rec1=new Rect(x,y,x+anchoPelota,y+alto);
-		int bX=(int)b.getPosX();
-		int by=(int)b.getPosY();
-		int bAncho=(int)(b.getPosX()+b.getAnchoBloque());
-		int bAlto=(int)(b.getPosY()+b.getAltoBloque());
-		Rect rec2=new Rect(bX, (int)b.getPosY(), (int)(b.getPosX()+b.getAnchoBloque()), (int)(b.getPosY()+b.getAltoBloque()));
-
-		if(rec1.intersect(rec2)){
-
-			controlarChoques();
-			Paint colorChoque = new Paint();
-			colorChoque.setColor(RED);
-			b.setPincel(colorChoque);
-
-			salida=true;
-		}
-
-		return salida;
-	}
-
-	public void controlarChoques(){
-		gameThread.pause();//Para verificar contactos
-		juegoEnPausa=true;
-	}
 	public void aumentarLaVelocidad(){
-        //-------------------------------------------------------------
-        // aca este el codigo que agregue
-        temporizador = new Timer(); //agregue esto
+        temporizador = new Timer();
 
         TimerTask tarea = new TimerTask() {
             int tic=0;
             int velocidad=800;
             @Override
             public void run() {
-                //System.out.println("holaa");
                 velocidad=velocidad-50;
                 if(velocidad>350){
                     gameThread.aumentarVelocidad(velocidad);

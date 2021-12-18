@@ -19,7 +19,6 @@ public class Pelota {
 
     private int posSiguienteX;
     private int posSiguienteY;
-    private int [][] esquinasPelota;
 
     public Pelota(){
 
@@ -39,15 +38,8 @@ public class Pelota {
         this.posSiguienteY=posY;
         this.centroX = posX+18;
         this.centroY = posY+18;
-        esquinasPelota = new int[4][2];
     }
 
-    public int getCentroX(){
-        return centroX ;
-    }
-    public int getCentroY(){
-        return centroY ;
-    }
     public int getPosX() {
         return x;
     }
@@ -72,36 +64,12 @@ public class Pelota {
         return velocidad;
     }
 
-    public int getPosAnteriorX() {
-        return posAnteriorX;
-    }
-
-    public int getPosAnteriorY() {
-        return posAnteriorY;
-    }
-
-    public void setPosAnteriorY(int posAnteriorY) {
-        this.posAnteriorY = posAnteriorY;
-    }
-
-    public void setPosAnteriorX(int posAnteriorX) {
-        this.posAnteriorX = posAnteriorX;
-    }
-
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
-    }
-
     public void setDireccionEnY(int direccionEnY) {
         this.direccionEnY = direccionEnY;
     }
 
     public void setDireccionEnX(int direccionEnX) {
         this.direccionEnX = direccionEnX;
-    }
-
-    public void setTamanio(int tamanio) {
-        this.tamanio = tamanio;
     }
 
     public void setY(int y) {
@@ -138,21 +106,7 @@ public class Pelota {
     public int getPosSiguienteY() {
         return posSiguienteY;
     }
-    public int[][] devolverPuntos(){
-        esquinasPelota[0][0]=this.x;
-        esquinasPelota[0][1]=this.y;
 
-        esquinasPelota[1][0]=this.x+this.tamanio;
-        esquinasPelota[1][1]=this.y;
-
-        esquinasPelota[2][0]=this.x;
-        esquinasPelota[2][1]=this.y+this.tamanio;
-
-        esquinasPelota[3][0]=this.x+this.tamanio;
-        esquinasPelota[3][1]=this.y+this.tamanio;
-
-        return esquinasPelota;
-    }
     public String getDireccion(){
         String salida = "";
         if(this.posAnteriorY<this.getPosY()){
@@ -214,46 +168,46 @@ public class Pelota {
             }
         }else{
             if(area == 1 || area == 6){
-                System.out.println("choco en el area "+area+" en uno de los centros");
+               // System.out.println("choco en el area "+area+" en uno de los centros");
                 this.setDireccionEnY(-1 * this.getDireccionEnY());
             }
             else if(area == 3 || area == 4){
-                System.out.println("choco en el area "+area+" en uno de los laterales");
+                //System.out.println("choco en el area "+area+" en uno de los laterales");
                 this.setDireccionEnX(-1 * this.getDireccionEnX());
             }//Aca comienzan las esquinas
             else if(area == 0 && !this.getDireccion().equals("abajoDerecha")){
                 if(this.getDireccion().equals("arribaDerecha")){
-                    System.out.println("choco en el area "+area+" en la direccion arriba a la derecha");
+                  //  System.out.println("choco en el area "+area+" en la direccion arriba a la derecha");
                     this.setDireccionEnX(-1 * this.getDireccionEnX());
                 }else if(this.getDireccion().equals("abajoIzquierda")){
-                    System.out.println("choco en el area "+area+" en la direccion abajo a la izquierda");
+                 //   System.out.println("choco en el area "+area+" en la direccion abajo a la izquierda");
                     this.setDireccionEnY(-1 * this.getDireccionEnY());
                 }
             }else if(area == 2 && !this.getDireccion().equals("abajoIzquierda")){
                 if(this.getDireccion().equals("arribaIzquierda")){
-                    System.out.println("choco en el area "+ area +" en la direccion arriba la izquierda ");
+                  //  System.out.println("choco en el area "+ area +" en la direccion arriba la izquierda ");
                     this.setDireccionEnX(-1 * this.getDireccionEnX());
                 }else if(this.getDireccion().equals("abajoDerecha")){
                     this.setDireccionEnY(-1 * this.getDireccionEnY());
                 }
             }else if(area == 5 && !this.getDireccion().equals("arribaDerecha")){
                 if(this.getDireccion().equals("abajoDerecha")){
-                    System.out.println("choco en el area "+area+" en la direccion abajo a la derecha");
+                   // System.out.println("choco en el area "+area+" en la direccion abajo a la derecha");
                     this.setDireccionEnX(-1 * this.getDireccionEnX());
                 }else if(this.getDireccion().equals("arribaIzquierda")){
-                    System.out.println("choco en el area "+ area +" en la direccion arriba la izquierda ");
+                  //  System.out.println("choco en el area "+ area +" en la direccion arriba la izquierda ");
                     this.setDireccionEnY(-1 * this.getDireccionEnY());
                 }
             }else if(area == 7 && !this.getDireccion().equals("arribaIzquierda")){
                 if(this.getDireccion().equals("arribaDerecha")){
-                    System.out.println("choco en el area "+area+" en la direccion arriba a la derecha");
+                  //  System.out.println("choco en el area "+area+" en la direccion arriba a la derecha");
                     this.setDireccionEnY(-1 * this.getDireccionEnY());
                 }else if(this.getDireccion().equals("abajoIzquierda")){
-                    System.out.println("choco en el area "+area+" en la direccion abajo a la izquierda");
+                  //  System.out.println("choco en el area "+area+" en la direccion abajo a la izquierda");
                     this.setDireccionEnX(-1 * this.getDireccionEnX());
                 }
             }else{
-                System.out.println("choco en el area "+area+" sale en direccion correcta");
+              //  System.out.println("choco en el area "+area+" sale en direccion correcta");
                 this.setDireccionEnX(-1 * this.getDireccionEnX());
                 this.setDireccionEnY(-1 * this.getDireccionEnY());
             }

@@ -62,13 +62,6 @@ public class PuntajeJugador extends AppCompatActivity {
         int height = metrics.heightPixels; // alto absoluto en pixels
         int anchoRow = width/3;
 
-        /*
-        * Encabezado de TableLayout
-        * */
-        // valores por defecto del Encabezado
-       // encabezado[0]= "Ranking";
-       // encabezado[1]= "Usuario";
-       // encabezado[2]="Puntaje";
         actualizarIdioma();
         TableRow row = new TableRow(this.getBaseContext());
         //row.setWeightSum(20);
@@ -84,12 +77,9 @@ public class PuntajeJugador extends AppCompatActivity {
             textViewEncabezado.setText(encabezado[k]);
             textViewEncabezado.setTextColor(Color.WHITE);
 
-//            textViewEncabezado.setWidth(anchoRow);
+
             row.addView(textViewEncabezado);
         }
-
-        //Typeface font = ResourcesCompat.getFont(createConfigurationContext(), fuente_uno);
-
 
         listaplayers.addView(row);
 
@@ -147,9 +137,8 @@ public class PuntajeJugador extends AppCompatActivity {
     public void recibir_date() {
         Bundle extra = getIntent().getExtras();
         name_user = extra.getString("id_user2");
-       // mostrar_user = (TextView) findViewById(R.id.TextPlayers);
-       // mostrar_user.setText(name_user);
     }
+
     private void actualizarIdioma(){
         SharedPreferences preferences = getSharedPreferences("myidiom", Context.MODE_PRIVATE);
         String idioma_user = preferences.getString("idioma","es");
@@ -158,10 +147,9 @@ public class PuntajeJugador extends AppCompatActivity {
             encabezado[0]= "Ranking";
             encabezado[1]= "Usuario";
             encabezado[2]="Puntaje";
-            // textoPuntajeMax.setText(R.string.ETIQUETA_PUNTAJE_JUGADOR);
             btn_regresar.setText(R.string.TEXTO_BOTON_VOLVER);
         }else{
-         //   textoPuntajeMax.setText(R.string.ETIQUETA_PUNTAJE_JUGADOR_EN);
+
             encabezado[0]= "Ranking";
             encabezado[1]= "User";
             encabezado[2]="Score";

@@ -16,7 +16,6 @@ import com.example.bouncingball.clases.Usuario;
 import com.example.bouncingball.database.dbConexion;
 
 public class Ganador extends AppCompatActivity {
-    TextView mostrar_user ;
     private dbConexion dao;
     private Button btnVolverMenuPrincipalGano;
     private TextView textoGanador;
@@ -27,19 +26,18 @@ public class Ganador extends AppCompatActivity {
         setContentView(R.layout.modelo_ganador);
 
         Bundle extra = getIntent().getExtras();
-        String name_user = extra.getString("id_user");
         textoGanador = findViewById(R.id.tituloGanador);
-        //mostrar_user = (TextView) findViewById(R.id.textView3);
-        //mostrar_user.setText(name_user);
         btnVolverMenuPrincipalGano=(Button) findViewById(R.id.salirDelJuego);
 
         dao = new dbConexion(this);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         actualizarIdioma();
     }
+
     public void volverAlMenu(View v){
 
         // Abrir el Archivo
@@ -47,17 +45,10 @@ public class Ganador extends AppCompatActivity {
 
         // Recuperar clave-valor
         int mypuntaje = preferences.getInt("user_puntaje",0);
-        //int puntaje_Acumulativo = preferences.getInt("puntaje_total",0);
         String user = preferences.getString("user","vacio");
 
         // Editar el Archivo para realizar Modificaciones
         SharedPreferences.Editor editor = preferences.edit();
-
-        // sumar el puntaje obtenido en el nivel jugado
-        //puntaje_Acumulativo += mypuntaje;
-        // Mostrar por consola
-        //System.out.println("Mypuntaje (Ganador) : "+mypuntaje);
-       // System.out.println("Puntaje Acumulativo  (Ganador): "+puntaje_Acumulativo);
 
          // actualizar los cambios por defecto
         editor.putInt("level", 1);
@@ -74,7 +65,7 @@ public class Ganador extends AppCompatActivity {
         if (mypuntaje > us.getPuntaje()) {
             int i = dao.updatePuntaje(user, mypuntaje);
         }
-        //System.out.println("*******Metodo del Evento Activity : Salir del juego GameView*********");
+
         Intent menu = new Intent(Ganador.this, MenuPrincipal.class);
         menu.putExtra("id_user",user);
         startActivity(menu);

@@ -41,17 +41,6 @@ public class Usuario  implements Serializable {
         return clave;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String em) {
-        this.email = em;
-    }
     public int getPuntaje(){return this.puntaje;}
     public void setPuntaje(int p){
 

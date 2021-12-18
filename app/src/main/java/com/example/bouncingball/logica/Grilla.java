@@ -20,10 +20,7 @@ public class Grilla extends GameView{
     private int anchoBloque;
     private int nivelActual;
     private Bloque[][] matrizBloque;
-    private Paint pincelDureza =  new Paint();
-    private Paint pincelMuralla =  new Paint();
-    private Paint pincelTorre = new Paint();
-    private Paint pincelPeon = new Paint();
+
     //Imagenes
     //private Bitmap imgBloqueAmarillo;
     private Bitmap imgBloqueGris;
@@ -52,7 +49,6 @@ public class Grilla extends GameView{
         this.cargarImagenes();
 
         asignarPosiciones(anchoBloque,altoDelBloque,espacioEntreBloques);
-       // pintarNivelDePrueba(matrizBloque);
         this.cargarNivel();
     }
 
@@ -66,7 +62,6 @@ public class Grilla extends GameView{
     }
 
     private void asignarPosiciones(int anchoBloque, int altoDelBloque, int espacioEntreBloques){
-        //float anchoBloque=(int)((this.xMax-45)/10);
         int borde=((this.anchoPantalla-espacioEntreBloques)/this.cantidadColumnas)%2;
         int id=0;
 
@@ -74,15 +69,12 @@ public class Grilla extends GameView{
         int posX=0;
         int posY=120;
 
-        //Numero aleatorio
-        //numero = (int) (Math.random() * n) + 1;
         int n=4;
 
 
         for(int fil=0;fil<this.cantidadFilas;fil++){
             posX=posX+borde;
             for(int col=0;col<this.cantidadColumnas;col++){
-                //int dureza=(int)(Math.random()*2);
                 int numero = (int) (Math.random() * n) + 1;
                 Bitmap imgAux;
                 if(numero==1){
@@ -96,11 +88,9 @@ public class Grilla extends GameView{
                 }
                 this.matrizBloque[fil][col]=new Bloque(posX,posY,anchoBloque,altoDelBloque,0, imgAux,imgBloqueGrisRoto, col, fil, id);
                 posX=posX+anchoBloque+5;
-                //posX=posX+anchoBloque;
                 id=id+1;
             }
             posY=posY+altoDelBloque+5;
-            //posY=posY+altoDelBloque;
             posX=0;
 
         }
@@ -111,10 +101,6 @@ public class Grilla extends GameView{
 
     public int getCantidadFilas() {
         return cantidadFilas;
-    }
-
-    public void setCantidadFilas(int cantidadFilas) {
-        this.cantidadFilas = cantidadFilas;
     }
 
     public int getCantidadColumnas() {
@@ -132,9 +118,6 @@ public class Grilla extends GameView{
     public void restarBloquesPintados(){
         this.cantidadBloquesPintados-=1;
     }
-    public void setCantidadColumnas(int cantidadColumnas) {
-        this.cantidadColumnas = cantidadColumnas;
-    }
 
     public Bloque getBloque(int fila,int columna){
         return this.matrizBloque[fila][columna];
@@ -147,20 +130,16 @@ public class Grilla extends GameView{
     private void cargarNivel(){
         switch (nivelActual) {
             case 0:
-                //pintarNivelDePrueba();
                 pintarNivelDePrueba0();
                 break;
             case 1:
                 pintarNivel0();
-                //pintarNivelDePrueba0();
                 break;
             case 2:
                 pintarlNivel1();
-                //pintarNivelDePrueba1();
                 break;
             case 3:
                 nave();
-                //pintarNivelDePrueba2();
                 break;
         }
     }
@@ -174,40 +153,10 @@ public class Grilla extends GameView{
         this.cargarNivel();
     }
 
-    private void pintarNivelDePrueba(){
-        this.cantidadBloquesPintados=6;
-        //Fila0
-        this.matrizBloque[0][0].setDureza(1);
-        this.matrizBloque[0][1].setDureza(1);
-        this.matrizBloque[0][2].setDureza(1);
-        this.matrizBloque[0][3].setDureza(1);
-        this.matrizBloque[0][4].setDureza(1);
-        //Fila1
-        this.matrizBloque[1][0].setDureza(1);
-//        for (int i=0;i<this.matrizBloque.length-9;i++){
-//            for (int j=0;j<this.matrizBloque[0].length-6;j++){
-//                this.matrizBloque[i][j].setDureza(1);
-//                this.cantidadBloquesPintados+=1;
-//            }
-//        }
-    }
     private void pintarNivelDePrueba0(){
         this.cantidadBloquesPintados=1;
         //Fila0
         this.matrizBloque[0][0].setDureza(1);
-    }
-    private void pintarNivelDePrueba1(){
-        this.cantidadBloquesPintados=2;
-        //Fila0
-        this.matrizBloque[0][0].setDureza(1);
-        this.matrizBloque[0][1].setDureza(1);
-    }
-    private void pintarNivelDePrueba2(){
-        this.cantidadBloquesPintados=3;
-        //Fila0
-        this.matrizBloque[0][0].setDureza(1);
-        this.matrizBloque[0][1].setDureza(1);
-        this.matrizBloque[0][2].setDureza(1);
     }
 
     private void pintarNivel0(){
@@ -278,7 +227,6 @@ public class Grilla extends GameView{
 
     private void pintarlNivel1(){
 
-        System.out.println("nivel 1");
         this.cantidadBloquesPintados=46;
         //Fila0
         this.matrizBloque[0][3].setDureza(1);

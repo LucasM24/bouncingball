@@ -8,7 +8,6 @@ public class Jugador {
 	private int y;
 	private int ancho;
 	private int alto;
-	private int velocidad = 13;
 
 	public Jugador (int x, int y, int ancho, int alto ){
 		this.x = x;
@@ -16,28 +15,6 @@ public class Jugador {
 		this.ancho = ancho;
 		this.alto = alto;
 		this.inicializarAreas();
-	}
-
-	public Rect[] inicializarAreas(int x, int y, int ancho, int alto, int velocidad){
-		this.areas = new Rect [5];
-
-		Rect area1 = new Rect(x, y,x + velocidad - 1, y + this.alto);
-
-		Rect area2 = new Rect(x + velocidad, y,(ancho / 4) - 1,y + alto);
-
-		Rect area3 = new Rect(x + ancho / 4, y,(ancho / 2) - 1,y + alto);
-
-		Rect area4 = new Rect(x + (ancho / 2) , y, (ancho / 4) - 1, y + alto);
-
-		Rect area5 = new Rect (x + (ancho / 4), y, velocidad, y + alto);
-
-		this.areas[0]=area1;
-		this.areas[1]=area2;
-		this.areas[2]=area3;
-		this.areas[3]=area4;
-		this.areas[4]=area5;
-
-		return areas;
 	}
 
 	public Rect[] inicializarAreas(){
@@ -73,7 +50,7 @@ public class Jugador {
 		while(!salir && cantidadDeAreas > i){
 			if(pelota.interseccion(this.areas[i])){
 				choco = true;
-				System.out.println("Hubo una intercepcion en el area" + i);
+			//	System.out.println("Hubo una intercepcion en el area" + i);
 				if(i == 1){
 					areaDeContacto = 1;
 					salir = true;
